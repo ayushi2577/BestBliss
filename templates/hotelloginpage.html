@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            font-family: gabriola;
+            font-size: 50px;
+            text-align: center;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: rgb(209, 235, 235);
+            font-family: sans-serif;
+        }
+
+        .page {
+            max-width: 500px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 20px;
+            padding: 50px;
+        }
+
+        .boxes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            ;
+            flex-direction: column;
+
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .boxes div{
+            background-color: aliceblue;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .sign {
+            display: none;
+        }
+
+        .goto {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .change {
+            font-family: forte;
+            color: blue;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: transparent;
+            border: 0;
+        }
+
+        .btn {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100px;
+            border-radius: 20px;
+            border: transparent;
+            color: white;
+            font-size: 28px;
+            font-family: gabriola;
+            background: linear-gradient(rgb(90, 218, 218), rgb(143, 139, 139));
+        }
+
+        #message {
+            color:red;
+            font-size:10px;
+        }
+
+        .animate{
+            animation:oj 3s linear forwards;
+            animation-delay: 2s;
+        }
+        @keyframes oj{
+            to{opacity:0}
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <h1>Be a part of best bliss family🪄</h1>
+        <div class="boxes">
+            <div class="log box">
+                <form method="POST" onsubmit="ch(event)">
+                    <label for="username1">Username:</label>
+                    <input type="text" name='mob' id="username1" placeholder="Mobile no."><br>
+                    <label for="pass1">Password:</label>
+                    <input type="password" name='pass' id="pass1" placeholder="password"><br>
+                    <p id="message">{{mes}}</p>
+                    <input type="submit" class="login btn" value="Login">
+                </form>
+                <p class="goto">Didn't have an account? <button onclick='window.location.href="/register"' class="change">Register</button></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    mess = document.getElementById('message');
+
+    function ch(event){
+        event.preventDefault();
+        u=document.getElementById('username1').value
+        p=document.getElementById('pass1').value
+        if (!u || !p){
+            mess.textContent='All fields are required';
+            return false
+        }
+        if (u.length!=10){
+            mess.textContent='Invalid mobile no.';
+            return false
+        }
+        fetch('/check',{method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({'mob':u,'pass':p})
+            }).then(x=>x.json()).then((d)=>{
+                if(!d['mobexist']){
+                    mess.textContent='Mobile no. is not registered';
+                }else if(!d['passmatch']){
+                    mess.textContent='Inavlid pass';
+                }else{
+                    window.location.href='/dashboard';
+                }
+                return false
+            })
+    }
+</script>
+
+</html>
