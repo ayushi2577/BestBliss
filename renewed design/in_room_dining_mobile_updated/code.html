@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BESTBLISS - Gourmet Dining</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#574500",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#e2e2e2",
+                        "on-primary-fixed": "#241a00",
+                        "secondary-container": "#474746",
+                        "on-background": "#e2e2e2",
+                        "tertiary": "#f1c97d",
+                        "surface-bright": "#37393a",
+                        "on-secondary": "#313030",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "outline": "#99907c",
+                        "inverse-primary": "#735c00",
+                        "primary-fixed": "#ffe088",
+                        "on-surface-variant": "#d0c5af",
+                        "outline-variant": "#4d4635",
+                        "background": "#121414",
+                        "tertiary-fixed": "#ffdea5",
+                        "on-tertiary-fixed": "#261900",
+                        "primary": "#f2ca50",
+                        "surface-dim": "#121414",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "surface-container-low": "#1a1c1c",
+                        "surface-container-highest": "#333535",
+                        "surface-container-high": "#282a2b",
+                        "on-primary": "#3c2f00",
+                        "on-primary-container": "#554300",
+                        "on-error": "#690005",
+                        "primary-container": "#d4af37",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "secondary": "#c8c6c5",
+                        "on-surface": "#e2e2e2",
+                        "on-secondary-container": "#b7b5b4",
+                        "surface-tint": "#e9c349",
+                        "surface": "#121414",
+                        "surface-variant": "#333535",
+                        "secondary-fixed": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "surface-container-lowest": "#0c0f0f",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#2f3131",
+                        "tertiary-container": "#d3ad65",
+                        "surface-container": "#1e2020",
+                        "on-tertiary-container": "#5b4000",
+                        "on-tertiary": "#412d00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "stack-md": "24px",
+                        "gutter": "24px",
+                        "container-padding-desktop": "64px",
+                        "stack-lg": "48px",
+                        "stack-sm": "12px",
+                        "container-padding-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Playfair Display"],
+                        "label-lg": ["Manrope"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-sm": ["Manrope"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(18, 20, 20, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1)
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(18, 20, 20, 0.4), rgba(18, 20, 20, 0.9)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuBp6zd3WcGskTkwiT7lNhTX9RoOh2tYr05Jz_kSQ5bUWSkd72j501DyDxNT1csGEjwTXR3CGH6_UCtP4Pylj0KVGwaYGjAOzMqJXGz6vZvmCnYvUDqAwtwu5czsFvnOKImX1mvlJVal0UAPdQIdSsxVAwBW6EJbPKNNvAlVqEyvI9XAMzrc0RwSgGfaq6uOJ-miTTaVA5SB_uGqjqG6ZaJTzWeLV9CXbY_LTt0OKNYvRVKaSqYyZuzNgxspwPLzjhty9ZF943ty5rA6);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed
+        }
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="bg-surface/80 backdrop-blur-md text-primary docked full-width top-0 sticky z-50 border-b border-white/10 flex justify-between items-center px-container-padding-mobile py-4 w-full">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant overflow-hidden">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<span class="text-headline-md font-headline-md tracking-tighter text-on-surface font-black">BESTBLISS</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8">
+<a class="text-primary text-label-lg font-label-lg transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant text-label-lg font-label-lg hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-on-surface-variant text-label-lg font-label-lg hover:text-primary transition-colors" href="#">Stay</a>
+</nav>
+<button class="material-symbols-outlined text-primary">notifications</button>
+</div>
+</header>
+<main class="min-h-screen hero-bg">
+<!-- Hero Section -->
+<section class="pt-24 pb-12 px-container-padding-mobile md:px-container-padding-desktop text-center">
+<h1 class="font-headline-xl text-headline-xl text-white mb-4 italic">Our Menu</h1>
+<p class="text-on-surface-variant max-w-2xl mx-auto font-body-lg text-body-lg">Indulge in a curated selection of gourmet masterpieces, where traditional recipes meet modern luxury.</p>
+</section>
+<!-- Menu Grid -->
+<div class="max-w-7xl mx-auto px-container-padding-mobile md:px-container-padding-desktop pb-32">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Starters -->
+<section class="glass-panel rounded-xl p-6 flex flex-col gap-6">
+<div class="flex items-center justify-between border-b border-outline-variant pb-4">
+<h2 class="font-headline-md text-headline-md text-primary">Starters</h2>
+<span class="material-symbols-outlined text-primary-container">restaurant</span>
+</div>
+<ul class="flex flex-col gap-8">
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Tomato Basil Soup</h3>
+<p class="text-on-surface-variant text-sm mt-1">Slow-simmered vine tomatoes with fresh basil cream.</p>
+</div>
+<span class="text-primary font-bold">$12</span>
+</li>
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Crispy Corn Chaat</h3>
+<p class="text-on-surface-variant text-sm mt-1">Golden kernels with tangy tamarind and mint glaze.</p>
+</div>
+<span class="text-primary font-bold">$14</span>
+</li>
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Paneer Tikka</h3>
+<p class="text-on-surface-variant text-sm mt-1">Charcoal grilled with smoked paprika and house spices.</p>
+</div>
+<span class="text-primary font-bold">$18</span>
+</li>
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Veg Spring Rolls</h3>
+<p class="text-on-surface-variant text-sm mt-1">Crisp hand-rolled pastry with sweet chili reduction.</p>
+</div>
+<span class="text-primary font-bold">$15</span>
+</li>
+</ul>
+</section>
+<!-- Main Course -->
+<section class="glass-panel rounded-xl p-6 flex flex-col gap-6 md:scale-105 shadow-2xl z-10 border-primary/30">
+<div class="flex items-center justify-between border-b border-outline-variant pb-4">
+<h2 class="font-headline-md text-headline-md text-primary">Main Course</h2>
+<span class="material-symbols-outlined text-primary-container">flatware</span>
+</div>
+<ul class="flex flex-col gap-8">
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Butter Paneer Masala</h3>
+<p class="text-on-surface-variant text-sm mt-1">Velvety tomato gravy with artisanal cottage cheese.</p>
+</div>
+<span class="text-primary font-bold">$24</span>
+</li>
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Dal Makhani</h3>
+<p class="text-on-surface-variant text-sm mt-1">Slow-cooked black lentils simmered for 24 hours.</p>
+</div>
+<span class="text-primary font-bold">$22</span>
+</li>
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Veg Biryani with Raita</h3>
+<p class="text-on-surface-variant text-sm mt-1">Fragrant long-grain rice with organic seasonal vegetables.</p>
+</div>
+<span class="text-primary font-bold">$26</span>
+</li>
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Garlic Naan</h3>
+<p class="text-on-surface-variant text-sm mt-1">Tandoor-fired bread with roasted garlic butter (2 pieces).</p>
+</div>
+<span class="text-primary font-bold">$8</span>
+</li>
+</ul>
+<button class="mt-4 w-full bg-primary text-on-primary py-3 rounded-lg font-label-lg text-label-lg hover:brightness-110 active:scale-[0.98] transition-all uppercase tracking-widest shadow-lg">Order Selection</button>
+</section>
+<!-- Desserts -->
+<section class="glass-panel rounded-xl p-6 flex flex-col gap-6">
+<div class="flex items-center justify-between border-b border-outline-variant pb-4">
+<h2 class="font-headline-md text-headline-md text-primary">Desserts</h2>
+<span class="material-symbols-outlined text-primary-container">icecream</span>
+</div>
+<ul class="flex flex-col gap-8">
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Classic Gulab Jamun</h3>
+<p class="text-on-surface-variant text-sm mt-1">Warm milk dumplings in saffron infused syrup.</p>
+</div>
+<span class="text-primary font-bold">$10</span>
+</li>
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Chocolate Brownie</h3>
+<p class="text-on-surface-variant text-sm mt-1">Fudgy dark cocoa with vanilla bean ice cream.</p>
+</div>
+<span class="text-primary font-bold">$15</span>
+</li>
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Rabdi Malpua</h3>
+<p class="text-on-surface-variant text-sm mt-1">Indulgent pancakes soaked in thickened sweet milk.</p>
+</div>
+<span class="text-primary font-bold">$18</span>
+</li>
+<li class="flex justify-between items-start group">
+<div class="flex-1 pr-4">
+<h3 class="font-label-lg text-label-lg text-white group-hover:text-primary transition-colors">Gajar Ka Halwa</h3>
+<p class="text-on-surface-variant text-sm mt-1">Carrot pudding with cardamom and roasted nuts.</p>
+</div>
+<span class="text-primary font-bold">$14</span>
+</li>
+</ul>
+</section>
+</div>
+</div>
+</main>
+<!-- Floating Action Button: View Cart -->
+<div class="fixed bottom-24 right-6 md:right-12 z-50">
+<button class="bg-primary text-on-primary flex items-center gap-3 px-6 py-4 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all group">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="font-label-lg text-label-lg">View Cart (3)</span>
+<span class="bg-on-primary/20 px-2 py-0.5 rounded text-xs font-bold">$62.00</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="bg-surface-container-highest/90 backdrop-blur-xl md:hidden bottom-0 fixed z-50 rounded-t-xl border-t border-white/10 shadow-lg w-full flex justify-around items-center pt-3 pb-safe px-4">
+<a class="flex flex-col items-center justify-center gap-1 text-on-surface-variant/70 hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-primary scale-105 transition-all group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+<span class="text-label-sm font-label-sm font-bold">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-on-surface-variant/70 hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">calendar_today</span>
+<span class="text-label-sm font-label-sm">Stay</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-on-surface-variant/70 hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">smart_home</span>
+<span class="text-label-sm font-label-sm">Smart</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-on-surface-variant/70 hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">military_tech</span>
+<span class="text-label-sm font-label-sm">Loyalty</span>
+</a>
+</nav>
+</body></html>

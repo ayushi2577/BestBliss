@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#d0c5af",
+                      "inverse-primary": "#735c00",
+                      "on-background": "#e2e2e2",
+                      "on-tertiary-fixed-variant": "#5d4201",
+                      "primary": "#f2ca50",
+                      "surface-dim": "#121414",
+                      "surface": "#121414",
+                      "surface-container": "#1e2020",
+                      "on-tertiary-container": "#5b4000",
+                      "inverse-on-surface": "#2f3131",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-error": "#690005",
+                      "inverse-surface": "#e2e2e2",
+                      "on-primary-fixed-variant": "#574500",
+                      "on-secondary": "#313030",
+                      "tertiary-container": "#d3ad65",
+                      "outline-variant": "#4d4635",
+                      "surface-container-lowest": "#0c0f0f",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-highest": "#333535",
+                      "error-container": "#93000a",
+                      "surface-variant": "#333535",
+                      "on-tertiary-fixed": "#261900",
+                      "on-primary-fixed": "#241a00",
+                      "outline": "#99907c",
+                      "surface-container-low": "#1a1c1c",
+                      "tertiary": "#f1c97d",
+                      "secondary": "#c8c6c5",
+                      "primary-container": "#d4af37",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "secondary-fixed": "#e5e2e1",
+                      "secondary-container": "#474746",
+                      "on-tertiary": "#412d00",
+                      "surface-bright": "#37393a",
+                      "on-secondary-fixed-variant": "#474746",
+                      "primary-fixed": "#ffe088",
+                      "on-secondary-container": "#b7b5b4",
+                      "on-primary": "#3c2f00",
+                      "surface-container-high": "#282a2b",
+                      "error": "#ffb4ab",
+                      "surface-tint": "#e9c349",
+                      "primary-fixed-dim": "#e9c349",
+                      "tertiary-fixed": "#ffdea5",
+                      "background": "#121414",
+                      "tertiary-fixed-dim": "#e9c176",
+                      "on-surface": "#e2e2e2",
+                      "on-primary-container": "#554300"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "24px",
+                      "stack-lg": "48px",
+                      "gutter": "24px",
+                      "container-padding-desktop": "64px",
+                      "base": "8px",
+                      "stack-sm": "12px",
+                      "container-padding-mobile": "20px"
+              },
+              "fontFamily": {
+                      "headline-xl": ["Playfair Display"],
+                      "body-lg": ["Manrope"],
+                      "headline-lg": ["Playfair Display"],
+                      "headline-md": ["Playfair Display"],
+                      "headline-lg-mobile": ["Playfair Display"],
+                      "label-sm": ["Manrope"],
+                      "label-lg": ["Manrope"],
+                      "body-md": ["Manrope"]
+              },
+              "fontSize": {
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-surface {
+            background: rgba(30, 32, 32, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-surface-bright {
+            background: rgba(242, 202, 80, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(242, 202, 80, 0.2);
+        }
+        .nav-link-active {
+            color: #f2ca50;
+            position: relative;
+        }
+        .nav-link-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #f2ca50;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden min-h-screen">
+<div class="fixed inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30 grayscale-[0.5]" data-alt="A cinematic, wide-angle photograph of a luxury hotel lobby at dusk. The scene features grand architectural pillars, warm ambient lighting reflecting off polished marble floors, and deep charcoal shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyJZvzFm8TgVtptkl6fa8Ji9LMg7RSaoOcugXuasseN_tR0CCXMGkyoN-vcsp7Nj_fSAnbCyCrrtEmFpiYsPuuNwVET6DM9aQG19J39GnsCqv1DBIKVcbEpfRyagKzrVO0XXm3cx16njT2g3aRrr4RyTe_5o0L5wgjVS1dJzMTp9vxPoNLQ9lNXw4ogQyedvRoOFdmuTNS7zHRjf4V_cURKO2aYbZjAhfKLJ4pHxsfgmgHwDWubYi5f4oBPfyYjlxhaEcD5AUl4Vg1"/>
+</div>
+<div class="relative z-20">
+<nav class="sticky top-0 w-full bg-surface-dim/80 backdrop-blur-3xl border-b border-white/5 px-container-padding-mobile md:px-container-padding-desktop h-20 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<span class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="restaurant">restaurant</span>
+<span>Services <span class="text-[10px] opacity-60 ml-0.5">(Dining)</span></span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="calendar_month">calendar_month</span>
+<span>Stay <span class="text-[10px] opacity-60 ml-0.5">(Bookings)</span></span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings_remote">settings_remote</span>
+<span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="workspace_premium">workspace_premium</span>
+<span>Loyalty</span>
+</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-3 glass-surface px-4 py-2 rounded-full border-white/5">
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold">JD</div>
+<span class="text-label-sm font-label-sm text-on-surface">John Doe</span>
+<span class="w-1 h-1 bg-primary rounded-full"></span>
+<span class="text-label-sm font-label-sm text-primary">Elite</span>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="search">search</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop py-8 md:py-12">
+<header class="mb-stack-lg">
+<h1 class="text-headline-xl font-headline-xl text-on-surface">Welcome back, Mr. Doe</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="meeting_room">meeting_room</span>
+                Room 402  <span class="mx-2 opacity-30">|</span> Checkout Oct 24
+            </p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-8 space-y-8">
+<div class="relative overflow-hidden rounded-3xl glass-surface-bright p-12 flex flex-col justify-end min-h-[340px] group">
+<div class="absolute top-0 right-0 p-8">
+<div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20 animate-pulse">
+<span class="material-symbols-outlined text-primary text-5xl" data-icon="sensors" data-weight="fill">sensors</span>
+</div>
+</div>
+<div class="relative z-10 max-w-md">
+<span class="text-label-lg font-label-lg text-primary tracking-[0.2em] uppercase mb-4 block">Secure Access</span>
+<h2 class="text-headline-lg font-headline-lg mb-4 text-on-surface">Digital Room Key</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mb-8">Hold your device near the door reader to unlock Room 402. Secure, seamless, and purely digital.</p>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-lg text-label-lg hover:scale-105 transition-transform flex items-center gap-3 w-fit">
+<span class="material-symbols-outlined" data-icon="fingerprint">fingerprint</span>
+                            Activate Key
+                        </button>
+</div>
+<div class="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-transparent opacity-60"></div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="glass-surface p-6 rounded-2xl flex flex-col items-center justify-center text-center gap-4 group cursor-pointer hover:border-primary/30 transition-all">
+<div class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="restaurant">restaurant</span>
+</div>
+<span class="font-label-lg text-label-lg">Order Food</span>
+</div>
+<div class="glass-surface p-6 rounded-2xl flex flex-col items-center justify-center text-center gap-4 group cursor-pointer hover:border-primary/30 transition-all">
+<div class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="cleaning_services">cleaning_services</span>
+</div>
+<span class="font-label-lg text-label-lg">Housekeeping</span>
+</div>
+<div class="glass-surface p-6 rounded-2xl flex flex-col items-center justify-center text-center gap-4 group cursor-pointer hover:border-primary/30 transition-all">
+<div class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="directions_car">directions_car</span>
+</div>
+<span class="font-label-lg text-label-lg">Valet</span>
+</div>
+<div class="glass-surface p-6 rounded-2xl flex flex-col items-center justify-center text-center gap-4 group cursor-pointer hover:border-primary/30 transition-all">
+<div class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="support_agent">support_agent</span>
+</div>
+<span class="font-label-lg text-label-lg">Concierge</span>
+</div>
+</div>
+<div class="relative h-64 rounded-3xl overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A serene spa environment with soft candlelight, stone architecture, and steaming warm water." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC14tc-CDfgx-eD_2Dp-WeEaSqyQuLsuWN0Azy9GhRPDp-um_MeYrXqdM6H-DMS242-VJYD05sSsAxiniaSG8k9Bncfg81INSAibd8xklaJMXguVBHcdSm7lcZ8uGrNFBTCaqb96iXuPFzg5avp9XO2gaZOISn-sf6dS3iY_Z-rHqYIzVHUJ6wEPlnrTPsQk7sHfzYF50cnjXAZcgSU104HKZDYqlQSafMT-9RoA9D45AKONm607ohGXT1BRPz7J0Z5Sq2iAv4pV9v3"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-dim via-surface-dim/40 to-transparent p-12 flex flex-col justify-center">
+<span class="bg-primary/20 text-primary border border-primary/30 px-3 py-1 rounded-full text-label-sm font-label-sm w-fit mb-4">Exclusive Member Offer</span>
+<h3 class="text-headline-lg font-headline-lg text-on-surface mb-2">Afternoon Relaxation</h3>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-sm mb-6">Enjoy a complimentary 30-minute hydrotherapy session. Available daily until 4 PM.</p>
+<button class="text-primary font-label-lg text-label-lg flex items-center gap-2 group/btn">
+                            Reserve your spot <span class="material-symbols-outlined transition-transform group-hover/btn:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4">
+<div class="glass-surface rounded-3xl p-8 flex flex-col h-full">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-headline-md font-headline-md text-on-surface">Tonight's Special</h3>
+<span class="material-symbols-outlined text-primary" data-icon="local_bar">local_bar</span>
+</div>
+<div class="flex-1 space-y-6">
+<div class="relative aspect-square rounded-2xl overflow-hidden mb-6">
+<img class="w-full h-full object-cover" data-alt="A sophisticated close-up of a signature gold-flecked cocktail served in a vintage crystal glass." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIUFPgoSUM251A4sN4eCxN7ysWNIyQQN4NxZaTxruXZbjkHBiGiHovn1DyjmCcCoUQCUcxcwyTPAHYsX6dj4Rs7GcAk9LmubwWXylXCkmcsPoAq0XK6l-IIhh_RW4-nMWP-x-0WJLp5vi3iAMPfkIvMQ4O8-qLZl9FsREIVQuH5jiYBv_RZjZQ0z8V7M4zAR3ISv_RY4IELcpM3xwBK8Gt_McQKxCZmcWANRG_BA5iP-B6YCxCDAT7VcyN_oNippaH9FOXNY0iAeIQ"/>
+</div>
+<div class="space-y-4">
+<div>
+<h4 class="text-headline-md font-headline-md text-primary">The Golden Hour</h4>
+<p class="text-body-md font-body-md text-on-surface-variant italic">Small-batch bourbon, elderflower, honey, and 24k gold leaf flakes.</p>
+</div>
+<div class="pt-6 border-t border-white/10">
+<div class="flex justify-between items-center mb-4">
+<span class="text-label-lg font-label-lg text-on-surface-variant">Lounge Location</span>
+<span class="text-label-lg font-label-lg text-on-surface">The Alchemist’s Rooftop</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-label-lg font-label-lg text-on-surface-variant">Serving Until</span>
+<span class="text-label-lg font-label-lg text-on-surface">01:00 AM</span>
+</div>
+</div>
+</div>
+</div>
+<button class="mt-8 border border-primary text-primary hover:bg-primary hover:text-on-primary transition-all py-4 rounded-xl font-label-lg text-label-lg uppercase tracking-widest">
+                        Order to Room
+                    </button>
+</div>
+</div>
+</div>
+<footer class="mt-stack-lg pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant/40">
+<p class="text-label-sm font-label-sm">© 2024 BESTBLISS LUXURY HOTELS &amp; RESORTS</p>
+<div class="flex gap-8 text-label-sm font-label-sm">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Guest Relations</a>
+<a class="hover:text-primary transition-colors" href="#">Safety Protocols</a>
+</div>
+</footer>
+</main>
+</div>
+<div class="md:hidden fixed bottom-0 w-full z-50 glass-surface border-t border-white/10 px-6 py-4 flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant/60" href="#">
+<span class="material-symbols-outlined" data-icon="room_service">room_service</span>
+<span class="text-[10px] font-label-sm">Services</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant/60" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="text-[10px] font-label-sm">Stay</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant/60" href="#">
+<span class="material-symbols-outlined" data-icon="settings_remote">settings_remote</span>
+<span class="text-[10px] font-label-sm">Smart</span>
+</a>
+</div>
+</body></html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BestBliss Guest Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                "on-error-container": "#ffdad6",
+                "on-primary-fixed-variant": "#574500",
+                "error": "#ffb4ab",
+                "inverse-surface": "#e2e2e2",
+                "on-primary-fixed": "#241a00",
+                "secondary-container": "#474746",
+                "on-background": "#e2e2e2",
+                "tertiary": "#f1c97d",
+                "surface-bright": "#37393a",
+                "on-secondary": "#313030",
+                "secondary-fixed-dim": "#c8c6c5",
+                "primary-fixed-dim": "#e9c349",
+                "tertiary-fixed-dim": "#e9c176",
+                "outline": "#99907c",
+                "inverse-primary": "#735c00",
+                "primary-fixed": "#ffe088",
+                "on-surface-variant": "#d0c5af",
+                "outline-variant": "#4d4635",
+                "background": "#121414",
+                "tertiary-fixed": "#ffdea5",
+                "on-tertiary-fixed": "#261900",
+                "primary": "#f2ca50",
+                "surface-dim": "#121414",
+                "on-tertiary-fixed-variant": "#5d4201",
+                "surface-container-low": "#1a1c1c",
+                "surface-container-highest": "#333535",
+                "surface-container-high": "#282a2b",
+                "on-primary": "#3c2f00",
+                "on-primary-container": "#554300",
+                "on-error": "#690005",
+                "primary-container": "#d4af37",
+                "on-secondary-fixed": "#1c1b1b",
+                "secondary": "#c8c6c5",
+                "on-surface": "#e2e2e2",
+                "on-secondary-container": "#b7b5b4",
+                "surface-tint": "#e9c349",
+                "surface": "#121414",
+                "surface-variant": "#333535",
+                "secondary-fixed": "#e5e2e1",
+                "error-container": "#93000a",
+                "surface-container-lowest": "#0c0f0f",
+                "on-secondary-fixed-variant": "#474746",
+                "inverse-on-surface": "#2f3131",
+                "tertiary-container": "#d3ad65",
+                "surface-container": "#1e2020",
+                "on-tertiary-container": "#5b4000",
+                "on-tertiary": "#412d00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "base": "8px",
+            "stack-md": "24px",
+            "gutter": "24px",
+            "container-padding-desktop": "64px",
+            "stack-lg": "48px",
+            "stack-sm": "12px",
+            "container-padding-mobile": "20px"
+          },
+          "fontFamily": {
+            "headline-xl": ["Playfair Display"],
+            "label-lg": ["Manrope"],
+            "headline-md": ["Playfair Display"],
+            "headline-lg": ["Playfair Display"],
+            "label-sm": ["Manrope"],
+            "headline-lg-mobile": ["Playfair Display"],
+            "body-md": ["Manrope"],
+            "body-lg": ["Manrope"]
+          },
+          "fontSize": {
+            "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+            "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #121414;
+      color: #e2e2e2;
+    }
+    .glass-card {
+      background: rgba(30, 32, 32, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="min-h-screen font-body-md bg-surface overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky z-50 bg-surface/80 backdrop-blur-md border-b border-white/5 flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<span class="text-headline-md font-headline-md tracking-tighter text-on-surface font-black uppercase">BESTBLISS</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">notifications</button>
+<button class="hidden md:block text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors">Log out</button>
+</div>
+</header>
+<!-- Hero Background Section -->
+<main class="relative w-full min-h-screen pb-32">
+<div class="fixed inset-0 z-0">
+<img alt="Luxury Hotel Lobby" class="w-full h-full object-cover opacity-40" data-alt="A cinematic, low-light photograph of a grand hotel lobby at night, featuring warm architectural lighting, marble floors, and lush interior greenery. The atmosphere is quiet, exclusive, and luxurious, with deep shadows and golden highlights reflecting off polished surfaces in a dark-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY06nndiMralJBj7UlsPn-3XsAAiO9LIdhwTllLYksLiRMGasOL8AlYzwNtChDK9zDJ2bDp9A5KqD5EMlDUnHZmqt9rMnEPOrPK9ePdGrTLxcNV4Q9norjk_ykE2zy8x81DnhJuQp-tKmgEMG5DazCXdc9Mynx02sPT7ESOEYldP5epH0akYvTRMP9G9gVnuRyfiGGWbmmGCJ_ERUuPDJRM6piNVgSPZ58FB0jEdSSDKiNqsYMihGFsshvRLfTG1k1RG1yD7zE-I9C"/>
+<div class="absolute inset-0 bg-gradient-to-b from-surface via-surface/40 to-surface"></div>
+</div>
+<!-- Content Canvas -->
+<div class="relative z-10 max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop pt-stack-md">
+<!-- Personalized Greeting & Stay Details -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-md mb-stack-lg">
+<div>
+<h1 class="text-headline-lg-mobile md:text-headline-xl font-headline-xl text-on-surface mb-2">Welcome back, Alex</h1>
+<p class="text-body-lg text-on-surface-variant max-w-md">Your sanctuary in the heart of the city is ready for your enjoyment.</p>
+</div>
+<div class="glass-card px-8 py-5 rounded-xl flex items-center gap-8 w-full md:w-auto">
+<div class="flex-1 text-center md:text-left">
+<p class="text-label-sm font-label-sm text-primary uppercase tracking-widest mb-1">Room</p>
+<p class="text-headline-md font-headline-md text-on-surface">402</p>
+</div>
+<div class="w-px h-10 bg-white/10"></div>
+<div class="flex-1 text-center md:text-left">
+<p class="text-label-sm font-label-sm text-primary uppercase tracking-widest mb-1">Checkout</p>
+<p class="text-headline-md font-headline-md text-on-surface">Oct 24</p>
+</div>
+</div>
+</section>
+<!-- Digital Key Main Action -->
+<section class="mb-stack-lg">
+<button class="w-full md:max-w-xl group relative overflow-hidden bg-primary-container text-on-primary-container px-8 py-10 rounded-2xl flex items-center justify-between shadow-2xl transition-all active:scale-[0.98]">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">vibration</span>
+</div>
+<div class="text-left">
+<p class="text-headline-md font-headline-md font-bold">Digital Room Key</p>
+<p class="text-label-lg font-label-lg opacity-80">Hold near your door lock to enter</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-3xl group-hover:translate-x-2 transition-transform">arrow_forward_ios</span>
+</button>
+</section>
+<!-- Quick Actions Bento Grid -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-gutter mb-stack-lg">
+<!-- Action: Order Food -->
+<div class="glass-card p-gutter rounded-xl flex flex-col gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Order Food</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">In-room dining menus</p>
+</div>
+</div>
+<!-- Action: Housekeeping -->
+<div class="glass-card p-gutter rounded-xl flex flex-col gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">cleaning_services</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Housekeeping</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Towels &amp; cleaning</p>
+</div>
+</div>
+<!-- Action: Valet -->
+<div class="glass-card p-gutter rounded-xl flex flex-col gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">directions_car</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Valet</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Request your vehicle</p>
+</div>
+</div>
+<!-- Action: Concierge -->
+<div class="glass-card p-gutter rounded-xl flex flex-col gap-4 group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">concierge</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Concierge</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Reservations &amp; travel</p>
+</div>
+</div>
+</section>
+<!-- Featured Experiences -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="md:col-span-2 relative overflow-hidden rounded-xl h-[340px] group cursor-pointer">
+<img alt="Luxury Spa" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="A serene, luxury spa treatment room with soft warm lighting, steam rising from a pool, and minimalist stone decor. The image evokes deep relaxation and high-end hospitality wellness, maintaining a consistent dark and atmospheric aesthetic with golden glow accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrjdvglFlWm-nWHrT6crpRI-bw2wJn4Og4WmIFAdehiaOvHPUpUUAGKfwLI0mLgbfDETEoK6-BLUccG4icpBB_F0Vz1jhS9uI55RfENAzDPBwdf5LfQSxgqEf7iotyW85Z6T4nz15pJBBnFfXt1IOtdeLTXPgQAva1288mAqh5aQvrz9oSHIrYB6QnpUbN3fVtiD0X3_N7ekvn0VkLZIBKvoKIcjyc814g1vFo-oirr0iATf48ZYn87kqjqBNd8EqZATRKNEUVWu3-"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-gutter">
+<span class="bg-primary text-on-primary px-3 py-1 rounded-full text-label-sm font-label-sm mb-3 inline-block font-bold">Exclusive Offer</span>
+<h3 class="text-headline-lg font-headline-lg text-white mb-2">Afternoon Relaxation</h3>
+<p class="text-body-md text-white/80 max-w-lg">Book a 90-minute treatment and receive a complimentary thermal circuit pass.</p>
+</div>
+</div>
+<div class="glass-card p-gutter rounded-xl flex flex-col justify-between">
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-6">Tonight's Special</h3>
+<div class="flex items-center gap-4 mb-8">
+<div class="w-20 h-20 rounded-lg overflow-hidden shrink-0 border border-white/10">
+<img alt="Craft Cocktail" class="w-full h-full object-cover" data-alt="Close up of a premium handcrafted cocktail in a crystal glass with a citrus garnish, served on a dark stone coaster. The lighting is moody and dramatic, typical of a high-end jazz bar, with warm amber tones against a dark-mode background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADYGwdh30V3mR2eDBE8qfq76DBZCe4lVkb6hO1ToAd4kJF9WLfVoV1sfrTPwrXnIpewCgGxyvSW5WLoV6air_s4r2ZEgY8TNytlz04GTMVKfRJSQTESgSYKY6KycvbM26_pavcKuSECn_vjUNQkwRjSpa9mML33BbxpDUzNeKEEsX--pZMKHNRnt2rY4PdOb1120qPDQUCZIjZUzou3yw4P3fMvl5UZuGXpr6GG22_-SrvNO9et7SGKq0x36qUXLMPWYnu6fV-SKcu"/>
+</div>
+<div>
+<p class="text-body-md font-bold text-primary">The Midnight Velvet</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant leading-relaxed">Signature cocktail at The Bliss Bar, 9 PM onwards.</p>
+</div>
+</div>
+</div>
+<button class="w-full py-4 border border-primary/30 text-primary rounded-lg text-label-lg font-label-lg hover:bg-primary/5 transition-colors uppercase tracking-widest">View Drink List</button>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface-container-highest/95 backdrop-blur-xl border-t border-white/5 flex justify-around items-center pt-3 pb-8 px-4 z-50 rounded-t-2xl shadow-[0_-8px_30px_rgb(0,0,0,0.5)]">
+<div class="flex flex-col items-center justify-center text-primary gap-1 group cursor-pointer">
+<span class="material-symbols-outlined transition-transform group-active:scale-90" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-label-lg uppercase tracking-widest">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 group cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined transition-transform group-active:scale-90">room_service</span>
+<span class="text-[10px] font-label-lg uppercase tracking-widest">Services</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 group cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined transition-transform group-active:scale-90">calendar_month</span>
+<span class="text-[10px] font-label-lg uppercase tracking-widest">Stay</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 group cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined transition-transform group-active:scale-90">settings_remote</span>
+<span class="text-[10px] font-label-lg uppercase tracking-widest">Smart</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 gap-1 group cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined transition-transform group-active:scale-90">workspace_premium</span>
+<span class="text-[10px] font-label-lg uppercase tracking-widest">Loyalty</span>
+</div>
+</nav>
+</body></html>

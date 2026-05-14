@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(30, 32, 32, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #f2ca50 0%, #d4af37 100%);
+        }
+        .membership-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .membership-shimmer::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%);
+            transform: rotate(45deg);
+            pointer-events: none;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#121414",
+                    "surface-container-highest": "#333535",
+                    "on-secondary": "#313030",
+                    "error-container": "#93000a",
+                    "surface-variant": "#333535",
+                    "surface-bright": "#37393a",
+                    "primary": "#f2ca50",
+                    "primary-fixed": "#ffe088",
+                    "on-surface": "#e2e2e2",
+                    "on-error-container": "#ffdad6",
+                    "primary-container": "#d4af37",
+                    "on-tertiary-container": "#5b4000",
+                    "secondary": "#c8c6c5",
+                    "on-primary-fixed": "#241a00",
+                    "surface-container-lowest": "#0c0f0f",
+                    "on-background": "#e2e2e2",
+                    "tertiary-fixed": "#ffdea5",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-primary-container": "#554300",
+                    "outline": "#99907c",
+                    "on-tertiary-fixed": "#261900",
+                    "on-secondary-fixed-variant": "#474746",
+                    "error": "#ffb4ab",
+                    "tertiary": "#f1c97d",
+                    "inverse-primary": "#735c00",
+                    "on-tertiary-fixed-variant": "#5d4201",
+                    "on-primary": "#3c2f00",
+                    "on-tertiary": "#412d00",
+                    "tertiary-fixed-dim": "#e9c176",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "tertiary-container": "#d3ad65",
+                    "on-error": "#690005",
+                    "inverse-surface": "#e2e2e2",
+                    "surface-container-high": "#282a2b",
+                    "on-secondary-container": "#b7b5b4",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-surface-variant": "#d0c5af",
+                    "surface": "#121414",
+                    "background": "#121414",
+                    "outline-variant": "#4d4635",
+                    "surface-container-low": "#1a1c1c",
+                    "surface-container": "#1e2020",
+                    "on-primary-fixed-variant": "#574500",
+                    "inverse-on-surface": "#2f3131",
+                    "surface-tint": "#e9c349",
+                    "secondary-container": "#474746",
+                    "secondary-fixed": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "12px",
+                    "gutter": "24px",
+                    "container-padding-mobile": "20px",
+                    "stack-lg": "48px",
+                    "base": "8px",
+                    "stack-md": "24px",
+                    "container-padding-desktop": "64px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "body-md": ["Manrope"],
+                    "label-lg": ["Manrope"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "label-sm": ["Manrope"],
+                    "headline-xl": ["Playfair Display"],
+                    "body-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen pb-32">
+<!-- Top AppBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md text-primary dark:text-primary-fixed-dim docked full-width top-0 sticky z-50 border-b border-white/10 flex justify-between items-center px-container-padding-mobile py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-primary/20">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<span class="text-label-lg font-label-lg text-on-surface">Guest Profile</span>
+</div>
+<h1 class="text-headline-md font-headline-md tracking-tighter text-on-surface dark:text-on-surface font-black">BESTBLISS</h1>
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+</header>
+<main class="px-container-padding-mobile pt-stack-md space-y-stack-lg">
+<!-- Membership Card Section -->
+<section class="relative">
+<div class="membership-shimmer glass-card rounded-xl p-6 relative overflow-hidden border border-primary/30 shadow-2xl">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-primary opacity-40 text-4xl" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div class="space-y-6 relative z-10">
+<div>
+<p class="text-label-sm font-label-sm uppercase tracking-widest text-primary/80">Membership Tier</p>
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile text-primary">Gold Tier</h2>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant/70">Point Balance</p>
+<p class="text-headline-md font-headline-md text-on-surface">24,850 pts</p>
+</div>
+<div class="text-right">
+<p class="text-label-sm font-label-sm text-on-surface-variant/70">Member ID</p>
+<p class="text-label-lg font-label-lg tracking-widest text-on-surface">BB-8829-X</p>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="space-y-2">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">5,150 pts to Platinum</span>
+<span class="text-primary">82%</span>
+</div>
+<div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full gold-gradient w-[82%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Decorative elements -->
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+</div>
+</section>
+<!-- VIP Benefits Section -->
+<section>
+<div class="flex justify-between items-center mb-stack-sm">
+<h3 class="text-headline-md font-headline-md">VIP Benefits</h3>
+<button class="text-primary text-label-lg font-label-lg">View All</button>
+</div>
+<div class="flex overflow-x-auto gap-4 pb-4 -mx-container-padding-mobile px-container-padding-mobile no-scrollbar">
+<!-- Benefit Card 1 -->
+<div class="flex-shrink-0 w-64 glass-card p-5 rounded-xl border border-white/5">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="upgrade">upgrade</span>
+</div>
+<h4 class="text-label-lg font-label-lg text-on-surface mb-1">Free Upgrades</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant/80">Complimentary room upgrades upon availability at check-in.</p>
+</div>
+<!-- Benefit Card 2 -->
+<div class="flex-shrink-0 w-64 glass-card p-5 rounded-xl border border-white/5">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="alarm_on">alarm_on</span>
+</div>
+<h4 class="text-label-lg font-label-lg text-on-surface mb-1">Late Check-out</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant/80">Extend your stay until 4:00 PM at no extra cost.</p>
+</div>
+<!-- Benefit Card 3 -->
+<div class="flex-shrink-0 w-64 glass-card p-5 rounded-xl border border-white/5">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="local_bar">local_bar</span>
+</div>
+<h4 class="text-label-lg font-label-lg text-on-surface mb-1">Welcome Drinks</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant/80">Signature cocktails for two at any of our lounge bars.</p>
+</div>
+</div>
+</section>
+<!-- Rewards Hub -->
+<section class="space-y-stack-md">
+<h3 class="text-headline-md font-headline-md">Rewards Hub</h3>
+<div class="grid grid-cols-1 gap-4">
+<!-- Cashback Status -->
+<div class="glass-card p-5 rounded-xl flex items-center justify-between border border-white/5 group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="payments" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div>
+<h4 class="text-label-lg font-label-lg text-on-surface">Cashback Status</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">$142.50 Ready to redeem</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Member Discounts -->
+<div class="relative rounded-xl overflow-hidden h-32 group">
+<img alt="Member Discounts" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A high-end, atmospheric photo of a luxury hotel rooftop bar at twilight. The scene is bathed in warm golden ambient lighting and deep blue dusk sky. Elegant cocktails sit on a marble countertop with the city skyline blurred in the distance. The mood is sophisticated, exclusive, and representative of a premium lifestyle rewards program." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCficpWyuffzqO15b9OSsaclHrz0iFNKCPZrjmFEI0IDBOyj9Qg1lwPMl-hvaHJ2_YqBKr3Gx3RqJ9odqQkIKNeayz9btffqzm3QXo7IXdJKMxQzXQg3EO476QzISEkU40TXtfOuQ4nDZ7iMcb2G14aRNLCVLqkDaEOnoRis3cr0H55eeFVnKwaq4ZAwOt9aAE8IZJBpk_7n1kR8N7eStJfDzZftUoy_L-1JFYrZqmF7IZB6rMrnkZraHA9iYCqf-TFIVmv7hdNYyZM"/>
+<div class="absolute inset-0 bg-black/60 backdrop-blur-[2px] flex flex-col justify-center px-6">
+<span class="inline-block px-2 py-0.5 bg-primary/20 text-primary rounded-full text-[10px] font-bold tracking-widest uppercase w-fit mb-2">Exclusive</span>
+<h4 class="text-headline-md font-headline-md text-white">Member Discounts</h4>
+<p class="text-label-sm font-label-sm text-white/70">Up to 25% off dining &amp; spa</p>
+</div>
+</div>
+<!-- Referral Rewards -->
+<div class="glass-card p-6 rounded-xl border border-white/5 text-center space-y-4">
+<div class="space-y-1">
+<h4 class="text-headline-md font-headline-md text-on-surface">Invite Friends</h4>
+<p class="text-body-md font-body-md text-on-surface-variant px-4">Earn 5,000 points for every friend who joins and completes their first stay.</p>
+</div>
+<button class="w-full py-4 gold-gradient text-on-primary-container font-label-lg rounded-lg uppercase tracking-widest hover:opacity-90 transition-opacity">
+                        Invite Friends
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="bg-surface-container-highest/90 dark:bg-surface-container-highest/90 backdrop-blur-xl docked full-width bottom-0 fixed z-50 rounded-t-xl border-t border-white/10 shadow-lg fixed bottom-0 w-full flex justify-around items-center pt-2 pb-safe px-4 h-20">
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80">
+<span class="material-symbols-outlined" data-icon="room_service">room_service</span>
+<span class="text-label-sm font-label-sm">Services</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="text-label-sm font-label-sm">Stay</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80">
+<span class="material-symbols-outlined" data-icon="settings_remote">settings_remote</span>
+<span class="text-label-sm font-label-sm">Smart</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary font-bold scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="text-label-sm font-label-sm">Loyalty</span>
+</div>
+</nav>
+<!-- The Curator: Floating Booking Bar -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-40">
+<div class="glass-card rounded-full px-6 py-3 border border-primary/20 flex items-center justify-between shadow-2xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="confirmation_number">confirmation_number</span>
+<span class="text-label-lg font-label-lg text-on-surface">Redeem Points</span>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</body></html>

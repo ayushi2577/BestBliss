@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BESTBLISS - Luxury Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#1a1c1c",
+                        "on-tertiary-container": "#5b4000",
+                        "surface-tint": "#e9c349",
+                        "inverse-on-surface": "#2f3131",
+                        "primary-fixed": "#ffe088",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "surface-dim": "#121414",
+                        "on-primary-container": "#554300",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-container-lowest": "#0c0f0f",
+                        "surface-container": "#1e2020",
+                        "surface-container-high": "#282a2b",
+                        "secondary-container": "#474746",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "surface-bright": "#37393a",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-primary-fixed": "#241a00",
+                        "outline": "#99907c",
+                        "primary": "#f2ca50",
+                        "secondary": "#c8c6c5",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#d4af37",
+                        "surface": "#121414",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#e9c349",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-secondary": "#313030",
+                        "tertiary-container": "#d3ad65",
+                        "outline-variant": "#4d4635",
+                        "on-secondary-container": "#b7b5b4",
+                        "surface-container-highest": "#333535",
+                        "on-primary": "#3c2f00",
+                        "surface-variant": "#333535",
+                        "tertiary-fixed": "#ffdea5",
+                        "on-surface-variant": "#d0c5af",
+                        "on-surface": "#e2e2e2",
+                        "on-background": "#e2e2e2",
+                        "on-tertiary-fixed": "#261900",
+                        "inverse-surface": "#e2e2e2",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#735c00",
+                        "on-primary-fixed-variant": "#574500",
+                        "tertiary": "#f1c97d",
+                        "on-tertiary": "#412d00",
+                        "background": "#121414"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding-desktop": "64px",
+                        "stack-sm": "12px",
+                        "gutter": "24px",
+                        "container-padding-mobile": "20px",
+                        "stack-md": "24px",
+                        "stack-lg": "48px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Manrope"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "label-lg": ["Manrope"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-sm": ["Manrope"],
+                        "headline-xl": ["Playfair Display"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.glass-card {
+    background: rgba(30, 32, 32, 0.75);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.12)
+    }
+.bg-hero {
+    background-image: linear-gradient(to bottom, rgba(18, 20, 20, 0.4), rgba(18, 20, 20, 0.7)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuDRFn3TWFM4MNsrFSBsrzLjL3QQh7MCIV5Ziq3dmY3ZJ57dugBA4ydDbB_A6-odV-xHblwFQc-ou4upKvC0QzZXvTAyDSWeuh2dIKE3pEy9DJvoNXEw9TQ8naWjeh8bttJgK8P54xabImjESOkMlHreTjyHPfOa_I8qYtCAKMCk8GXJcDh1OHtGH8IbUak_6sG2D6LFAPFeimEc-CJHOo6XWbeYFKsWpTLiTsNv6O5Wbhy3LpqZA6FWyPU-T1XxM5echhZqk8fiYVnf);
+    background-size: cover;
+    background-position: center
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md docked full-width top-0 sticky z-50 border-b border-white/10 flex justify-between items-center px-container-padding-mobile py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-white/10">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="person">person</span>
+</div>
+<span class="text-label-lg font-label-lg text-on-surface">Guest Profile</span>
+</div>
+<h1 class="text-headline-md font-headline-md tracking-tighter text-on-surface dark:text-on-surface font-black">BESTBLISS</h1>
+<button class="text-primary transition-colors hover:text-primary/80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content: Login Canvas -->
+<main class="flex-grow flex items-center justify-center px-container-padding-mobile py-stack-lg bg-hero" data-alt="A luxurious hotel lobby at night viewed through a wide lens. The setting features soaring ceilings, grand marble columns, and opulent velvet lounge seating. Warm, golden ambient light glows from intricate chandeliers and recessed floor lighting, reflecting off polished surfaces. The atmosphere is quiet, exclusive, and serene, with a deep palette of charcoal, gold, and amber tones.">
+<div class="w-full max-w-md glass-card rounded-xl p-8 flex flex-col space-y-stack-md">
+<!-- Header section of the card -->
+<div class="text-center space-y-2">
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface">Welcome Back</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant opacity-80">Experience the pinnacle of hospitality</p>
+</div>
+<!-- Login Form -->
+<form class="space-y-stack-md pt-4">
+<div class="space-y-2">
+<label class="text-label-sm font-label-sm text-primary uppercase tracking-widest block" for="email">Email Address</label>
+<input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 transition-colors py-3 text-on-surface placeholder:text-on-surface-variant/40" id="email" placeholder="concierge@bestbliss.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm font-label-sm text-primary uppercase tracking-widest block" for="password">Password</label>
+<div class="relative">
+<input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 transition-colors py-3 text-on-surface placeholder:text-on-surface-variant/40" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-on-surface-variant" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility_off">visibility_off</span>
+</button>
+</div>
+</div>
+<div class="flex justify-end">
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Forgot Password?</a>
+</div>
+<button class="w-full bg-primary-container text-on-primary py-4 rounded-lg font-label-lg text-label-lg uppercase tracking-widest shadow-lg hover:opacity-90 active:scale-95 transition-all mt-4" type="submit">
+                    Sign In
+                </button>
+</form>
+<!-- Footer Links -->
+<div class="pt-6 border-t border-white/10 text-center">
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-2">Not a member yet?</p>
+<a class="text-label-lg font-label-lg text-primary hover:underline underline-offset-4 decoration-primary/40" href="#">Join BestBliss Rewards</a>
+</div>
+</div>
+</main>
+<!-- Navigation Shell (Suppressed for Login screen as per logic, but leaving space for visual balance if needed) -->
+<!-- The "Destination" Rule: Suppressed for Transactional/Login tasks -->
+<footer class="mt-auto px-container-padding-mobile py-8 flex flex-col items-center justify-center space-y-4">
+<div class="flex space-x-6">
+<span class="material-symbols-outlined text-on-surface-variant/40" data-icon="potted_plant">potted_plant</span>
+<span class="material-symbols-outlined text-on-surface-variant/40" data-icon="spa">spa</span>
+<span class="material-symbols-outlined text-on-surface-variant/40" data-icon="wine_bar">wine_bar</span>
+</div>
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/40">Curated Excellence © 2024</p>
+</footer>
+</body></html>

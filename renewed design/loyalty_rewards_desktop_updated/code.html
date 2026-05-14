@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(30, 32, 32, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #f2ca50 0%, #d4af37 100%);
+        }
+        .text-shadow-gold {
+            text-shadow: 0 0 12px rgba(242, 202, 80, 0.4);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#121414",
+                        "surface-container-highest": "#333535",
+                        "on-secondary": "#313030",
+                        "error-container": "#93000a",
+                        "surface-variant": "#333535",
+                        "surface-bright": "#37393a",
+                        "primary": "#f2ca50",
+                        "primary-fixed": "#ffe088",
+                        "on-surface": "#e2e2e2",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#d4af37",
+                        "on-tertiary-container": "#5b4000",
+                        "secondary": "#c8c6c5",
+                        "on-primary-fixed": "#241a00",
+                        "surface-container-lowest": "#0c0f0f",
+                        "on-background": "#e2e2e2",
+                        "tertiary-fixed": "#ffdea5",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-primary-container": "#554300",
+                        "outline": "#99907c",
+                        "on-tertiary-fixed": "#261900",
+                        "on-secondary-fixed-variant": "#474746",
+                        "error": "#ffb4ab",
+                        "tertiary": "#f1c97d",
+                        "inverse-primary": "#735c00",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "on-primary": "#3c2f00",
+                        "on-tertiary": "#412d00",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "tertiary-container": "#d3ad65",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e2e2e2",
+                        "surface-container-high": "#282a2b",
+                        "on-secondary-container": "#b7b5b4",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-surface-variant": "#d0c5af",
+                        "surface": "#121414",
+                        "background": "#121414",
+                        "outline-variant": "#4d4635",
+                        "surface-container-low": "#1a1c1c",
+                        "surface-container": "#1e2020",
+                        "on-primary-fixed-variant": "#574500",
+                        "inverse-on-surface": "#2f3131",
+                        "surface-tint": "#e9c349",
+                        "secondary-container": "#474746",
+                        "secondary-fixed": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "gutter": "24px",
+                        "container-padding-mobile": "20px",
+                        "stack-lg": "48px",
+                        "base": "8px",
+                        "stack-md": "24px",
+                        "container-padding-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Manrope"],
+                        "label-lg": ["Manrope"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-sm": ["Manrope"],
+                        "headline-xl": ["Playfair Display"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="bg-surface/80 backdrop-blur-md text-primary docked full-width top-0 sticky z-50 border-b border-white/10 flex justify-between items-center px-container-padding-desktop py-4 w-full">
+<div class="flex items-center gap-8">
+<span class="text-headline-md font-headline-md tracking-tighter text-on-surface font-black">BESTBLISS</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Stay</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Smart</a>
+<a class="text-label-lg font-label-lg text-primary transition-colors" href="#">Loyalty</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">notifications</span>
+<div class="w-10 h-10 rounded-full border border-primary/30 p-0.5">
+<img alt="Guest Profile" class="w-full h-full rounded-full object-cover" data-alt="A sophisticated close-up portrait of a professional individual in their late 30s, exuding confidence and warmth. The background is a blurred high-end hotel lobby with warm, amber lighting and gold accents. The photography is high-contrast, moody, and elegant, matching an atmospheric luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMbdnOiXJ19wiL21jU9XJ3pc8cVzGTrriiC3tScB63ebOtJDNEVcG0kEwMqXAlCHUkT4AuN2EgBbU_mkXF125TtvGQvI9X_u73WEbe1I6vkW7zynBVCxn4_PotLVn5rmcm-9MFzOm5gkKfVc5sfmgt1rqy6wvnqkMKeZerYR0n-4IJBLKJ0oKtOh1zkTIFFCkii3PtvnbSp75GVkJ0DNmwEjAp_GvkDeHkY09mbH77vPA0g8ba-WRtUudeLwRqFCTY_bUde7O86C79"/>
+</div>
+</div>
+</header>
+<main class="relative">
+<!-- Hero Background Section -->
+<div class="absolute inset-0 -z-10 h-[600px] overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background to-background"></div>
+<img class="w-full h-full object-cover opacity-40" data-alt="An expansive, high-angle view of a luxury hotel rooftop lounge at twilight. The scene is illuminated by soft gold architectural lighting and the warm glow of fire pits. Deep charcoal shadows and shimmering golden reflections on pool water create a serene, exclusive atmosphere. The style is cinematic and high-end." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJAkD6EcW-SPoRzcgm2oJYN_ty_fPmT1_Je9JUTmzI8ypCkRMHYBUB3rFqqY1dQ2xVy0C4WbjqjVUO039D3spfRR6VtIswVncBquNS2T0hWY2XpgjQ-1bvuvJeXuA98bI0akoLMJpHPEgFKcu3WZ3SKUl6JE8TSrysZLWEq7AlZggKtxSnzs8Rdd-0qrfDKgdNOSfEy4uSZFjgudbfD2qak3XARjFvb2T7UBxZjWKSk6DBYfUiqISSoLZSn1rUWypd0-suiXo0FsXh"/>
+</div>
+<div class="max-w-[1440px] mx-auto px-container-padding-desktop pt-12 pb-stack-lg">
+<!-- Membership Tier Header -->
+<section class="glass-card rounded-xl p-8 mb-stack-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8 relative z-10">
+<div class="space-y-2">
+<span class="text-primary font-label-lg text-label-lg tracking-[0.2em] uppercase">Current Status</span>
+<h1 class="text-headline-xl font-headline-xl text-shadow-gold italic">Ambassador</h1>
+<p class="text-on-surface-variant max-w-md">Our most distinguished tier. Enjoy unparalleled access and bespoke experiences curated exclusively for you.</p>
+</div>
+<div class="flex-1 max-w-md space-y-4">
+<div class="flex justify-between items-center text-label-lg font-label-lg">
+<span class="text-on-surface">Points Balance</span>
+<span class="text-primary">124,500 <span class="text-on-surface-variant">/ 150,000 to Elite</span></span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full gold-gradient w-[83%] rounded-full shadow-[0_0_10px_rgba(242,202,80,0.5)]"></div>
+</div>
+<p class="text-label-sm font-label-sm text-right text-on-surface-variant">25,500 points until your next upgrade</p>
+</div>
+</div>
+</section>
+<!-- Grid Layout for Content -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Member Privileges - Bento Style -->
+<section class="col-span-12 md:col-span-8 space-y-gutter">
+<div class="flex items-center justify-between">
+<h2 class="text-headline-lg font-headline-lg">Member Privileges</h2>
+<button class="text-primary text-label-lg font-label-lg flex items-center gap-2 hover:opacity-80 transition-opacity">
+                            View All Benefits <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="glass-card rounded-xl p-6 group cursor-pointer hover:border-primary/40 transition-all duration-300">
+<span class="material-symbols-outlined text-primary text-[32px] mb-4">upgrade</span>
+<h3 class="text-headline-md font-headline-md mb-2">Suite Upgrades</h3>
+<p class="text-on-surface-variant text-body-md">Complimentary room upgrades to our premier suites upon availability at check-in.</p>
+</div>
+<div class="glass-card rounded-xl p-6 group cursor-pointer hover:border-primary/40 transition-all duration-300">
+<span class="material-symbols-outlined text-primary text-[32px] mb-4">restaurant_menu</span>
+<h3 class="text-headline-md font-headline-md mb-2">Chef's Table</h3>
+<p class="text-on-surface-variant text-body-md">Priority reservations and exclusive seating at our Michelin-starred Chef's Table.</p>
+</div>
+<div class="glass-card rounded-xl p-6 col-span-2 relative min-h-[240px] flex items-end group overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover -z-10 group-hover:scale-105 transition-transform duration-700 opacity-60" data-alt="A serene, luxury spa treatment room with soft, ethereal lighting filtering through translucent drapes. Warm candle light illuminates smooth stone surfaces and golden accents. The atmosphere is deeply relaxing, exclusive, and high-end, utilizing a moody charcoal and gold palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1HjtJsXoIjMZOmySBOUC6SPCmjeJeFprFKeiRZoCe3QUDiJDe5QkgbXEEhQP34DaPMUuxDLaMoObkxF736o34MU5SKHBKMLK7nmoaR9mH6SOCDPY0qx-s6G6iLgWFQl76Hs4AIqPVyfKGcPdEgm2L7iHdaOveGWsYuLbKiUC8JKvlSxJjf5KOhj4t4xCFi8azHV-dOtHITlAf91X9yh1qDFl3FVv6v1vEyFkKvSwJ7Lk1ZNizXWLmYvf1QeZ0ILqH0rpq_5KFFReZ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="relative p-2">
+<h3 class="text-headline-md font-headline-md text-white mb-2">Private Spa Sanctuary</h3>
+<p class="text-on-surface-variant text-body-md max-w-lg">One complimentary 90-minute treatment per stay in our dedicated Ambassador suite.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Ways to Earn - Column Style -->
+<section class="col-span-12 md:col-span-4 space-y-gutter">
+<h2 class="text-headline-lg font-headline-lg">Ways to Earn &amp; Save</h2>
+<div class="space-y-4">
+<!-- Referral Card -->
+<div class="bg-primary/10 border border-primary/20 rounded-xl p-6">
+<h3 class="text-label-lg font-label-lg text-primary uppercase tracking-widest mb-4">Ambassador Referral</h3>
+<p class="text-headline-md font-headline-md mb-4">Invite Friends, Earn 5,000 Points</p>
+<p class="text-on-surface-variant text-label-sm mb-6">Each successful referral grants you points and gives your friend Gold status for 3 months.</p>
+<button class="w-full gold-gradient text-on-primary-fixed font-label-lg py-3 rounded-lg hover:brightness-110 transition-all">Generate Link</button>
+</div>
+<!-- Mini Cards -->
+<div class="glass-card rounded-xl p-5 flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<h4 class="font-bold">15% Cashback</h4>
+<p class="text-label-sm text-on-surface-variant">On all spa and dining experiences</p>
+</div>
+</div>
+<div class="glass-card rounded-xl p-5 flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">event_available</span>
+</div>
+<div>
+<h4 class="font-bold">Early Booking Access</h4>
+<p class="text-label-sm text-on-surface-variant">Book seasonal retreats 48h before public</p>
+</div>
+</div>
+<div class="glass-card rounded-xl p-5 flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">local_offer</span>
+</div>
+<div>
+<h4 class="font-bold">Member Discounts</h4>
+<p class="text-label-sm text-on-surface-variant">Flat 10% off on all Suite bookings</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Luxury Redemptions - Horizontal Scrolling / Large Cards -->
+<section class="col-span-12 space-y-gutter mt-stack-lg">
+<div class="flex items-center justify-between">
+<h2 class="text-headline-lg font-headline-lg">Luxury Redemptions</h2>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-gutter overflow-x-auto pb-4 scrollbar-hide">
+<!-- Redemption Item 1 -->
+<div class="min-w-[400px] glass-card rounded-xl overflow-hidden group cursor-pointer">
+<div class="h-56 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A private dinner setup on a secluded balcony overlooking a Mediterranean coastline at night. A table for two is set with fine china, crystal glasses, and gold cutlery, lit by soft candle glows. The background shows the faint shimmer of coastal lights. High-end, atmospheric luxury style with rich blacks and golden highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEf1IGcl6tkTFc3hHRtT_oyqLFZN5MfUIKzM0ZAFYE2wPrBGqYAyQeEXd8SHSehNhJyRGkmorrRIZIb8tnHSbs3xMIrrgog3nG-RzHTxBNYYPaUTRC8PV7nh0TXeki9XrPQTD6DWu7NwsMBzJkFbm4A334zFRtc5WeYDVbfb1ul56uqmcbd_FxSeZMrGFSM6yjWL3ms-Ik1FVj_8QBFAGJP_2JFeAB6ryCA0eBY6kCpLmggTSJLZtNoetRva8J0sgXIdR5BVObRtse"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-headline-md font-headline-md">Private Cliffside Dinner</h3>
+<span class="bg-primary/20 text-primary text-label-sm px-3 py-1 rounded-full">85,000 pts</span>
+</div>
+<p class="text-on-surface-variant text-body-md">A bespoke 5-course menu prepared by our executive chef on a private terrace.</p>
+</div>
+</div>
+<!-- Redemption Item 2 -->
+<div class="min-w-[400px] glass-card rounded-xl overflow-hidden group cursor-pointer">
+<div class="h-56 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A luxury helicopter hovering over a tropical island archipelago at sunset. The sky is a gradient of deep indigo and fiery gold. The helicopter has a sleek, black metallic finish. The overall mood is one of extreme exclusivity and high-octane luxury travel, cinematic quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBORITkzRNG6zlx0ZxUafnVLVu6rLthycPTiBfoBGKOMpBN84aKg7LnMXtGHpUVlSRdqOPEUV4MoyXxUOzFeUYljYkrv94TrzQzVKcGYRwJYmIKx_i3vkSjx3PR7DlqV-QoooMTn6ZsUzTPnyXQFQj3AW1dNISEWknbGyQgan5vL-S0PmXogNtLlWL4LNIhOdn1t_TVyAbKz_CK3y5JH33ce3kWLnKQotgino-Yfr5jQ6lk_iprV66bhcDhGZYDd1eeXW-DWuULEKzw"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-headline-md font-headline-md">Island Helicopter Tour</h3>
+<span class="bg-primary/20 text-primary text-label-sm px-3 py-1 rounded-full">120,000 pts</span>
+</div>
+<p class="text-on-surface-variant text-body-md">See the world from a new perspective with a private sunset flight for two.</p>
+</div>
+</div>
+<!-- Redemption Item 3 -->
+<div class="min-w-[400px] glass-card rounded-xl overflow-hidden group cursor-pointer">
+<div class="h-56 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="An interior view of a contemporary, high-end yacht lounge. Sleek charcoal leather furniture, polished dark wood accents, and subtle golden LED strip lighting. The large windows show a calm ocean under a starry sky. The style is ultra-modern, minimalist, and atmospheric luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhmoRAULbu-n0SGqKuFM3WrJHJvKjvU_ffj3LYNXQoxyIzhbPd7nXKzBR6IccP-Z_5qfXM3fA1mRp5oOMh9fZPaeLMWRKnsnvOH74yAJtVFisPWnM2ceXkHiSOP2UhcztuEPKysceQNxRJrWOSrSmwfNHqk8oWIlHt8lYUKdwgFY_EHFgRIzwea7VL9DfK-S0EXhPLlK2S3eWB3JRnmD779FHGnndzmfP04Qb8w-IqqQjt6DpRe_b9wosOcQNszpV2Mu0MCJ7EUwL9"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-headline-md font-headline-md">Vintage Yacht Escape</h3>
+<span class="bg-primary/20 text-primary text-label-sm px-3 py-1 rounded-full">250,000 pts</span>
+</div>
+<p class="text-on-surface-variant text-body-md">A full-day charter on our restored 1960s classic yacht including full crew and catering.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Floating "The Curator" Booking Bar -->
+<footer class="fixed bottom-0 w-full z-50 px-container-padding-desktop pb-8 flex justify-center pointer-events-none">
+<div class="pointer-events-auto glass-card rounded-full px-8 py-4 flex items-center gap-12 border border-primary/20 shadow-2xl">
+<div class="flex flex-col">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-widest">Next Booking</span>
+<span class="font-bold text-primary">Luxury Suite • Oct 12-15</span>
+</div>
+<div class="w-px h-8 bg-white/10"></div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-end">
+<span class="text-label-sm text-on-surface-variant">Estimated Points</span>
+<span class="font-bold text-on-surface">+12,400</span>
+</div>
+<button class="gold-gradient text-on-primary-fixed px-6 py-2 rounded-full font-label-lg hover:scale-105 transition-transform">Complete Booking</button>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Hidden on desktop, but present for system integrity) -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center pt-2 pb-safe px-4 bg-surface-container-highest/90 backdrop-blur-xl border-t border-white/10 shadow-lg z-50 rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">room_service</span>
+<span class="text-label-sm font-label-sm">Services</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-label-sm font-label-sm">Stay</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">settings_remote</span>
+<span class="text-label-sm font-label-sm">Smart</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary font-bold scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="text-label-sm font-label-sm">Loyalty</span>
+</div>
+</nav>
+</body></html>

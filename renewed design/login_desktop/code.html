@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#1a1c1c",
+                    "on-tertiary-container": "#5b4000",
+                    "surface-tint": "#e9c349",
+                    "inverse-on-surface": "#2f3131",
+                    "primary-fixed": "#ffe088",
+                    "on-tertiary-fixed-variant": "#5d4201",
+                    "surface-dim": "#121414",
+                    "on-primary-container": "#554300",
+                    "secondary-fixed": "#e5e2e1",
+                    "surface-container-lowest": "#0c0f0f",
+                    "surface-container": "#1e2020",
+                    "surface-container-high": "#282a2b",
+                    "secondary-container": "#474746",
+                    "tertiary-fixed-dim": "#e9c176",
+                    "surface-bright": "#37393a",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-primary-fixed": "#241a00",
+                    "outline": "#99907c",
+                    "primary": "#f2ca50",
+                    "secondary": "#c8c6c5",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-error-container": "#ffdad6",
+                    "primary-container": "#d4af37",
+                    "surface": "#121414",
+                    "on-error": "#690005",
+                    "error-container": "#93000a",
+                    "primary-fixed-dim": "#e9c349",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-secondary": "#313030",
+                    "tertiary-container": "#d3ad65",
+                    "outline-variant": "#4d4635",
+                    "on-secondary-container": "#b7b5b4",
+                    "surface-container-highest": "#333535",
+                    "on-primary": "#3c2f00",
+                    "surface-variant": "#333535",
+                    "tertiary-fixed": "#ffdea5",
+                    "on-surface-variant": "#d0c5af",
+                    "on-surface": "#e2e2e2",
+                    "on-background": "#e2e2e2",
+                    "on-tertiary-fixed": "#261900",
+                    "inverse-surface": "#e2e2e2",
+                    "error": "#ffb4ab",
+                    "inverse-primary": "#735c00",
+                    "on-primary-fixed-variant": "#574500",
+                    "tertiary": "#f1c97d",
+                    "on-tertiary": "#412d00",
+                    "background": "#121414"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-desktop": "64px",
+                    "stack-sm": "12px",
+                    "gutter": "24px",
+                    "container-padding-mobile": "20px",
+                    "stack-md": "24px",
+                    "stack-lg": "48px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Manrope"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "label-lg": ["Manrope"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "label-sm": ["Manrope"],
+                    "headline-xl": ["Playfair Display"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(30, 32, 32, 0.85);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary/30">
+<div class="flex flex-col md:flex-row min-h-screen w-full">
+<!-- Left Side: Visual Anchor -->
+<section class="hidden md:block md:w-1/2 lg:w-3/5 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-background/40 to-transparent z-10"></div>
+<img alt="Luxury Suite View" class="absolute inset-0 w-full h-full object-cover scale-105" data-alt="A hyper-realistic cinematic shot of a lavish penthouse suite in a high-end luxury hotel at twilight. Through massive floor-to-ceiling glass windows, a glittering metropolis skyline glows with sapphire and gold lights under a deep indigo sky. Inside, soft warm ambient lighting catches the edges of plush velvet furniture and polished dark marble floors. The atmosphere is quiet, exclusive, and breathtakingly serene, emphasizing the 'Atmospheric Luxury' of the Gilded Serenity theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT63MhRhTraaYJb2ntAcx_KhAJp1CEa2mmWFoOvmfbHsgfV0ZlzzkYAnjrREjd9IYskq9PcKa4PIwmC4_H7BL0IPXLv9K4e7CTlWaOjbZfIiMOPqh5bINf48aBwom9O1rd-V-KHswEtGWGGp7f5zRBoO3WozVzqco_OBx3djtBTYfsk4myMJx5BR4hl9tYABhxhlqHYcVcLJ_FfmAeb7E1YP1JUBI5AkbRNx2A7Ps7dbQx2g1bdiDZ6EcYcoyOfEccN9jP6c0D8N3p"/>
+<div class="absolute bottom-16 left-16 z-20 max-w-md">
+<h2 class="font-headline-xl text-headline-xl text-primary drop-shadow-lg">
+                    BESTBLISS
+                </h2>
+<p class="font-body-lg text-body-lg text-on-surface/80 mt-4 leading-relaxed">
+                    Where the city's pulse meets the serenity of the stars. Welcome back to your sanctuary.
+                </p>
+</div>
+</section>
+<!-- Right Side: Login Canvas -->
+<main class="w-full md:w-1/2 lg:w-2/5 bg-surface flex items-center justify-center p-8 md:p-12 lg:p-24 relative overflow-y-auto">
+<!-- Mobile Brand Header -->
+<div class="md:hidden absolute top-8 left-8">
+<span class="text-headline-md font-headline-md tracking-tighter text-on-surface font-black">BESTBLISS</span>
+</div>
+<div class="w-full max-w-[440px] space-y-stack-lg">
+<header class="space-y-stack-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Sign In</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Access your exclusive member portal and curated experiences.</p>
+</header>
+<form action="#" class="space-y-stack-md" method="POST">
+<!-- Email Field -->
+<div class="space-y-2 group">
+<label class="font-label-lg text-label-lg text-on-surface-variant group-focus-within:text-primary transition-colors" for="email">Email Address</label>
+<div class="relative">
+<input class="w-full bg-surface-container border-0 border-b border-outline-variant focus:border-primary focus:ring-0 py-4 text-on-surface font-body-md transition-all outline-none placeholder:text-on-surface-variant/30" id="email" name="email" placeholder="name@domain.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2 group">
+<div class="flex justify-between items-center">
+<label class="font-label-lg text-label-lg text-on-surface-variant group-focus-within:text-primary transition-colors" for="password">Password</label>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-fixed-dim transition-colors" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container border-0 border-b border-outline-variant focus:border-primary focus:ring-0 py-4 text-on-surface font-body-md transition-all outline-none placeholder:text-on-surface-variant/30" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Options -->
+<div class="flex items-center space-x-3 py-2">
+<input class="w-5 h-5 rounded-sm bg-surface-container border-outline-variant text-primary focus:ring-offset-background focus:ring-primary focus:ring-1" id="remember" name="remember" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface-variant cursor-pointer select-none" for="remember">Keep me signed in</label>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary py-5 rounded-none font-label-lg text-label-lg uppercase tracking-widest transition-all duration-300 shadow-xl hover:shadow-primary/20 active:scale-[0.98]" type="submit">
+                        Sign In
+                    </button>
+</form>
+<!-- Divider -->
+<div class="relative flex items-center py-4">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="flex-shrink mx-4 font-label-sm text-label-sm text-on-surface-variant/50 uppercase tracking-widest">Or</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<!-- Secondary Actions -->
+<div class="space-y-stack-md">
+<button class="w-full flex items-center justify-center space-x-3 border border-outline-variant py-4 hover:bg-white/5 transition-colors group">
+<img alt="Google" class="w-5 h-5 grayscale group-hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeaWZNQ6NlaULOHZwhMqz9_ybBtgfZ8--HDGD5IOJd6lVu1p4ApGEsi_sEmJHU0bCdvsW6HrO4LpkDTuxdfbsIF1Tp6pUTm_1ivkCybOi69OSG8VJ6f-PHqSr-fp0hNpGzdBJvwBpHXd4dxSSjTyuRES1xXpql4ncg11qrUpSVNZB7kRPVgi51tw5eVvrEjyiemBSKT2XwSGBmsPPGVpIdm2lwP3YehCw0RE6EBblro08N6VNw6Inbna4rU1VCL9qbpfpDoXGKZbUH"/>
+<span class="font-label-lg text-label-lg text-on-surface">Continue with Google</span>
+</button>
+<p class="text-center font-body-md text-body-md text-on-surface-variant">
+                        New to BestBliss? 
+                        <a class="text-primary font-label-lg text-label-lg ml-1 hover:underline underline-offset-4" href="#">Join our Loyalty Circle</a>
+</p>
+</div>
+</div>
+<!-- Footer Legal -->
+<footer class="absolute bottom-8 w-full left-0 px-8 flex justify-between items-center opacity-40">
+<p class="font-label-sm text-label-sm">© 2024 BESTBLISS HOTELS &amp; RESORTS</p>
+<div class="flex space-x-4">
+<a class="font-label-sm text-label-sm hover:text-on-surface" href="#">Privacy</a>
+<a class="font-label-sm text-label-sm hover:text-on-surface" href="#">Terms</a>
+</div>
+</footer>
+</main>
+</div>
+<!-- Floating Component Anchor (Minimal Decorative) -->
+<div class="fixed top-8 right-8 z-50 md:flex hidden items-center space-x-4">
+<button class="glass-panel p-3 rounded-full text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">language</span>
+</button>
+<button class="glass-panel p-3 rounded-full text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</body></html>
