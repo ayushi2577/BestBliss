@@ -121,23 +121,23 @@
 <div class="flex items-center gap-12">
 <span class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
 <div class="hidden md:flex items-center gap-8">
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="#">
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="dashboard 1.html">
 <span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
 <span>Home</span>
 </a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="#">
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="Dining 3.html">
 <span class="material-symbols-outlined text-[20px]" data-icon="restaurant">restaurant</span>
 <span>Services <span class="text-[10px] opacity-60 ml-0.5">(Dining)</span></span>
 </a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="#">
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="stay 2.html">
 <span class="material-symbols-outlined text-[20px]" data-icon="calendar_month">calendar_month</span>
 <span>Stay <span class="text-[10px] opacity-60 ml-0.5">(Bookings)</span></span>
 </a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="#">
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="smart room control 4.html">
 <span class="material-symbols-outlined text-[20px]" data-icon="settings_remote">settings_remote</span>
 <span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
 </a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active" href="#">
+<a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active" href="loyallty 3.html">
 <span class="material-symbols-outlined text-[20px]" data-icon="workspace_premium">workspace_premium</span>
 <span>Loyalty</span>
 </a>
@@ -145,17 +145,14 @@
 </div>
 <div class="flex items-center gap-6">
 <div class="hidden lg:flex items-center gap-3 glass-surface px-4 py-2 rounded-full border-white/5">
-<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold">JD</div>
-<span class="text-label-sm font-label-sm text-on-surface">John Doe</span>
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold" id="user-initials">JD</div>
+<span class="text-label-sm font-label-sm text-on-surface" id="username">Guest</span>
 <span class="w-1 h-1 bg-primary rounded-full"></span>
-<span class="text-label-sm font-label-sm text-primary">Elite</span>
-</div>f
+<span class="text-label-sm font-label-sm text-primary" id="membership">Member</span>
+</div>
 <div class="flex gap-2">
-<button class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="notifications">notifications</span>
-</button>
-<button class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="search">search</span>
+<button class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors" onclick="handleLogout()">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">logout</span>
 </button>
 </div>
 </div>
@@ -182,9 +179,14 @@
 <span class="text-primary">124,500 <span class="text-on-surface-variant">/ 150,000 to Elite</span></span>
 </div>
 <div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
-<div class="h-full gold-gradient w-[83%] rounded-full shadow-[0_0_10px_rgba(242,202,80,0.5)]"></div>
+<div  id="progress-bar" class="h-full gold-gradient w-[83%] rounded-full shadow-[0_0_10px_rgba(242,202,80,0.5)]"></div>
 </div>
-<p class="text-label-sm font-label-sm text-right text-on-surface-variant">25,500 points until your next upgrade</p>
+<p
+    id="upgrade-text"
+    class="text-label-sm font-label-sm text-right text-on-surface-variant"
+>
+    0 points until your next upgrade
+</p>
 </div>
 </div>
 </section>
@@ -198,7 +200,7 @@
                             View All Benefits <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
 </button>
 </div>
-<div class="grid grid-cols-2 gap-gutter">
+<div class="grid grid-cols-2 gap-gutter" id="privileges-container">
 <div class="glass-card rounded-xl p-6 group cursor-pointer hover:border-primary/40 transition-all duration-300">
 <span class="material-symbols-outlined text-primary text-[32px] mb-4">upgrade</span>
 <h3 class="text-headline-md font-headline-md mb-2">Suite Upgrades</h3>
@@ -228,7 +230,12 @@
 <h3 class="text-label-lg font-label-lg text-primary uppercase tracking-widest mb-4">Ambassador Referral</h3>
 <p class="text-headline-md font-headline-md mb-4">Invite Friends, Earn 5,000 Points</p>
 <p class="text-on-surface-variant text-label-sm mb-6">Each successful referral grants you points and gives your friend Gold status for 3 months.</p>
-<button class="w-full gold-gradient text-on-primary-fixed font-label-lg py-3 rounded-lg hover:brightness-110 transition-all">Generate Link</button>
+<button
+    id="referral-btn"
+    class="w-full gold-gradient text-on-primary-fixed font-label-lg py-3 rounded-lg hover:brightness-110 transition-all"
+>
+    Copy Referral Link
+</button>
 </div>
 <!-- Mini Cards -->
 <div class="glass-card rounded-xl p-5 flex items-center gap-4">
@@ -273,7 +280,7 @@
 </button>
 </div>
 </div>
-<div class="flex gap-gutter overflow-x-auto pb-4 scrollbar-hide">
+<div id="redemption-container" class="flex gap-gutter overflow-x-auto pb-4 scrollbar-hide">
 <!-- Redemption Item 1 -->
 <div class="min-w-[400px] glass-card rounded-xl overflow-hidden group cursor-pointer">
 <div class="h-56 overflow-hidden">
@@ -358,4 +365,265 @@
 <span class="text-label-sm font-label-sm">Loyalty</span>
 </div>
 </nav>
+
+<script>
+// ── API ───────────────────────────────────────────────────────
+const API = 'http://127.0.0.1:8000/api';
+
+// ── Token Helpers ────────────────────────────────────────────
+function getToken() {
+    return localStorage.getItem('bb_access');
+}
+
+function getRefresh() {
+    return localStorage.getItem('bb_refresh');
+}
+
+function saveTokens(a, r) {
+    localStorage.setItem('bb_access', a);
+    if (r) localStorage.setItem('bb_refresh', r);
+}
+
+function clearTokens() {
+    localStorage.removeItem('bb_access');
+    localStorage.removeItem('bb_refresh');
+}
+
+// ── Redirect ─────────────────────────────────────────────────
+function redirectLogin() {
+    clearTokens();
+    window.location.href = 'Login 0.html';
+}
+
+// ── Auth Fetch ───────────────────────────────────────────────
+async function apiFetch(path, opts = {}) {
+
+    let token = getToken();
+
+    if (!token) {
+        redirectLogin();
+        return null;
+    }
+
+    opts.headers = {
+        ...(opts.headers || {}),
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    };
+
+    let res = await fetch(API + path, opts);
+
+    // refresh token
+    if (res.status === 401) {
+
+        try {
+
+            const rr = await fetch(API + '/refresh/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    refresh: getRefresh()
+                })
+            });
+
+            if (!rr.ok) throw new Error('refresh failed');
+
+            const rd = await rr.json();
+
+            saveTokens(rd.access);
+
+            opts.headers['Authorization'] = 'Bearer ' + rd.access;
+
+            res = await fetch(API + path, opts);
+
+        } catch(e) {
+
+            console.error(e);
+            redirectLogin();
+            return null;
+        }
+    }
+
+    if (!res.ok) {
+        console.error('API ERROR', res.status);
+        return null;
+    }
+
+    return await res.json();
+}
+
+// ── Logout ───────────────────────────────────────────────────
+async function handleLogout() {
+
+    try {
+
+        const refresh = getRefresh();
+
+        if (refresh) {
+
+            await fetch(API + '/logout/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json',
+                    'Authorization':'Bearer ' + getToken()
+                },
+                body: JSON.stringify({ refresh })
+            });
+        }
+
+    } catch(e) {
+        console.error(e);
+    }
+
+    redirectLogin();
+}
+
+// ── Local User Data ──────────────────────────────────────────
+function populateNavUser() {
+
+    document.getElementById('username').textContent =
+        localStorage.getItem('user_name') || 'Guest';
+
+    document.getElementById('user-initials').textContent =
+        localStorage.getItem('user_initials') || 'G';
+
+    document.getElementById('membership').textContent =
+        localStorage.getItem('membership_status') || 'Member';
+}
+
+// ── Loyalty Data ─────────────────────────────────────────────
+async function loadLoyaltyData() {
+
+    const data = await apiFetch('/loyalty/');
+
+    if (!data) return;
+
+    // Membership
+    document.getElementById('membership-tier').textContent =
+        data.membership || 'Member';
+
+    // Points
+    document.getElementById('reward-points').textContent =
+        Number(data.reward_points || 0).toLocaleString();
+
+    // Example progress logic
+    const maxPoints = 150000;
+
+    const currentPoints = data.reward_points || 0;
+
+    const percent = Math.min((currentPoints / maxPoints) * 100, 100);
+
+    document.getElementById('progress-bar').style.width =
+        percent + '%';
+
+    const remaining = Math.max(maxPoints - currentPoints, 0);
+
+    document.getElementById('upgrade-text').textContent =
+        `${remaining.toLocaleString()} points until your next upgrade`;
+
+    // Referral
+    const referralBtn = document.getElementById('referral-btn');
+
+    referralBtn.onclick = () => {
+
+        navigator.clipboard.writeText(data.referal_link);
+
+        referralBtn.textContent = 'Copied!';
+        
+        setTimeout(() => {
+            referralBtn.textContent = 'Copy Referral Link';
+        }, 2000);
+    };
+
+    // ── Privileges ────────────────────────────────────────────
+    const privilegesContainer =
+        document.getElementById('privileges-container');
+
+    privilegesContainer.innerHTML = '';
+
+    data.privilages.forEach((item, index) => {
+
+        const card = document.createElement('div');
+
+        card.className =
+            index === data.privilages.length - 1
+            ? 'glass-card rounded-xl p-6 col-span-2'
+            : 'glass-card rounded-xl p-6';
+
+        card.innerHTML = `
+            <span class="material-symbols-outlined text-primary text-[32px] mb-4">
+                workspace_premium
+            </span>
+
+            <h3 class="text-headline-md font-headline-md mb-2">
+                ${item.privilage_name}
+            </h3>
+
+            <p class="text-on-surface-variant text-body-md">
+                ${item.privilage_desc}
+            </p>
+        `;
+
+        privilegesContainer.appendChild(card);
+    });
+
+    // ── Redemption Items ─────────────────────────────────────
+    const redemptionContainer =
+        document.getElementById('redemption-container');
+
+    redemptionContainer.innerHTML = '';
+
+    data.redemption_items.forEach(item => {
+
+        const card = document.createElement('div');
+
+        card.className =
+            'min-w-[400px] glass-card rounded-xl overflow-hidden group cursor-pointer';
+
+        card.innerHTML = `
+            <div class="p-6">
+
+                <div class="flex justify-between items-start mb-2">
+
+                    <h3 class="text-headline-md font-headline-md">
+                        ${item.item_name}
+                    </h3>
+
+                    <span class="bg-primary/20 text-primary text-label-sm px-3 py-1 rounded-full">
+                        ${Number(item.points_required).toLocaleString()} pts
+                    </span>
+
+                </div>
+
+                <p class="text-on-surface-variant text-body-md">
+                    ${item.item_description}
+                </p>
+
+            </div>
+        `;
+
+        redemptionContainer.appendChild(card);
+    });
+}
+
+// ── Guard ────────────────────────────────────────────────────
+(function guard() {
+
+    if (!getToken()) {
+        redirectLogin();
+    }
+
+})();
+
+// ── Init ─────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+
+    populateNavUser();
+
+    loadLoyaltyData();
+});
+</script>
+
 </body></html>

@@ -114,32 +114,72 @@
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
     }
-  </style>
+  
+        .nav-link-active {
+            color: #f2ca50;
+            position: relative;
+        }
+        .nav-link-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #f2ca50;
+        }
+        .glass-surface {
+            background: rgba(242, 202, 80, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(242, 202, 80, 0.2);
+        }
+
+    </style>
 </head>
 <body class="bg-surface text-on-surface font-body-md selection:bg-primary selection:text-on-primary min-h-screen">
 <!-- TopAppBar Shell -->
-<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md text-primary dark:text-primary-fixed-dim docked full-width top-0 sticky z-50 border-b border-white/10 flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop py-4 w-full">
-<div class="flex items-center gap-8">
-<h1 class="text-headline-md font-headline-md tracking-tighter text-on-surface dark:text-on-surface font-black">BESTBLISS</h1>
-<nav class="hidden md:flex gap-6">
-<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
-<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a>
-<a class="text-label-lg font-label-lg text-primary font-bold transition-colors" href="#">Stay</a>
-<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Smart</a>
-<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Loyalty</a>
-</nav>
+<nav class="sticky z-[100] top-0 w-full bg-surface-dim/80 backdrop-blur-3xl border-b border-white/5 px-container-padding-mobile md:px-container-padding-desktop h-20 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<span class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="dashboard 1.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="Dining 3.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="restaurant">restaurant</span>
+<span>Services <span class="text-[10px] opacity-60 ml-0.5">(Dining)</span></span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active" href="stay 2.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="calendar_month">calendar_month</span>
+<span>Stay <span class="text-[10px] opacity-60 ml-0.5">(Bookings)</span></span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="smart room control 4.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings_remote">settings_remote</span>
+<span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="loyallty 3.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="workspace_premium">workspace_premium</span>
+<span>Loyalty</span>
+</a>
 </div>
-<div class="flex items-center gap-4">
-<button class="p-2 rounded-full hover:bg-white/5 transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-3 glass-surface px-4 py-2 rounded-full border-white/5">
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold" id="user-initials">JD</div>
+<span class="text-label-sm font-label-sm text-on-surface" id="username">Guest</span>
+<span class="w-1 h-1 bg-primary rounded-full"></span>
+<span class="text-label-sm font-label-sm text-primary" id="membership">Member</span>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors" onclick="handleLogout()">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">logout</span>
 </button>
-<div class="flex items-center gap-2">
-<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs overflow-hidden">
-<img alt="Guest Profile" data-alt="A professional studio portrait of a sophisticated middle-aged man with a groomed beard, wearing a charcoal grey tailored suit. The lighting is dramatic and moody, characteristic of a high-end luxury brand. The background is a soft, out-of-focus dark interior with warm amber highlights, creating an atmosphere of exclusivity and refined taste." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCM2eO3scTQjDQqIil-vepvKXyI7WTn4kAF61eIETIOsL2F4lb2jUxCtpmVB3JOIMc-NqCjgoHGR3YxOjjTPsJMvPiRi2jNf692Hual0aJA8COsBezojxhEG8OHtHiGa-6Wh5-S0Hhr83D-E10ZxpWFPyg-Q1szUqkMHcyWCz8h0lWfmCx1123ATvELR8Kdk471mFMEhKQSbR-ICnaHHlC-RQLM6Evv1RvW9hwQt-JHSWzX1pHqiJk91NCDZWDv7t45U8wbb_jD89T"/>
 </div>
 </div>
-</div>
-</header>
+</nav>
 <main class="max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop py-stack-lg flex flex-col md:flex-row gap-gutter">
 <!-- Sidebar / Navigation Filter -->
 <aside class="w-full md:w-64 flex-shrink-0">
@@ -159,24 +199,7 @@
 <span class="material-symbols-outlined">history</span>
 <span class="text-label-lg font-label-lg">Past Stays</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-on-surface-variant transition-colors" href="#">
-<span class="material-symbols-outlined">favorite</span>
-<span class="text-label-lg font-label-lg">Wishlist</span>
-</a>
 </nav>
-</div>
-<div class="pt-stack-md border-t border-white/10">
-<h2 class="text-label-lg font-label-lg text-primary uppercase tracking-widest mb-4">Quick Filters</h2>
-<div class="space-y-3">
-<label class="flex items-center gap-3 group cursor-pointer">
-<input class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary/20" type="checkbox"/>
-<span class="text-body-md font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Luxury Collection</span>
-</label>
-<label class="flex items-center gap-3 group cursor-pointer">
-<input class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary/20" type="checkbox"/>
-<span class="text-body-md font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Villas &amp; Penthouses</span>
-</label>
-</div>
 </div>
 </div>
 </aside>
@@ -309,4 +332,77 @@
 <span class="text-label-sm font-label-sm">Loyalty</span>
 </a>
 </nav>
+
+<script>
+// ── Auth helpers ──────────────────────────────────────────────
+const API = 'http://127.0.0.1:8000/api';
+
+function getToken() { return localStorage.getItem('bb_access'); }
+function getRefresh() { return localStorage.getItem('bb_refresh'); }
+function saveTokens(a, r) {
+  localStorage.setItem('bb_access', a);
+  if (r) localStorage.setItem('bb_refresh', r);
+}
+function clearTokens() {
+  localStorage.removeItem('bb_access');
+  localStorage.removeItem('bb_refresh');
+}
+
+async function apiFetch(path, opts = {}) {
+  let token = getToken();
+  if (!token) { redirectLogin(); return null; }
+  opts.headers = { ...(opts.headers || {}), 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' };
+  let res = await fetch(API + path, opts);
+  if (res.status === 401) {
+    // try refresh
+    try {
+      const rr = await fetch(API + '/refresh/', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ refresh: getRefresh() }) });
+      if (!rr.ok) throw new Error('refresh failed');
+      const rd = await rr.json();
+      saveTokens(rd.access);
+      opts.headers['Authorization'] = 'Bearer ' + rd.access;
+      res = await fetch(API + path, opts);
+    } catch(e) {
+      console.error('[BestBliss] Token refresh failed:', e);
+      redirectLogin();
+      return null;
+    }
+  }
+  if (!res.ok) { console.error('[BestBliss] API error', res.status, path); return null; }
+  return res.json();
+}
+
+function redirectLogin() { clearTokens(); window.location.href = 'Login 0.html'; }
+
+async function handleLogout() {
+  try {
+    const refresh = getRefresh();
+    if (refresh) await fetch(API + '/logout/', { method: 'POST', headers: {'Content-Type':'application/json', 'Authorization': 'Bearer ' + getToken()}, body: JSON.stringify({ refresh }) });
+  } catch(e) { console.error('[BestBliss] Logout error:', e); }
+  redirectLogin();
+}
+
+// ── Populate nav user pill ────────────────────────────────────
+async function populateNavUser() {
+  const data = await apiFetch('/dashboard/');
+  if (!data) return;
+  const nameEl = document.getElementById('username');
+  const memberEl = document.getElementById('membership');
+  const initialsEl = document.getElementById('user-initials');
+  if (nameEl) nameEl.textContent = data.name || 'Guest';
+  if (memberEl) memberEl.textContent = data.membership_status || '';
+  if (initialsEl) {
+    const parts = (data.name || 'G').split(' ');
+    initialsEl.textContent = parts.map(p => p[0]).join('').toUpperCase().slice(0, 2);
+  }
+}
+
+// ── Guard: redirect to login if no token ─────────────────────
+(function guard() {
+  if (!getToken()) { redirectLogin(); }
+})();
+
+document.addEventListener('DOMContentLoaded', populateNavUser);
+</script>
+
 </body></html>

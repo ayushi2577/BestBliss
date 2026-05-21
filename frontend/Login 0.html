@@ -205,6 +205,71 @@
 <span class="material-symbols-outlined">help_outline</span>
 </button>
 </div>
+<div id="login-error" class="text-red-400 text-sm text-center mt-2"></div>
+
+<script>
+const API = 'https://<your-domain>/api';
+
+function saveTokens(a, r) {
+  localStorage.setItem('bb_access', a);
+  localStorage.setItem('bb_refresh', r);
+}
+
+// If already logged in, go to dashboard
+if (localStorage.getItem('bb_access')) {
+  window.location.href = 'dashboard 1.html';
+}
+
+async function handleLogin(e) {
+  if (e) e.preventDefault();
+  const emailEl = document.querySelector('input[type="email"], input[name="email"], #email');
+  const passEl  = document.querySelector('input[type="password"], input[name="password"], #password');
+  const errEl   = document.getElementById('login-error');
+
+  if (!emailEl || !passEl) { console.error('[BestBliss] Login inputs not found'); return; }
+
+  const email    = emailEl.value.trim();
+  const password = passEl.value;
+
+  if (!email || !password) {
+    if (errEl) errEl.textContent = 'Please enter email and password.';
+    return;
+  }
+
+  try {
+    const res = await fetch(API + '/login/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      console.error('[BestBliss] Login failed:', res.status, err);
+      if (errEl) errEl.textContent = err.detail || 'Invalid credentials. Please try again.';
+      return;
+    }
+    const data = await res.json();
+    saveTokens(data.access, data.refresh);
+    console.log('[BestBliss] Login successful, redirecting to dashboard.');
+    window.location.href = 'dashboard 1.html';
+  } catch(e) {
+    console.error('[BestBliss] Login network error:', e);
+    if (errEl) errEl.textContent = 'Network error. Please try again.';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Attach to form submit or button click
+  const form = document.querySelector('form');
+  const btn  = document.querySelector('button[type="submit"], button');
+  if (form) {
+    form.addEventListener('submit', handleLogin);
+  } else if (btn) {
+    btn.addEventListener('click', handleLogin);
+  }
+});
+</script>
+
 </body>
 <script>
         function signin(){
@@ -231,12 +296,14 @@
                         "password":password
                     })
                 }).then(res=>res.json()).then(data=>{
-                    if (data["success"]==true) {
-                        localStorage.setItem("token",data["token"])
-                        window.location.href="dashboard.html"
+                  console.log(data)
+                    if (data) {
+                        localStorage.setItem("bb_access",data.access)
+                        localStorage.setItem("bb_refresh",data.refresh)
+                        window.location.href="dashboard 1.html"
                     }
                     else{
-                        alert(data["Wrong Credentials"])
+                        alert("Wrong Credentials")
                     }
                 })
                 

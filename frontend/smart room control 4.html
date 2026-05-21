@@ -24,6 +24,28 @@
             color: #e2e2e2;
             overflow-x: hidden;
         }
+    
+        .nav-link-active {
+            color: #f2ca50;
+            position: relative;
+        }
+        .nav-link-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #f2ca50;
+        }
+        .glass-surface {
+            background: rgba(242, 202, 80, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(242, 202, 80, 0.2);
+        }
+
     </style>
 <script id="tailwind-config">
         tailwind.config = {
@@ -121,24 +143,46 @@
 </head>
 <body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col">
 <!-- TopAppBar -->
-<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md text-primary dark:text-primary-fixed-dim docked full-width top-0 sticky z-50 border-b border-white/10 flex justify-between items-center px-container-padding-mobile py-4 w-full md:px-container-padding-desktop">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-full bg-surface-container-high border border-primary/20 flex items-center justify-center overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional portrait of a distinguished male guest in a high-end luxury hotel setting. The lighting is warm and cinematic, emphasizing a sophisticated atmosphere. The background shows soft-focus mahogany textures and golden ambient lights, reflecting the premium BestBliss aesthetic with deep charcoal and gold tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRxHGhGNr3mx9vlpdlUW9TXC4df7w0aefgOFiSHr7_ndDbFKU3_AmwjbmBydbzX63lYcxK0wTN1OVcnijaJ2NqHjfo1bxt7bN1VpqvO5EubFGqd4SMOgSgvSkWug070odu0BiQ_9Y38kmC7CWXX1-h6JaAgz8uiOmxYwDYIRhf5A2-q5WGWAUzogbOwTZVK2-BkPIou2cJR3CtmHPXVBZhPpRmtZmDi6QpJkwYEVlUlQqE0s_r2F9Cw_ud11P5NgG9eBirLC3TklK2"/>
+<nav class="sticky z-[100] top-0 w-full bg-surface-dim/80 backdrop-blur-3xl border-b border-white/5 px-container-padding-mobile md:px-container-padding-desktop h-20 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<span class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="dashboard 1.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="Dining 3.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="restaurant">restaurant</span>
+<span>Services <span class="text-[10px] opacity-60 ml-0.5">(Dining)</span></span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="stay 2.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="calendar_month">calendar_month</span>
+<span>Stay <span class="text-[10px] opacity-60 ml-0.5">(Bookings)</span></span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active" href="smart room control 4.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings_remote">settings_remote</span>
+<span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
+</a>
+<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="loyallty 3.html">
+<span class="material-symbols-outlined text-[20px]" data-icon="workspace_premium">workspace_premium</span>
+<span>Loyalty</span>
+</a>
 </div>
-<span class="text-headline-md font-headline-md tracking-tighter text-on-surface dark:text-on-surface font-black">BESTBLISS</span>
 </div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-primary font-label-lg text-label-lg hover:text-primary transition-colors opacity-80 transition-all duration-200" href="#">Home</a>
-<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-primary transition-colors" href="#">Services</a>
-<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-primary transition-colors" href="#">Stay</a>
-<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-primary transition-colors" href="#">Smart</a>
-<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-primary transition-colors" href="#">Loyalty</a>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-3 glass-surface px-4 py-2 rounded-full border-white/5">
+<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold" id="user-initials">JD</div>
+<span class="text-label-sm font-label-sm text-on-surface" id="username">Guest</span>
+<span class="w-1 h-1 bg-primary rounded-full"></span>
+<span class="text-label-sm font-label-sm text-primary" id="membership">Member</span>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors" onclick="handleLogout()">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">logout</span>
+</button>
+</div>
+</div>
 </nav>
-<div class="flex items-center gap-4">
-<button class="material-symbols-outlined text-primary text-2xl">notifications</button>
-</div>
-</header>
 <main class="flex-grow flex flex-col md:flex-row relative">
 <!-- Background Image Veil -->
 <div class="fixed inset-0 z-0">
@@ -318,4 +362,77 @@
 <span class="text-label-sm font-label-sm">Loyalty</span>
 </a>
 </nav>
+
+<script>
+// ── Auth helpers ──────────────────────────────────────────────
+const API = 'http://127.0.0.1:8000/api/';
+
+function getToken() { return localStorage.getItem('bb_access'); }
+function getRefresh() { return localStorage.getItem('bb_refresh'); }
+function saveTokens(a, r) {
+  localStorage.setItem('bb_access', a);
+  if (r) localStorage.setItem('bb_refresh', r);
+}
+function clearTokens() {
+  localStorage.removeItem('bb_access');
+  localStorage.removeItem('bb_refresh');
+}
+
+async function apiFetch(path, opts = {}) {
+  let token = getToken();
+  if (!token) { redirectLogin(); return null; }
+  opts.headers = { ...(opts.headers || {}), 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' };
+  let res = await fetch(API + path, opts);
+  if (res.status === 401) {
+    // try refresh
+    try {
+      const rr = await fetch(API + '/refresh/', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ refresh: getRefresh() }) });
+      if (!rr.ok) throw new Error('refresh failed');
+      const rd = await rr.json();
+      saveTokens(rd.access);
+      opts.headers['Authorization'] = 'Bearer ' + rd.access;
+      res = await fetch(API + path, opts);
+    } catch(e) {
+      console.error('[BestBliss] Token refresh failed:', e);
+      redirectLogin();
+      return null;
+    }
+  }
+  if (!res.ok) { console.error('[BestBliss] API error', res.status, path); return null; }
+  return res.json();
+}
+
+function redirectLogin() { clearTokens(); window.location.href = 'Login 0.html'; }
+
+async function handleLogout() {
+  try {
+    const refresh = getRefresh();
+    if (refresh) await fetch(API + '/logout/', { method: 'POST', headers: {'Content-Type':'application/json', 'Authorization': 'Bearer ' + getToken()}, body: JSON.stringify({ refresh }) });
+  } catch(e) { console.error('[BestBliss] Logout error:', e); }
+  redirectLogin();
+}
+
+// ── Populate nav user pill ────────────────────────────────────
+async function populateNavUser() {
+  const data = await apiFetch('/dashboard/');
+  if (!data) return;
+  const nameEl = document.getElementById('username');
+  const memberEl = document.getElementById('membership');
+  const initialsEl = document.getElementById('user-initials');
+  if (nameEl) nameEl.textContent = data.name || 'Guest';
+  if (memberEl) memberEl.textContent = data.membership_status || '';
+  if (initialsEl) {
+    const parts = (data.name || 'G').split(' ');
+    initialsEl.textContent = parts.map(p => p[0]).join('').toUpperCase().slice(0, 2);
+  }
+}
+
+// ── Guard: redirect to login if no token ─────────────────────
+(function guard() {
+  if (!getToken()) { redirectLogin(); }
+})();
+
+document.addEventListener('DOMContentLoaded', populateNavUser);
+</script>
+
 </body></html>
