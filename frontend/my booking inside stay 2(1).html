@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BESTBLISS | My Stays</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;900&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface-variant": "#d0c5af",
+            "inverse-primary": "#735c00",
+            "on-background": "#e2e2e2",
+            "on-tertiary-fixed-variant": "#5d4201",
+            "primary": "#f2ca50",
+            "surface-dim": "#121414",
+            "surface": "#121414",
+            "surface-container": "#1e2020",
+            "on-tertiary-container": "#5b4000",
+            "inverse-on-surface": "#2f3131",
+            "secondary-fixed-dim": "#c8c6c5",
+            "on-error": "#690005",
+            "inverse-surface": "#e2e2e2",
+            "on-primary-fixed-variant": "#574500",
+            "on-secondary": "#313030",
+            "tertiary-container": "#d3ad65",
+            "outline-variant": "#4d4635",
+            "surface-container-lowest": "#0c0f0f",
+            "on-error-container": "#ffdad6",
+            "surface-container-highest": "#333535",
+            "error-container": "#93000a",
+            "surface-variant": "#333535",
+            "on-tertiary-fixed": "#261900",
+            "on-primary-fixed": "#241a00",
+            "outline": "#99907c",
+            "surface-container-low": "#1a1c1c",
+            "tertiary": "#f1c97d",
+            "secondary": "#c8c6c5",
+            "primary-container": "#d4af37",
+            "on-secondary-fixed": "#1c1b1b",
+            "secondary-fixed": "#e5e2e1",
+            "secondary-container": "#474746",
+            "on-tertiary": "#412d00",
+            "surface-bright": "#37393a",
+            "on-secondary-fixed-variant": "#474746",
+            "primary-fixed": "#ffe088",
+            "on-secondary-container": "#b7b5b4",
+            "on-primary": "#3c2f00",
+            "surface-container-high": "#282a2b",
+            "error": "#ffb4ab",
+            "surface-tint": "#e9c349",
+            "primary-fixed-dim": "#e9c349",
+            "tertiary-fixed": "#ffdea5",
+            "background": "#121414",
+            "tertiary-fixed-dim": "#e9c176",
+            "on-surface": "#e2e2e2",
+            "on-primary-container": "#554300"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "stack-md": "24px",
+            "stack-lg": "48px",
+            "gutter": "24px",
+            "container-padding-desktop": "64px",
+            "base": "8px",
+            "stack-sm": "12px",
+            "container-padding-mobile": "20px"
+          },
+          "fontFamily": {
+            "headline-xl": ["Playfair Display"],
+            "body-lg": ["Manrope"],
+            "headline-lg": ["Playfair Display"],
+            "headline-md": ["Playfair Display"],
+            "headline-lg-mobile": ["Playfair Display"],
+            "label-sm": ["Manrope"],
+            "label-lg": ["Manrope"],
+            "body-md": ["Manrope"]
+          },
+          "fontSize": {
+            "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+            "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .glass-card {
+      background: rgba(30, 32, 32, 0.75);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .ghost-border {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary selection:text-on-primary min-h-screen">
+<!-- TopAppBar Shell -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md text-primary dark:text-primary-fixed-dim docked full-width top-0 sticky z-50 border-b border-white/10 flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop py-4 w-full">
+<div class="flex items-center gap-8">
+<h1 class="text-headline-md font-headline-md tracking-tighter text-on-surface dark:text-on-surface font-black">BESTBLISS</h1>
+<nav class="hidden md:flex gap-6">
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-label-lg font-label-lg text-primary font-bold transition-colors" href="#">Stay</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Smart</a>
+<a class="text-label-lg font-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Loyalty</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs overflow-hidden">
+<img alt="Guest Profile" data-alt="A professional studio portrait of a sophisticated middle-aged man with a groomed beard, wearing a charcoal grey tailored suit. The lighting is dramatic and moody, characteristic of a high-end luxury brand. The background is a soft, out-of-focus dark interior with warm amber highlights, creating an atmosphere of exclusivity and refined taste." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCM2eO3scTQjDQqIil-vepvKXyI7WTn4kAF61eIETIOsL2F4lb2jUxCtpmVB3JOIMc-NqCjgoHGR3YxOjjTPsJMvPiRi2jNf692Hual0aJA8COsBezojxhEG8OHtHiGa-6Wh5-S0Hhr83D-E10ZxpWFPyg-Q1szUqkMHcyWCz8h0lWfmCx1123ATvELR8Kdk471mFMEhKQSbR-ICnaHHlC-RQLM6Evv1RvW9hwQt-JHSWzX1pHqiJk91NCDZWDv7t45U8wbb_jD89T"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop py-stack-lg flex flex-col md:flex-row gap-gutter">
+<!-- Sidebar / Navigation Filter -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="sticky top-24 space-y-stack-md">
+<div>
+<h2 class="text-label-lg font-label-lg text-primary uppercase tracking-widest mb-4">My Bookings</h2>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary font-bold border border-primary/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="text-label-lg font-label-lg">All Stays</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-on-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">schedule</span>
+<span class="text-label-lg font-label-lg">Upcoming</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-on-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-label-lg font-label-lg">Past Stays</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-on-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-label-lg font-label-lg">Wishlist</span>
+</a>
+</nav>
+</div>
+<div class="pt-stack-md border-t border-white/10">
+<h2 class="text-label-lg font-label-lg text-primary uppercase tracking-widest mb-4">Quick Filters</h2>
+<div class="space-y-3">
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-body-md font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Luxury Collection</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-body-md font-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Villas &amp; Penthouses</span>
+</label>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="flex-grow space-y-stack-md">
+<header class="mb-stack-md">
+<h1 class="text-headline-lg font-headline-lg text-on-surface">Manage Your Stays</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Review your upcoming luxury experiences and relive your favorite memories.</p>
+</header>
+<!-- Stay Card: Upcoming (Active/Highlighted) -->
+<section class="space-y-4">
+<h3 class="text-label-lg font-label-lg text-primary uppercase tracking-[0.2em]">Upcoming Stays</h3>
+<div class="glass-card rounded-xl overflow-hidden group flex flex-col lg:flex-row shadow-2xl relative">
+<div class="absolute top-4 left-4 z-10">
+<span class="px-3 py-1 bg-primary text-on-primary text-label-sm font-label-sm rounded-full shadow-lg">CONFIRMED</span>
+</div>
+<div class="lg:w-1/3 h-64 lg:h-auto relative overflow-hidden">
+<img alt="Royal Penthouse Suite" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A hyper-luxurious modern penthouse bedroom at dusk, featuring floor-to-ceiling windows overlooking a shimmering metropolitan skyline. The interior uses a rich palette of deep charcoals, warm golds, and soft cream textiles. The lighting is ambient and sophisticated, with glowy recessed ceiling lights and elegant bedside lamps. The atmosphere is one of ultimate exclusivity and serene high-end hospitality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxJ2lL8pBkzy-1I311HQiZ9ubLjjjg5SL-RIppBtyAbI1wALwTDulhK4RaM20Kn93M6NIPn0GXqFkESJsMAO9ts5E-597qpl4FzZkFkUgrMJLRuKh8kmMe4e_zaUbZyXAXO7Cs7LtxftBlKeWo1GGRI7SQvXAijZcmjwIOnABsav7r85xy9U0FUMBY-hsRRzprV_P9BLmvJn9v0hiHrk-qbMSS9B0ErcG9cFDpxdIg3G9w_IwNzMevJdoleQEshuNhtAxkeqBsoivD"/>
+</div>
+<div class="p-8 lg:w-2/3 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h2 class="text-headline-md font-headline-md text-on-surface">Royal Penthouse Suite</h2>
+<span class="text-primary text-headline-md font-headline-md">$1,250<span class="text-label-sm text-on-surface-variant">/night</span></span>
+</div>
+<p class="text-on-surface-variant mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">location_on</span>
+                BESTBLISS Grand Azure, Maldives
+              </p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+<div class="p-3 bg-white/5 rounded-lg border border-white/5">
+<span class="text-label-sm font-label-sm text-on-surface-variant block uppercase tracking-tighter">Check In</span>
+<span class="text-body-md font-bold text-on-surface">Oct 12, 2024</span>
+</div>
+<div class="p-3 bg-white/5 rounded-lg border border-white/5">
+<span class="text-label-sm font-label-sm text-on-surface-variant block uppercase tracking-tighter">Check Out</span>
+<span class="text-body-md font-bold text-on-surface">Oct 18, 2024</span>
+</div>
+<div class="p-3 bg-white/5 rounded-lg border border-white/5">
+<span class="text-label-sm font-label-sm text-on-surface-variant block uppercase tracking-tighter">Guests</span>
+<span class="text-body-md font-bold text-on-surface">2 Adults</span>
+</div>
+<div class="p-3 bg-white/5 rounded-lg border border-white/5">
+<span class="text-label-sm font-label-sm text-on-surface-variant block uppercase tracking-tighter">Booking ID</span>
+<span class="text-body-md font-bold text-on-surface">BB-99283</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-label-lg text-label-lg hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                MANAGE STAY
+              </button>
+<button class="border border-white/20 text-on-surface px-8 py-3 rounded-lg font-label-lg text-label-lg hover:bg-white/5 transition-all flex items-center justify-center gap-2">
+                VIEW DETAILS
+              </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Stay Card: Past -->
+<section class="space-y-4 pt-stack-md">
+<h3 class="text-label-lg font-label-lg text-on-surface-variant uppercase tracking-[0.2em]">Past Stays</h3>
+<div class="glass-card rounded-xl overflow-hidden group flex flex-col lg:flex-row opacity-80 hover:opacity-100 transition-opacity">
+<div class="lg:w-1/3 h-48 lg:h-auto relative overflow-hidden">
+<img alt="Executive Garden Villa" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A lush, sun-drenched private garden villa with a stone infinity pool. The architecture is a blend of tropical traditionalism and modern luxury, featuring dark wood beams and white linen curtains. The scene is set in a secluded forest environment with dappled sunlight filtering through palm leaves, creating a peaceful and exclusive getaway vibe in dark charcoal and golden tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5iSuVC3xEKLgSIGdzJkYNmlZMTYCyX_cMnpXg3-4Yze42gyj_Ec17mppeYxSBfLS5oUK2j6bIDFpBzapuKB_BifzSKW7qk5LjNXfob_xZrD1nz2PtWLEQ7s-Dbyl3uc0TGRk2dPb8Ow4y6WYXngOYClduHgxLiNO-iXWy5QlCgy93UdFL9is9JbHAHZojFnK_P0OyAX-soll5assY88maoTCDvaxnxDO0EYkzI4Ku69dzA5Hb0SwVrJqa-9xtWBnoqFGW2nGLdeZe"/>
+</div>
+<div class="p-6 lg:w-2/3 flex flex-col justify-between">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface mb-1">Executive Garden Villa</h2>
+<p class="text-on-surface-variant mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">location_on</span>
+                BESTBLISS Sanctuary, Bali
+              </p>
+<div class="flex gap-8 mb-6">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Dates</span>
+<span class="text-body-md text-on-surface">Aug 05 — Aug 12, 2024</span>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Status</span>
+<span class="text-body-md text-on-surface-variant">Completed</span>
+</div>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="border border-white/10 text-on-surface-variant px-6 py-2 rounded-lg font-label-lg text-label-lg hover:text-primary hover:border-primary/50 transition-all">
+                BOOK AGAIN
+              </button>
+<button class="text-primary px-6 py-2 rounded-lg font-label-lg text-label-lg hover:underline transition-all">
+                DOWNLOAD INVOICE
+              </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- The Curator: Floating Booking Bar (Mandatory Shell) -->
+<div class="fixed bottom-0 w-full z-50 flex justify-center p-6 md:hidden">
+<div class="glass-card w-full rounded-2xl p-4 flex justify-between items-center shadow-2xl">
+<div class="flex flex-col">
+<span class="text-label-sm text-on-surface-variant">Next Stay</span>
+<span class="text-label-lg font-bold text-primary">Maldives • Oct 12</span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-label-lg text-label-lg shadow-lg">
+        VIEW
+      </button>
+</div>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface-container-highest/90 dark:bg-surface-container-highest/90 backdrop-blur-xl fixed bottom-0 w-full flex justify-around items-center pt-2 pb-safe px-4 border-t border-white/10 z-[60] shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
+<span class="material-symbols-outlined">room_service</span>
+<span class="text-label-sm font-label-sm">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="text-label-sm font-label-sm">Stay</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
+<span class="material-symbols-outlined">settings_remote</span>
+<span class="text-label-sm font-label-sm">Smart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="text-label-sm font-label-sm">Loyalty</span>
+</a>
+</nav>
+</body></html>

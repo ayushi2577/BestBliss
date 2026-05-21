@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(30, 32, 32, 0.75);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .climate-dial {
+            background: conic-gradient(from 180deg, #f2ca50 0%, #121414 75%);
+        }
+        body {
+            background-color: #121414;
+            color: #e2e2e2;
+            overflow-x: hidden;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#d0c5af",
+                        "inverse-primary": "#735c00",
+                        "on-background": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "primary": "#f2ca50",
+                        "surface-dim": "#121414",
+                        "surface": "#121414",
+                        "surface-container": "#1e2020",
+                        "on-tertiary-container": "#5b4000",
+                        "inverse-on-surface": "#2f3131",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e2e2e2",
+                        "on-primary-fixed-variant": "#574500",
+                        "on-secondary": "#313030",
+                        "tertiary-container": "#d3ad65",
+                        "outline-variant": "#4d4635",
+                        "surface-container-lowest": "#0c0f0f",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#333535",
+                        "error-container": "#93000a",
+                        "surface-variant": "#333535",
+                        "on-tertiary-fixed": "#261900",
+                        "on-primary-fixed": "#241a00",
+                        "outline": "#99907c",
+                        "surface-container-low": "#1a1c1c",
+                        "tertiary": "#f1c97d",
+                        "secondary": "#c8c6c5",
+                        "primary-container": "#d4af37",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "secondary-fixed": "#e5e2e1",
+                        "secondary-container": "#474746",
+                        "on-tertiary": "#412d00",
+                        "surface-bright": "#37393a",
+                        "on-secondary-fixed-variant": "#474746",
+                        "primary-fixed": "#ffe088",
+                        "on-secondary-container": "#b7b5b4",
+                        "on-primary": "#3c2f00",
+                        "surface-container-high": "#282a2b",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#e9c349",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary-fixed": "#ffdea5",
+                        "background": "#121414",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "on-surface": "#e2e2e2",
+                        "on-primary-container": "#554300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "24px",
+                        "stack-lg": "48px",
+                        "gutter": "24px",
+                        "container-padding-desktop": "64px",
+                        "base": "8px",
+                        "stack-sm": "12px",
+                        "container-padding-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Playfair Display"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "label-sm": ["Manrope"],
+                        "label-lg": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md text-primary dark:text-primary-fixed-dim docked full-width top-0 sticky z-50 border-b border-white/10 flex justify-between items-center px-container-padding-mobile py-4 w-full md:px-container-padding-desktop">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-primary/20 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a distinguished male guest in a high-end luxury hotel setting. The lighting is warm and cinematic, emphasizing a sophisticated atmosphere. The background shows soft-focus mahogany textures and golden ambient lights, reflecting the premium BestBliss aesthetic with deep charcoal and gold tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRxHGhGNr3mx9vlpdlUW9TXC4df7w0aefgOFiSHr7_ndDbFKU3_AmwjbmBydbzX63lYcxK0wTN1OVcnijaJ2NqHjfo1bxt7bN1VpqvO5EubFGqd4SMOgSgvSkWug070odu0BiQ_9Y38kmC7CWXX1-h6JaAgz8uiOmxYwDYIRhf5A2-q5WGWAUzogbOwTZVK2-BkPIou2cJR3CtmHPXVBZhPpRmtZmDi6QpJkwYEVlUlQqE0s_r2F9Cw_ud11P5NgG9eBirLC3TklK2"/>
+</div>
+<span class="text-headline-md font-headline-md tracking-tighter text-on-surface dark:text-on-surface font-black">BESTBLISS</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-label-lg text-label-lg hover:text-primary transition-colors opacity-80 transition-all duration-200" href="#">Home</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-primary transition-colors" href="#">Stay</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-primary transition-colors" href="#">Smart</a>
+<a class="text-on-surface-variant font-label-lg text-label-lg hover:text-primary transition-colors" href="#">Loyalty</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary text-2xl">notifications</button>
+</div>
+</header>
+<main class="flex-grow flex flex-col md:flex-row relative">
+<!-- Background Image Veil -->
+<div class="fixed inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30" data-alt="A breathtaking view of a modern luxury suite at dusk. Floor-to-ceiling windows reveal a serene mountain landscape under a twilight sky. The interior features dark marble surfaces, plush velvet furniture in charcoal, and warm golden accent lighting. The mood is tranquil, exclusive, and extremely high-end, utilizing glassmorphism textures in the environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUfQU5Cgp7sFwLWLLUoq5o-4IrPft5EUMmiunIJH3EBxXBPEgSivOrlaUmRxuZDwbwwDb91EPEZ1ehupk4vJWgkS9HO6yENdsrEOZqaHFTd8ncpJAKf0g-JTkJOwm39fMupW_VwnfBHAtY_mzPZ5KAXAoEyvMhoewU-RoDLvkAfduDwdbq0ccGeuF1RkDcIiCjmP6NEK8EHKBeWp3fkjlc6eI7St9YuR8wLYL4zXKxtQKPadciZQvApDtZhXCMhXIZmB3lOG7FGQSY"/>
+<div class="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
+</div>
+<div class="relative z-10 w-full max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop py-stack-lg flex flex-col md:flex-row gap-gutter">
+<!-- Left Pane: Climate Control -->
+<section class="flex-1 flex flex-col items-center justify-center glass-panel rounded-xl p-stack-lg min-h-[500px]">
+<div class="text-center mb-stack-md">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Climate Control</h2>
+<p class="font-label-lg text-label-lg text-on-surface-variant">Master Suite • West Wing</p>
+</div>
+<!-- Climate Dial UI -->
+<div class="relative w-72 h-72 rounded-full p-1 flex items-center justify-center shadow-[0_0_50px_rgba(242,202,80,0.1)]">
+<div class="absolute inset-0 rounded-full border-4 border-surface-container-highest opacity-20"></div>
+<!-- Visual Arc Segment -->
+<div class="absolute inset-0 rounded-full border-4 border-primary border-t-transparent border-l-transparent rotate-45 shadow-[0_0_15px_#f2ca50]"></div>
+<div class="w-60 h-60 rounded-full bg-surface-container-lowest flex flex-col items-center justify-center border border-white/5">
+<span class="font-headline-xl text-headline-xl text-primary leading-none">22°</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant mt-2 uppercase tracking-widest">Current</span>
+</div>
+<!-- Target Knob Placeholder -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 w-4 h-4 bg-primary rounded-full shadow-[0_0_10px_#f2ca50]"></div>
+</div>
+<div class="mt-stack-lg flex gap-12 items-center">
+<button class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors group">
+<span class="material-symbols-outlined text-on-surface group-hover:text-primary">remove</span>
+</button>
+<div class="text-center">
+<span class="block font-headline-md text-headline-md text-on-surface">21°C</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Target</span>
+</div>
+<button class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors group">
+<span class="material-symbols-outlined text-on-surface group-hover:text-primary">add</span>
+</button>
+</div>
+</section>
+<!-- Right Pane: Smart Controls Grid -->
+<section class="flex-[1.5] grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Lighting Atmosphere -->
+<div class="glass-panel rounded-xl p-6 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md">Atmosphere</h3>
+<span class="material-symbols-outlined text-primary" data-weight="fill">light_mode</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-primary text-on-primary font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1 shadow-[0_4px_20px_rgba(242,202,80,0.3)]">
+<span class="material-symbols-outlined">night_shelter</span>
+                            Relax
+                        </button>
+<button class="bg-surface-container-high hover:bg-surface-container-highest transition-colors text-on-surface font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1 border border-white/5">
+<span class="material-symbols-outlined">menu_book</span>
+                            Read
+                        </button>
+<button class="bg-surface-container-high hover:bg-surface-container-highest transition-colors text-on-surface font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1 border border-white/5">
+<span class="material-symbols-outlined">dark_mode</span>
+                            Sleep
+                        </button>
+<button class="bg-surface-container-high hover:bg-surface-container-highest transition-colors text-on-surface font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1 border border-white/5">
+<span class="material-symbols-outlined">wb_twilight</span>
+                            Morning
+                        </button>
+</div>
+</div>
+<!-- Curtains Control -->
+<div class="glass-panel rounded-xl p-6 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md">Curtains</h3>
+<span class="material-symbols-outlined text-primary">curtains</span>
+</div>
+<div class="flex-grow flex flex-col justify-center gap-6">
+<div class="flex justify-between items-center px-2">
+<button class="font-label-lg text-label-lg text-primary border-b border-primary pb-1">Open</button>
+<button class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Closed</button>
+</div>
+<div class="relative w-full h-2 bg-surface-container-highest rounded-full">
+<div class="absolute top-0 left-0 h-full w-[65%] bg-primary rounded-full"></div>
+<div class="absolute top-1/2 left-[65%] -translate-y-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full border-2 border-primary shadow-xl cursor-pointer"></div>
+</div>
+<p class="text-center font-label-sm text-label-sm text-on-surface-variant">65% Transparency • Solar Shield Active</p>
+</div>
+</div>
+<!-- Environmental Stats -->
+<div class="glass-panel rounded-xl p-6 md:col-span-2">
+<h3 class="font-headline-md text-headline-md mb-6">Environment</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">humidity_percentage</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Humidity</span>
+<span class="block font-headline-md text-headline-md text-on-surface">42%</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">air</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Air Quality</span>
+<span class="block font-headline-md text-headline-md text-on-surface">Excellent</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">thermometer</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Outside</span>
+<span class="block font-headline-md text-headline-md text-on-surface">18°C</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">wb_sunny</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">UV Index</span>
+<span class="block font-headline-md text-headline-md text-on-surface">Low</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Media Player (The Curator Style) -->
+<footer class="fixed bottom-0 left-0 w-full z-50 p-container-padding-mobile md:p-gutter">
+<div class="max-w-[1440px] mx-auto glass-panel rounded-2xl p-4 flex items-center justify-between shadow-2xl border border-white/10">
+<div class="flex items-center gap-4 flex-1">
+<div class="w-14 h-14 rounded-lg overflow-hidden border border-white/10 shrink-0">
+<img class="w-full h-full object-cover" data-alt="A vintage vinyl record spinning on a high-end gold-plated turntable. Soft jazz club lighting with deep blue and amber tones creates an intimate atmosphere. The composition is artistic and minimalist, emphasizing the texture of the vinyl and the luxurious sheen of the gold machinery, perfectly fitting the 'Atmospheric Luxury' design language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdXXfyNMxLEjOTGGhWPAOFI7rOJiQfUg_vq-s7o2xLc2RdSYsUC6o2fUi3bBjezMfzUSI4y-91I7imcryarX-zhoBba7HhS1fzpOuq8uW2kDWLU4IHWbeB2OCNFxqkTZNYI2i5mmHBfH-sZfdXqWdTdwI1Ut7ozR7z4k4ulEPLYXZoVt-LJib5ZpoJjvecc2MbhTQ6ynq6_Wx0A1ipPijVV-Xz6s9VSTXdA75DKdgj-9lMm3oOj-HXDMHeFilCgJy6Mb9CAO2kK5Hn"/>
+</div>
+<div class="hidden sm:block">
+<h4 class="font-headline-md text-lg text-primary leading-tight">Ambient Jazz Collection</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Curated for BestBliss Suites</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">skip_previous</button>
+<button class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-[0_0_20px_#f2ca50] transition-transform active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">skip_next</button>
+</div>
+<div class="flex-1 hidden md:flex items-center justify-end gap-4">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">volume_up</span>
+<div class="w-32 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-3/4 h-full bg-primary/40"></div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors ml-4">playlist_play</button>
+</div>
+</div>
+</footer>
+<!-- Mobile Navigation Shell (BottomNavBar Fallback) -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center pt-2 pb-safe px-4 bg-surface-container-highest/90 backdrop-blur-xl z-50 rounded-t-xl border-t border-white/10 shadow-lg">
+<a class="flex flex-col items-center justify-center text-primary font-bold scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
+<span class="material-symbols-outlined">room_service</span>
+<span class="text-label-sm font-label-sm">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-label-sm font-label-sm">Stay</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
+<span class="material-symbols-outlined">settings_remote</span>
+<span class="text-label-sm font-label-sm">Smart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="text-label-sm font-label-sm">Loyalty</span>
+</a>
+</nav>
+</body></html>

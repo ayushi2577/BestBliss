@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#d0c5af",
+                    "inverse-primary": "#735c00",
+                    "on-background": "#e2e2e2",
+                    "on-tertiary-fixed-variant": "#5d4201",
+                    "primary": "#f2ca50",
+                    "surface-dim": "#121414",
+                    "surface": "#121414",
+                    "surface-container": "#1e2020",
+                    "on-tertiary-container": "#5b4000",
+                    "inverse-on-surface": "#2f3131",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-error": "#690005",
+                    "inverse-surface": "#e2e2e2",
+                    "on-primary-fixed-variant": "#574500",
+                    "on-secondary": "#313030",
+                    "tertiary-container": "#d3ad65",
+                    "outline-variant": "#4d4635",
+                    "surface-container-lowest": "#0c0f0f",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#333535",
+                    "error-container": "#93000a",
+                    "surface-variant": "#333535",
+                    "on-tertiary-fixed": "#261900",
+                    "on-primary-fixed": "#241a00",
+                    "outline": "#99907c",
+                    "surface-container-low": "#1a1c1c",
+                    "tertiary": "#f1c97d",
+                    "secondary": "#c8c6c5",
+                    "primary-container": "#d4af37",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "secondary-fixed": "#e5e2e1",
+                    "secondary-container": "#474746",
+                    "on-tertiary": "#412d00",
+                    "surface-bright": "#37393a",
+                    "on-secondary-fixed-variant": "#474746",
+                    "primary-fixed": "#ffe088",
+                    "on-secondary-container": "#b7b5b4",
+                    "on-primary": "#3c2f00",
+                    "surface-container-high": "#282a2b",
+                    "error": "#ffb4ab",
+                    "surface-tint": "#e9c349",
+                    "primary-fixed-dim": "#e9c349",
+                    "tertiary-fixed": "#ffdea5",
+                    "background": "#121414",
+                    "tertiary-fixed-dim": "#e9c176",
+                    "on-surface": "#e2e2e2",
+                    "on-primary-container": "#554300"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "24px",
+                    "stack-lg": "48px",
+                    "gutter": "24px",
+                    "container-padding-desktop": "64px",
+                    "base": "8px",
+                    "stack-sm": "12px",
+                    "container-padding-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Playfair Display"],
+                    "body-lg": ["Manrope"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "label-sm": ["Manrope"],
+                    "label-lg": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(30, 32, 32, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(18, 20, 20, 0.4), rgba(18, 20, 20, 0.95));
+        }
+        .menu-divider {
+            border-bottom: 1px solid rgba(242, 202, 80, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md text-primary dark:text-primary-fixed-dim docked full-width top-0 sticky z-50 border-b border-white/10 flex justify-between items-center px-container-padding-mobile py-4 w-full">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A sophisticated close-up portrait of a professional male guest with a warm, welcoming expression. The lighting is soft and cinematic, characteristic of a high-end luxury hotel lobby. The background is softly blurred with golden ambient highlights, maintaining the atmospheric luxury theme of the Gilded Serenity brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgQlQMaDkmFMfLDY5BxA-FWMM5maoA39SF1a7qA2RT2EhIrUkESCA_fqBWBQlexGAFpX8_AY6N7qSsf1OTiPQgNJPx39pRQ4_BzQ3ZaY937DIC_KJztck9N-HYGaH60VDUYPHDzZgTOF3SQMQJCB9GBDSFmuRyQyV4rOmq4dC74KVQ_jniP4Jq-MXgs55YAGesVo6KSYVBa367nmRJBdc2r64L5Ckd3oqUHXT1vZD9AdNadZlZW-_6wXXr05VxIfYIA2GBI3CBpUoZ"/>
+</div>
+<span class="text-headline-md font-headline-md tracking-tighter text-on-surface dark:text-on-surface font-black">BESTBLISS</span>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-primary text-label-lg font-label-lg hover:text-primary transition-colors" href="#">Dining</a>
+<a class="text-on-surface-variant text-label-lg font-label-lg hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-on-surface-variant text-label-lg font-label-lg hover:text-primary transition-colors" href="#">Stay</a>
+<a class="text-on-surface-variant text-label-lg font-label-lg hover:text-primary transition-colors" href="#">Loyalty</a>
+</nav>
+<button class="material-symbols-outlined text-primary">notifications</button>
+</header>
+<main class="relative min-h-screen">
+<!-- Hero Background -->
+<div class="fixed inset-0 z-[-1]">
+<img class="w-full h-full object-cover opacity-40" data-alt="An expansive, high-angle view of a lavishly set dining table within a high-end luxury hotel suite. The scene features crystal glassware, fine silver cutlery, and elegant dark ceramic plates catching the golden light of a setting sun through floor-to-ceiling windows. The atmosphere is quiet, exclusive, and profoundly peaceful, rendered in deep charcoals and warm gold tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjwg_1cqzCL6Iwmb01ybZJjS247actfxWENx3mvtScl2blFvJ8AK2NG6B6pKCFhjADdZ5EBQ1cN6tqfeA7puOMhRempJJGzxswi0rby6ZKyuQblpcgnWxKCBZlt5aISPPnX4hHpCAnfyqi_HPjlbxdntsAai0hpI03XUwRbkSPtDLKHtjWQjJ26r--7GHlffx8j6jk6DYF7QKIitghdBfgBuNa0XPDKMIm0epeNu86MHEaq7B-KSUjQxrw75hiANeHxWRr6GQNXaSI"/>
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="max-w-[1440px] mx-auto px-container-padding-desktop py-stack-lg flex gap-gutter">
+<!-- Menu Sections (12-column grid container) -->
+<div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-gutter items-start">
+<!-- Starters -->
+<section class="glass-panel p-8 rounded-xl space-y-stack-md">
+<div class="text-center border-b border-primary/20 pb-4">
+<span class="text-primary font-label-lg uppercase tracking-widest block mb-2">Beginning</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Starters</h2>
+</div>
+<div class="space-y-stack-md">
+<div class="group cursor-pointer">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Truffle Arancini</h3>
+<span class="text-on-surface-variant font-label-lg">$24.00</span>
+</div>
+<p class="text-on-surface-variant/80 font-body-md italic">Wild mushroom risotto, black truffle essence, aged parmesan snow.</p>
+<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
+</div>
+<div class="group cursor-pointer">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Burrata Di Puglia</h3>
+<span class="text-on-surface-variant font-label-lg">$28.00</span>
+</div>
+<p class="text-on-surface-variant/80 font-body-md italic">Heirloom tomatoes, basil emulsion, 12-year aged balsamic glaze.</p>
+<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
+</div>
+<div class="group cursor-pointer">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Lobster Bisque</h3>
+<span class="text-on-surface-variant font-label-lg">$32.00</span>
+</div>
+<p class="text-on-surface-variant/80 font-body-md italic">Cognac cream, butter-poached lobster medallions, chive oil.</p>
+<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
+</div>
+</div>
+</section>
+<!-- Main Course -->
+<section class="glass-panel p-8 rounded-xl space-y-stack-md">
+<div class="text-center border-b border-primary/20 pb-4">
+<span class="text-primary font-label-lg uppercase tracking-widest block mb-2">Signature</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Main Course</h2>
+</div>
+<div class="space-y-stack-md">
+<div class="group cursor-pointer">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Wagyu Beef Fillet</h3>
+<span class="text-on-surface-variant font-label-lg">$75.00</span>
+</div>
+<p class="text-on-surface-variant/80 font-body-md italic">Grade A5, potato mousseline, marrow jus, charred asparagus.</p>
+<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
+</div>
+<div class="group cursor-pointer border-l-2 border-primary pl-4 py-2 bg-primary/5">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-md text-headline-md text-primary">Miso Glazed Cod</h3>
+<span class="text-on-surface-variant font-label-lg">$62.00</span>
+</div>
+<p class="text-on-surface-variant/80 font-body-md italic">Black cod, bok choy, ginger dashi, toasted sesame oil.</p>
+<span class="mt-2 inline-block bg-primary/20 text-primary px-3 py-1 rounded-full text-label-sm uppercase tracking-tighter">In Cart</span>
+</div>
+<div class="group cursor-pointer">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Saffron Risotto</h3>
+<span class="text-on-surface-variant font-label-lg">$48.00</span>
+</div>
+<p class="text-on-surface-variant/80 font-body-md italic">Acquerello rice, roasted gold beets, cashew crema, micro-greens.</p>
+<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
+</div>
+</div>
+</section>
+<!-- Desserts -->
+<section class="glass-panel p-8 rounded-xl space-y-stack-md">
+<div class="text-center border-b border-primary/20 pb-4">
+<span class="text-primary font-label-lg uppercase tracking-widest block mb-2">Finale</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Desserts</h2>
+</div>
+<div class="space-y-stack-md">
+<div class="group cursor-pointer">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Gold Leaf Fondant</h3>
+<span class="text-on-surface-variant font-label-lg">$22.00</span>
+</div>
+<p class="text-on-surface-variant/80 font-body-md italic">70% Dark chocolate, molten center, vanilla bean gelato.</p>
+<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
+</div>
+<div class="group cursor-pointer">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Yuzu Tart</h3>
+<span class="text-on-surface-variant font-label-lg">$18.00</span>
+</div>
+<p class="text-on-surface-variant/80 font-body-md italic">Shiso crystal, burnt meringue, raspberry coulis splash.</p>
+<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
+</div>
+<div class="group cursor-pointer">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Artisanal Cheese</h3>
+<span class="text-on-surface-variant font-label-lg">$35.00</span>
+</div>
+<p class="text-on-surface-variant/80 font-body-md italic">Selection of 5 regional cheeses, honeycomb, fig preserve.</p>
+<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
+</div>
+</div>
+</section>
+</div>
+<!-- Persistent View Cart Sidebar -->
+<aside class="w-80 hidden lg:block sticky top-24 h-[calc(100vh-120px)]">
+<div class="glass-panel h-full rounded-xl flex flex-col p-6">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+                        Your Order
+                    </h2>
+<div class="flex-grow overflow-y-auto space-y-4">
+<div class="flex justify-between items-start">
+<div class="flex-grow">
+<span class="text-on-surface font-body-md block">Miso Glazed Cod</span>
+<span class="text-on-surface-variant/60 text-label-sm italic">Standard preparation</span>
+</div>
+<span class="text-on-surface font-label-lg">$62.00</span>
+</div>
+<div class="h-[1px] bg-white/5"></div>
+</div>
+<div class="mt-auto pt-6 border-t border-white/10 space-y-4">
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-label-lg">Subtotal</span>
+<span class="font-label-lg">$62.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-label-lg">Service Charge (15%)</span>
+<span class="font-label-lg">$9.30</span>
+</div>
+<div class="flex justify-between text-on-surface font-bold text-lg pt-2">
+<span>Total</span>
+<span class="text-primary">$71.30</span>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-label-lg hover:bg-primary-container transition-all flex items-center justify-center gap-2">
+                            Confirm Order
+                            <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+<!-- The Curator: Floating Mobile/Compact Bar (Tablet/Mobile Backup) -->
+<div class="lg:hidden fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-lg z-50">
+<div class="glass-panel p-4 rounded-full flex justify-between items-center px-8 shadow-2xl border-primary/30">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined text-primary text-3xl">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">1</span>
+</div>
+<div>
+<span class="block text-label-sm text-on-surface-variant/70 uppercase">Order Total</span>
+<span class="text-on-surface font-headline-md">$62.00</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-lg hover:scale-105 transition-transform">
+                    View Cart
+                </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Shared Component Pivot) -->
+<footer class="md:hidden">
+<nav class="bg-surface-container-highest/90 dark:bg-surface-container-highest/90 backdrop-blur-xl fixed bottom-0 w-full flex justify-around items-center pt-2 pb-safe px-4 rounded-t-xl border-t border-white/10 shadow-lg z-50">
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary font-bold scale-110 transition-transform">
+<span class="material-symbols-outlined">room_service</span>
+<span class="text-label-sm font-label-sm">Services</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-label-sm font-label-sm">Stay</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">settings_remote</span>
+<span class="text-label-sm font-label-sm">Smart</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="text-label-sm font-label-sm">Loyalty</span>
+</div>
+</nav>
+</footer>
+</body></html>
