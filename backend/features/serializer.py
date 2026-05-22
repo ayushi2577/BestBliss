@@ -51,8 +51,10 @@ class PrivilagesSerializer(serializers.ModelSerializer):
         model=Privilages
         fields='__all__'
 
-        
-
+class OrdersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Orders
+        fields='__all__'
 
 
 

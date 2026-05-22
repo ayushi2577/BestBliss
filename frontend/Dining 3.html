@@ -1,443 +1,753 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-surface-variant": "#d0c5af",
-                    "inverse-primary": "#735c00",
-                    "on-background": "#e2e2e2",
-                    "on-tertiary-fixed-variant": "#5d4201",
-                    "primary": "#f2ca50",
-                    "surface-dim": "#121414",
-                    "surface": "#121414",
-                    "surface-container": "#1e2020",
-                    "on-tertiary-container": "#5b4000",
-                    "inverse-on-surface": "#2f3131",
-                    "secondary-fixed-dim": "#c8c6c5",
-                    "on-error": "#690005",
-                    "inverse-surface": "#e2e2e2",
-                    "on-primary-fixed-variant": "#574500",
-                    "on-secondary": "#313030",
-                    "tertiary-container": "#d3ad65",
-                    "outline-variant": "#4d4635",
-                    "surface-container-lowest": "#0c0f0f",
-                    "on-error-container": "#ffdad6",
-                    "surface-container-highest": "#333535",
-                    "error-container": "#93000a",
-                    "surface-variant": "#333535",
-                    "on-tertiary-fixed": "#261900",
-                    "on-primary-fixed": "#241a00",
-                    "outline": "#99907c",
-                    "surface-container-low": "#1a1c1c",
-                    "tertiary": "#f1c97d",
-                    "secondary": "#c8c6c5",
-                    "primary-container": "#d4af37",
-                    "on-secondary-fixed": "#1c1b1b",
-                    "secondary-fixed": "#e5e2e1",
-                    "secondary-container": "#474746",
-                    "on-tertiary": "#412d00",
-                    "surface-bright": "#37393a",
-                    "on-secondary-fixed-variant": "#474746",
-                    "primary-fixed": "#ffe088",
-                    "on-secondary-container": "#b7b5b4",
-                    "on-primary": "#3c2f00",
-                    "surface-container-high": "#282a2b",
-                    "error": "#ffb4ab",
-                    "surface-tint": "#e9c349",
-                    "primary-fixed-dim": "#e9c349",
-                    "tertiary-fixed": "#ffdea5",
-                    "background": "#121414",
-                    "tertiary-fixed-dim": "#e9c176",
-                    "on-surface": "#e2e2e2",
-                    "on-primary-container": "#554300"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "stack-md": "24px",
-                    "stack-lg": "48px",
-                    "gutter": "24px",
-                    "container-padding-desktop": "64px",
-                    "base": "8px",
-                    "stack-sm": "12px",
-                    "container-padding-mobile": "20px"
-            },
-            "fontFamily": {
-                    "headline-xl": ["Playfair Display"],
-                    "body-lg": ["Manrope"],
-                    "headline-lg": ["Playfair Display"],
-                    "headline-md": ["Playfair Display"],
-                    "label-sm": ["Manrope"],
-                    "label-lg": ["Manrope"],
-                    "body-md": ["Manrope"]
-            },
-            "fontSize": {
-                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
-                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
-                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
-            }
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Manrope:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface-variant": "#d0c5af",
+            "inverse-primary": "#735c00",
+            "on-background": "#e2e2e2",
+            "on-tertiary-fixed-variant": "#5d4201",
+            "primary": "#f2ca50",
+            "surface-dim": "#121414",
+            "surface": "#121414",
+            "surface-container": "#1e2020",
+            "on-tertiary-container": "#5b4000",
+            "inverse-on-surface": "#2f3131",
+            "secondary-fixed-dim": "#c8c6c5",
+            "on-error": "#690005",
+            "inverse-surface": "#e2e2e2",
+            "on-primary-fixed-variant": "#574500",
+            "on-secondary": "#313030",
+            "tertiary-container": "#d3ad65",
+            "outline-variant": "#4d4635",
+            "surface-container-lowest": "#0c0f0f",
+            "on-error-container": "#ffdad6",
+            "surface-container-highest": "#333535",
+            "error-container": "#93000a",
+            "surface-variant": "#333535",
+            "on-tertiary-fixed": "#261900",
+            "on-primary-fixed": "#241a00",
+            "outline": "#99907c",
+            "surface-container-low": "#1a1c1c",
+            "tertiary": "#f1c97d",
+            "secondary": "#c8c6c5",
+            "primary-container": "#d4af37",
+            "on-secondary-fixed": "#1c1b1b",
+            "secondary-fixed": "#e5e2e1",
+            "secondary-container": "#474746",
+            "on-tertiary": "#412d00",
+            "surface-bright": "#37393a",
+            "on-secondary-fixed-variant": "#474746",
+            "primary-fixed": "#ffe088",
+            "on-secondary-container": "#b7b5b4",
+            "on-primary": "#3c2f00",
+            "surface-container-high": "#282a2b",
+            "error": "#ffb4ab",
+            "surface-tint": "#e9c349",
+            "primary-fixed-dim": "#e9c349",
+            "tertiary-fixed": "#ffdea5",
+            "background": "#121414",
+            "tertiary-fixed-dim": "#e9c176",
+            "on-surface": "#e2e2e2",
+            "on-primary-container": "#554300"
           },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "stack-md": "24px",
+            "stack-lg": "48px",
+            "gutter": "24px",
+            "container-padding-desktop": "64px",
+            "base": "8px",
+            "stack-sm": "12px",
+            "container-padding-mobile": "20px"
+          },
+          "fontFamily": {
+            "headline-xl": ["Playfair Display"],
+            "body-lg": ["Manrope"],
+            "headline-lg": ["Playfair Display"],
+            "headline-md": ["Playfair Display"],
+            "label-sm": ["Manrope"],
+            "label-lg": ["Manrope"],
+            "body-md": ["Manrope"]
+          },
+          "fontSize": {
+            "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
         },
-      }
-    </script>
-<style>
-        .glass-panel {
-            background: rgba(30, 32, 32, 0.75);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .hero-gradient {
-            background: linear-gradient(to bottom, rgba(18, 20, 20, 0.4), rgba(18, 20, 20, 0.95));
-        }
-        .menu-divider {
-            border-bottom: 1px solid rgba(242, 202, 80, 0.2);
-        }
-    
-        .nav-link-active {
-            color: #f2ca50;
-            position: relative;
-        }
-        .nav-link-active::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background-color: #f2ca50;
-        }
-        .glass-surface {
-            background: rgba(242, 202, 80, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(242, 202, 80, 0.2);
-        }
-
-    </style>
-</head>
-<body class="bg-background text-on-background font-body-md selection:bg-primary/30">
-<!-- TopAppBar -->
-<nav class="sticky z-[100] top-0 w-full bg-surface-dim/80 backdrop-blur-3xl border-b border-white/5 px-container-padding-mobile md:px-container-padding-desktop h-20 flex items-center justify-between">
-<div class="flex items-center gap-12">
-<span class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
-<div class="hidden md:flex items-center gap-8">
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="dashboard 1.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
-<span>Home</span>
-</a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active" href="Dining 3.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="restaurant">restaurant</span>
-<span>Services <span class="text-[10px] opacity-60 ml-0.5">(Dining)</span></span>
-</a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="stay 2.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="calendar_month">calendar_month</span>
-<span>Stay <span class="text-[10px] opacity-60 ml-0.5">(Bookings)</span></span>
-</a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="smart room control 4.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="settings_remote">settings_remote</span>
-<span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
-</a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="loyallty 3.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="workspace_premium">workspace_premium</span>
-<span>Loyalty</span>
-</a>
-</div>
-</div>
-<div class="flex items-center gap-6">
-<div class="hidden lg:flex items-center gap-3 glass-surface px-4 py-2 rounded-full border-white/5">
-<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold" id="user-initials">JD</div>
-<span class="text-label-sm font-label-sm text-on-surface" id="username">Guest</span>
-<span class="w-1 h-1 bg-primary rounded-full"></span>
-<span class="text-label-sm font-label-sm text-primary" id="membership">Member</span>
-</div>
-<div class="flex gap-2">
-<button class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors" onclick="handleLogout()">
-<span class="material-symbols-outlined text-on-surface-variant text-[20px]">logout</span>
-</button>
-</div>
-</div>
-</nav>
-<main class="relative min-h-screen">
-<!-- Hero Background -->
-<div class="fixed inset-0 z-[-1]">
-<img class="w-full h-full object-cover opacity-40" data-alt="An expansive, high-angle view of a lavishly set dining table within a high-end luxury hotel suite. The scene features crystal glassware, fine silver cutlery, and elegant dark ceramic plates catching the golden light of a setting sun through floor-to-ceiling windows. The atmosphere is quiet, exclusive, and profoundly peaceful, rendered in deep charcoals and warm gold tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjwg_1cqzCL6Iwmb01ybZJjS247actfxWENx3mvtScl2blFvJ8AK2NG6B6pKCFhjADdZ5EBQ1cN6tqfeA7puOMhRempJJGzxswi0rby6ZKyuQblpcgnWxKCBZlt5aISPPnX4hHpCAnfyqi_HPjlbxdntsAai0hpI03XUwRbkSPtDLKHtjWQjJ26r--7GHlffx8j6jk6DYF7QKIitghdBfgBuNa0XPDKMIm0epeNu86MHEaq7B-KSUjQxrw75hiANeHxWRr6GQNXaSI"/>
-<div class="absolute inset-0 hero-gradient"></div>
-</div>
-<div class="max-w-[1440px] mx-auto px-container-padding-desktop py-stack-lg flex gap-gutter">
-<!-- Menu Sections (12-column grid container) -->
-<div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-gutter items-start">
-<!-- Starters -->
-<section class="glass-panel p-8 rounded-xl space-y-stack-md">
-<div class="text-center border-b border-primary/20 pb-4">
-<span class="text-primary font-label-lg uppercase tracking-widest block mb-2">Beginning</span>
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Starters</h2>
-</div>
-<div class="space-y-stack-md">
-<div class="group cursor-pointer">
-<div class="flex justify-between items-baseline mb-1">
-<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Truffle Arancini</h3>
-<span class="text-on-surface-variant font-label-lg">$24.00</span>
-</div>
-<p class="text-on-surface-variant/80 font-body-md italic">Wild mushroom risotto, black truffle essence, aged parmesan snow.</p>
-<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
-</div>
-<div class="group cursor-pointer">
-<div class="flex justify-between items-baseline mb-1">
-<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Burrata Di Puglia</h3>
-<span class="text-on-surface-variant font-label-lg">$28.00</span>
-</div>
-<p class="text-on-surface-variant/80 font-body-md italic">Heirloom tomatoes, basil emulsion, 12-year aged balsamic glaze.</p>
-<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
-</div>
-<div class="group cursor-pointer">
-<div class="flex justify-between items-baseline mb-1">
-<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Lobster Bisque</h3>
-<span class="text-on-surface-variant font-label-lg">$32.00</span>
-</div>
-<p class="text-on-surface-variant/80 font-body-md italic">Cognac cream, butter-poached lobster medallions, chive oil.</p>
-<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
-</div>
-</div>
-</section>
-<!-- Main Course -->
-<section class="glass-panel p-8 rounded-xl space-y-stack-md">
-<div class="text-center border-b border-primary/20 pb-4">
-<span class="text-primary font-label-lg uppercase tracking-widest block mb-2">Signature</span>
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Main Course</h2>
-</div>
-<div class="space-y-stack-md">
-<div class="group cursor-pointer">
-<div class="flex justify-between items-baseline mb-1">
-<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Wagyu Beef Fillet</h3>
-<span class="text-on-surface-variant font-label-lg">$75.00</span>
-</div>
-<p class="text-on-surface-variant/80 font-body-md italic">Grade A5, potato mousseline, marrow jus, charred asparagus.</p>
-<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
-</div>
-<div class="group cursor-pointer border-l-2 border-primary pl-4 py-2 bg-primary/5">
-<div class="flex justify-between items-baseline mb-1">
-<h3 class="font-headline-md text-headline-md text-primary">Miso Glazed Cod</h3>
-<span class="text-on-surface-variant font-label-lg">$62.00</span>
-</div>
-<p class="text-on-surface-variant/80 font-body-md italic">Black cod, bok choy, ginger dashi, toasted sesame oil.</p>
-<span class="mt-2 inline-block bg-primary/20 text-primary px-3 py-1 rounded-full text-label-sm uppercase tracking-tighter">In Cart</span>
-</div>
-<div class="group cursor-pointer">
-<div class="flex justify-between items-baseline mb-1">
-<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Saffron Risotto</h3>
-<span class="text-on-surface-variant font-label-lg">$48.00</span>
-</div>
-<p class="text-on-surface-variant/80 font-body-md italic">Acquerello rice, roasted gold beets, cashew crema, micro-greens.</p>
-<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
-</div>
-</div>
-</section>
-<!-- Desserts -->
-<section class="glass-panel p-8 rounded-xl space-y-stack-md">
-<div class="text-center border-b border-primary/20 pb-4">
-<span class="text-primary font-label-lg uppercase tracking-widest block mb-2">Finale</span>
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Desserts</h2>
-</div>
-<div class="space-y-stack-md">
-<div class="group cursor-pointer">
-<div class="flex justify-between items-baseline mb-1">
-<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Gold Leaf Fondant</h3>
-<span class="text-on-surface-variant font-label-lg">$22.00</span>
-</div>
-<p class="text-on-surface-variant/80 font-body-md italic">70% Dark chocolate, molten center, vanilla bean gelato.</p>
-<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
-</div>
-<div class="group cursor-pointer">
-<div class="flex justify-between items-baseline mb-1">
-<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Yuzu Tart</h3>
-<span class="text-on-surface-variant font-label-lg">$18.00</span>
-</div>
-<p class="text-on-surface-variant/80 font-body-md italic">Shiso crystal, burnt meringue, raspberry coulis splash.</p>
-<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
-</div>
-<div class="group cursor-pointer">
-<div class="flex justify-between items-baseline mb-1">
-<h3 class="font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">Artisanal Cheese</h3>
-<span class="text-on-surface-variant font-label-lg">$35.00</span>
-</div>
-<p class="text-on-surface-variant/80 font-body-md italic">Selection of 5 regional cheeses, honeycomb, fig preserve.</p>
-<div class="mt-2 h-[1px] w-0 group-hover:w-full bg-primary/30 transition-all duration-300"></div>
-</div>
-</div>
-</section>
-</div>
-<!-- Persistent View Cart Sidebar -->
-<aside class="w-80 hidden lg:block sticky top-24 h-[calc(100vh-120px)]">
-<div class="glass-panel h-full rounded-xl flex flex-col p-6">
-<h2 class="text-headline-md font-headline-md text-on-surface mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">shopping_bag</span>
-                        Your Order
-                    </h2>
-<div class="flex-grow overflow-y-auto space-y-4">
-<div class="flex justify-between items-start">
-<div class="flex-grow">
-<span class="text-on-surface font-body-md block">Miso Glazed Cod</span>
-<span class="text-on-surface-variant/60 text-label-sm italic">Standard preparation</span>
-</div>
-<span class="text-on-surface font-label-lg">$62.00</span>
-</div>
-<div class="h-[1px] bg-white/5"></div>
-</div>
-<div class="mt-auto pt-6 border-t border-white/10 space-y-4">
-<div class="flex justify-between text-on-surface-variant">
-<span class="font-label-lg">Subtotal</span>
-<span class="font-label-lg">$62.00</span>
-</div>
-<div class="flex justify-between text-on-surface-variant">
-<span class="font-label-lg">Service Charge (15%)</span>
-<span class="font-label-lg">$9.30</span>
-</div>
-<div class="flex justify-between text-on-surface font-bold text-lg pt-2">
-<span>Total</span>
-<span class="text-primary">$71.30</span>
-</div>
-<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-label-lg hover:bg-primary-container transition-all flex items-center justify-center gap-2">
-                            Confirm Order
-                            <span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div>
-</div>
-</aside>
-</div>
-<!-- The Curator: Floating Mobile/Compact Bar (Tablet/Mobile Backup) -->
-<div class="lg:hidden fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-lg z-50">
-<div class="glass-panel p-4 rounded-full flex justify-between items-center px-8 shadow-2xl border-primary/30">
-<div class="flex items-center gap-4">
-<div class="relative">
-<span class="material-symbols-outlined text-primary text-3xl">shopping_cart</span>
-<span class="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">1</span>
-</div>
-<div>
-<span class="block text-label-sm text-on-surface-variant/70 uppercase">Order Total</span>
-<span class="text-on-surface font-headline-md">$62.00</span>
-</div>
-</div>
-<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-lg hover:scale-105 transition-transform">
-                    View Cart
-                </button>
-</div>
-</div>
-</main>
-<!-- BottomNavBar (Shared Component Pivot) -->
-<footer class="md:hidden">
-<nav class="bg-surface-container-highest/90 dark:bg-surface-container-highest/90 backdrop-blur-xl fixed bottom-0 w-full flex justify-around items-center pt-2 pb-safe px-4 rounded-t-xl border-t border-white/10 shadow-lg z-50">
-<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
-<span class="material-symbols-outlined">home</span>
-<span class="text-label-sm font-label-sm">Home</span>
-</div>
-<div class="flex flex-col items-center justify-center text-primary font-bold scale-110 transition-transform">
-<span class="material-symbols-outlined">room_service</span>
-<span class="text-label-sm font-label-sm">Services</span>
-</div>
-<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
-<span class="material-symbols-outlined">calendar_month</span>
-<span class="text-label-sm font-label-sm">Stay</span>
-</div>
-<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
-<span class="material-symbols-outlined">settings_remote</span>
-<span class="text-label-sm font-label-sm">Smart</span>
-</div>
-<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
-<span class="material-symbols-outlined">workspace_premium</span>
-<span class="text-label-sm font-label-sm">Loyalty</span>
-</div>
-</nav>
-</footer>
-
-<script>
-// ── Auth helpers ──────────────────────────────────────────────
-const API = 'http://127.0.0.1:8000/api';
-
-function getToken() { return localStorage.getItem('bb_access'); }
-function getRefresh() { return localStorage.getItem('bb_refresh'); }
-function saveTokens(a, r) {
-  localStorage.setItem('bb_access', a);
-  if (r) localStorage.setItem('bb_refresh', r);
-}
-function clearTokens() {
-  localStorage.removeItem('bb_access');
-  localStorage.removeItem('bb_refresh');
-}
-
-async function apiFetch(path, opts = {}) {
-  let token = getToken();
-  if (!token) { redirectLogin(); return null; }
-  opts.headers = { ...(opts.headers || {}), 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' };
-  let res = await fetch(API + path, opts);
-  if (res.status === 401) {
-    // try refresh
-    try {
-      const rr = await fetch(API + '/refresh/', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ refresh: getRefresh() }) });
-      if (!rr.ok) throw new Error('refresh failed');
-      const rd = await rr.json();
-      saveTokens(rd.access);
-      opts.headers['Authorization'] = 'Bearer ' + rd.access;
-      res = await fetch(API + path, opts);
-    } catch(e) {
-      console.error('[BestBliss] Token refresh failed:', e);
-      redirectLogin();
-      return null;
+      },
     }
-  }
-  if (!res.ok) { console.error('[BestBliss] API error', res.status, path); return null; }
-  return res.json();
-}
+  </script>
+  <style>
+    .glass-panel {
+      background: rgba(30, 32, 32, 0.75);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-function redirectLogin() { clearTokens(); window.location.href = 'Login 0.html'; }
+    .hero-gradient {
+      background: linear-gradient(to bottom, rgba(18, 20, 20, 0.4), rgba(18, 20, 20, 0.95));
+    }
 
-async function handleLogout() {
-  try {
-    const refresh = getRefresh();
-    if (refresh) await fetch(API + '/logout/', { method: 'POST', headers: {'Content-Type':'application/json', 'Authorization': 'Bearer ' + getToken()}, body: JSON.stringify({ refresh }) });
-  } catch(e) { console.error('[BestBliss] Logout error:', e); }
-  redirectLogin();
-}
+    .menu-divider {
+      border-bottom: 1px solid rgba(242, 202, 80, 0.2);
+    }
 
-// ── Populate nav user pill ────────────────────────────────────
-async function populateNavUser() {
-  const data = await apiFetch('/dashboard/');
-  if (!data) return;
-  const nameEl = document.getElementById('username');
-  const memberEl = document.getElementById('membership');
-  const initialsEl = document.getElementById('user-initials');
-  if (nameEl) nameEl.textContent = data.name || 'Guest';
-  if (memberEl) memberEl.textContent = data.membership_status || '';
-  if (initialsEl) {
-    const parts = (data.name || 'G').split(' ');
-    initialsEl.textContent = parts.map(p => p[0]).join('').toUpperCase().slice(0, 2);
-  }
-}
+    .nav-link-active {
+      color: #f2ca50;
+      position: relative;
+    }
 
-// ── Guard: redirect to login if no token ─────────────────────
-(function guard() {
-  if (!getToken()) { redirectLogin(); }
-})();
+    .nav-link-active::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: #f2ca50;
+    }
 
-document.addEventListener('DOMContentLoaded', populateNavUser);
-</script>
+    .glass-surface {
+      background: rgba(242, 202, 80, 0.1);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(242, 202, 80, 0.2);
+    }
 
-</body></html>
+    /* Menu item selected state */
+    .menu-item.selected {
+      border-left: 2px solid #f2ca50;
+      padding-left: 1rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      background: rgba(242, 202, 80, 0.05);
+    }
+
+    .menu-item.selected .item-name {
+      color: #f2ca50;
+    }
+
+    .menu-item .selected-badge {
+      display: none;
+    }
+
+    .menu-item.selected .selected-badge {
+      display: inline-block;
+    }
+
+    .menu-item .hover-line {
+      height: 1px;
+      width: 0;
+      background: rgba(242, 202, 80, 0.3);
+      transition: width 0.3s;
+    }
+
+    .menu-item:not(.selected):hover .hover-line {
+      width: 100%;
+    }
+
+    .menu-item.selected .hover-line {
+      display: none;
+    }
+
+    /* Cart item animation */
+    @keyframes slideInCart {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cart-item-enter {
+      animation: slideInCart 0.22s ease forwards;
+    }
+
+    /* Confirm order button loading */
+    .btn-confirming {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    /* Toast */
+    #toast {
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    #toast.hidden-toast {
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md selection:bg-primary/30">
+
+  <!-- TopAppBar -->
+  <nav
+    class="sticky z-[100] top-0 w-full bg-surface-dim/80 backdrop-blur-3xl border-b border-white/5 px-container-padding-mobile md:px-container-padding-desktop h-20 flex items-center justify-between">
+    <div class="flex items-center gap-12">
+      <span
+        class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
+      <div class="hidden md:flex items-center gap-8">
+        <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+          href="dashboard 1.html">
+          <span class="material-symbols-outlined text-[20px]">home</span>
+          <span>Home</span>
+        </a>
+        <a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active" href="Dining 3.html">
+          <span class="material-symbols-outlined text-[20px]">restaurant</span>
+          <span>Services <span class="text-[10px] opacity-60 ml-0.5">(Dining)</span></span>
+        </a>
+        <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+          href="stay 2.html">
+          <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+          <span>Stay <span class="text-[10px] opacity-60 ml-0.5">(Bookings)</span></span>
+        </a>
+        <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+          href="smart room control 4.html">
+          <span class="material-symbols-outlined text-[20px]">settings_remote</span>
+          <span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
+        </a>
+        <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+          href="loyallty 3.html">
+          <span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+          <span>Loyalty</span>
+        </a>
+      </div>
+    </div>
+    <div class="flex items-center gap-6">
+      <div class="hidden lg:flex items-center gap-3 glass-surface px-4 py-2 rounded-full border-white/5">
+        <div
+          class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold"
+          id="user-initials">JD</div>
+        <span class="text-label-sm font-label-sm text-on-surface" id="username">Guest</span>
+        <span class="w-1 h-1 bg-primary rounded-full"></span>
+        <span class="text-label-sm font-label-sm text-primary" id="membership">Member</span>
+      </div>
+      <div class="flex gap-2">
+        <button
+          class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors"
+          onclick="handleLogout()">
+          <span class="material-symbols-outlined text-on-surface-variant text-[20px]">logout</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="relative min-h-screen">
+    <!-- Hero Background -->
+    <div class="fixed inset-0 z-[-1]">
+      <img class="w-full h-full object-cover opacity-40"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjwg_1cqzCL6Iwmb01ybZJjS247actfxWENx3mvtScl2blFvJ8AK2NG6B6pKCFhjADdZ5EBQ1cN6tqfeA7puOMhRempJJGzxswi0rby6ZKyuQblpcgnWxKCBZlt5aISPPnX4hHpCAnfyqi_HPjlbxdntsAai0hpI03XUwRbkSPtDLKHtjWQjJ26r--7GHlffx8j6jk6DYF7QKIitghdBfgBuNa0XPDKMIm0epeNu86MHEaq7B-KSUjQxrw75hiANeHxWRr6GQNXaSI"
+        alt="Luxury dining" />
+      <div class="absolute inset-0 hero-gradient"></div>
+    </div>
+
+    <div class="max-w-[1440px] mx-auto px-container-padding-desktop py-stack-lg flex gap-gutter">
+
+      <!-- Menu Sections -->
+      <div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-gutter items-start">
+
+        <!-- Starters -->
+        <section class="glass-panel p-8 rounded-xl space-y-stack-md">
+          <div class="text-center border-b border-primary/20 pb-4">
+            <span class="text-primary font-label-lg uppercase tracking-widest block mb-2">Beginning</span>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Starters</h2>
+          </div>
+          <div class="space-y-stack-md">
+            <div class="menu-item group cursor-pointer rounded-lg transition-all duration-200"
+              data-id="truffle-arancini" data-name="Truffle Arancini" data-price="24.00" onclick="toggleItem(this)">
+              <div class="flex justify-between items-baseline mb-1">
+                <h3
+                  class="item-name font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">
+                  Truffle Arancini</h3>
+                <span class="text-on-surface-variant font-label-lg">$24.00</span>
+              </div>
+              <p class="text-on-surface-variant/80 font-body-md italic">Wild mushroom risotto, black truffle essence,
+                aged parmesan snow.</p>
+              <span
+                class="selected-badge mt-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-label-sm uppercase tracking-tighter">In
+                Cart</span>
+              <div class="hover-line mt-2"></div>
+            </div>
+
+            <div class="menu-item group cursor-pointer rounded-lg transition-all duration-200" data-id="burrata"
+              data-name="Burrata Di Puglia" data-price="28.00" onclick="toggleItem(this)">
+              <div class="flex justify-between items-baseline mb-1">
+                <h3
+                  class="item-name font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">
+                  Burrata Di Puglia</h3>
+                <span class="text-on-surface-variant font-label-lg">$28.00</span>
+              </div>
+              <p class="text-on-surface-variant/80 font-body-md italic">Heirloom tomatoes, basil emulsion, 12-year aged
+                balsamic glaze.</p>
+              <span
+                class="selected-badge mt-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-label-sm uppercase tracking-tighter">In
+                Cart</span>
+              <div class="hover-line mt-2"></div>
+            </div>
+
+            <div class="menu-item group cursor-pointer rounded-lg transition-all duration-200" data-id="lobster-bisque"
+              data-name="Lobster Bisque" data-price="32.00" onclick="toggleItem(this)">
+              <div class="flex justify-between items-baseline mb-1">
+                <h3
+                  class="item-name font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">
+                  Lobster Bisque</h3>
+                <span class="text-on-surface-variant font-label-lg">$32.00</span>
+              </div>
+              <p class="text-on-surface-variant/80 font-body-md italic">Cognac cream, butter-poached lobster medallions,
+                chive oil.</p>
+              <span
+                class="selected-badge mt-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-label-sm uppercase tracking-tighter">In
+                Cart</span>
+              <div class="hover-line mt-2"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Main Course -->
+        <section class="glass-panel p-8 rounded-xl space-y-stack-md">
+          <div class="text-center border-b border-primary/20 pb-4">
+            <span class="text-primary font-label-lg uppercase tracking-widest block mb-2">Signature</span>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Main Course</h2>
+          </div>
+          <div class="space-y-stack-md">
+            <div class="menu-item group cursor-pointer rounded-lg transition-all duration-200" data-id="wagyu"
+              data-name="Wagyu Beef Fillet" data-price="75.00" onclick="toggleItem(this)">
+              <div class="flex justify-between items-baseline mb-1">
+                <h3
+                  class="item-name font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">
+                  Wagyu Beef Fillet</h3>
+                <span class="text-on-surface-variant font-label-lg">$75.00</span>
+              </div>
+              <p class="text-on-surface-variant/80 font-body-md italic">Grade A5, potato mousseline, marrow jus, charred
+                asparagus.</p>
+              <span
+                class="selected-badge mt-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-label-sm uppercase tracking-tighter">In
+                Cart</span>
+              <div class="hover-line mt-2"></div>
+            </div>
+
+            <div class="menu-item group cursor-pointer rounded-lg transition-all duration-200" data-id="miso-cod"
+              data-name="Miso Glazed Cod" data-price="62.00" onclick="toggleItem(this)">
+              <div class="flex justify-between items-baseline mb-1">
+                <h3
+                  class="item-name font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">
+                  Miso Glazed Cod</h3>
+                <span class="text-on-surface-variant font-label-lg">$62.00</span>
+              </div>
+              <p class="text-on-surface-variant/80 font-body-md italic">Black cod, bok choy, ginger dashi, toasted
+                sesame oil.</p>
+              <span
+                class="selected-badge mt-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-label-sm uppercase tracking-tighter">In
+                Cart</span>
+              <div class="hover-line mt-2"></div>
+            </div>
+
+            <div class="menu-item group cursor-pointer rounded-lg transition-all duration-200" data-id="saffron-risotto"
+              data-name="Saffron Risotto" data-price="48.00" onclick="toggleItem(this)">
+              <div class="flex justify-between items-baseline mb-1">
+                <h3
+                  class="item-name font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">
+                  Saffron Risotto</h3>
+                <span class="text-on-surface-variant font-label-lg">$48.00</span>
+              </div>
+              <p class="text-on-surface-variant/80 font-body-md italic">Acquerello rice, roasted gold beets, cashew
+                crema, micro-greens.</p>
+              <span
+                class="selected-badge mt-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-label-sm uppercase tracking-tighter">In
+                Cart</span>
+              <div class="hover-line mt-2"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Desserts -->
+        <section class="glass-panel p-8 rounded-xl space-y-stack-md">
+          <div class="text-center border-b border-primary/20 pb-4">
+            <span class="text-primary font-label-lg uppercase tracking-widest block mb-2">Finale</span>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Desserts</h2>
+          </div>
+          <div class="space-y-stack-md">
+            <div class="menu-item group cursor-pointer rounded-lg transition-all duration-200" data-id="gold-fondant"
+              data-name="Gold Leaf Fondant" data-price="22.00" onclick="toggleItem(this)">
+              <div class="flex justify-between items-baseline mb-1">
+                <h3
+                  class="item-name font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">
+                  Gold Leaf Fondant</h3>
+                <span class="text-on-surface-variant font-label-lg">$22.00</span>
+              </div>
+              <p class="text-on-surface-variant/80 font-body-md italic">70% Dark chocolate, molten center, vanilla bean
+                gelato.</p>
+              <span
+                class="selected-badge mt-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-label-sm uppercase tracking-tighter">In
+                Cart</span>
+              <div class="hover-line mt-2"></div>
+            </div>
+
+            <div class="menu-item group cursor-pointer rounded-lg transition-all duration-200" data-id="yuzu-tart"
+              data-name="Yuzu Tart" data-price="18.00" onclick="toggleItem(this)">
+              <div class="flex justify-between items-baseline mb-1">
+                <h3
+                  class="item-name font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">
+                  Yuzu Tart</h3>
+                <span class="text-on-surface-variant font-label-lg">$18.00</span>
+              </div>
+              <p class="text-on-surface-variant/80 font-body-md italic">Shiso crystal, burnt meringue, raspberry coulis
+                splash.</p>
+              <span
+                class="selected-badge mt-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-label-sm uppercase tracking-tighter">In
+                Cart</span>
+              <div class="hover-line mt-2"></div>
+            </div>
+
+            <div class="menu-item group cursor-pointer rounded-lg transition-all duration-200" data-id="cheese"
+              data-name="Artisanal Cheese" data-price="35.00" onclick="toggleItem(this)">
+              <div class="flex justify-between items-baseline mb-1">
+                <h3
+                  class="item-name font-headline-md text-headline-md text-primary group-hover:text-primary-fixed transition-colors">
+                  Artisanal Cheese</h3>
+                <span class="text-on-surface-variant font-label-lg">$35.00</span>
+              </div>
+              <p class="text-on-surface-variant/80 font-body-md italic">Selection of 5 regional cheeses, honeycomb, fig
+                preserve.</p>
+              <span
+                class="selected-badge mt-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-label-sm uppercase tracking-tighter">In
+                Cart</span>
+              <div class="hover-line mt-2"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Persistent Order Sidebar -->
+      <aside class="w-80 hidden lg:block sticky top-24 h-[calc(100vh-120px)]">
+        <div class="glass-panel h-full rounded-xl flex flex-col p-6">
+          <h2 class="text-headline-md font-headline-md text-on-surface mb-6 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">shopping_bag</span>
+            Your Order
+          </h2>
+
+          <!-- Cart items list -->
+          <div class="flex-grow overflow-y-auto space-y-2" id="cart-list">
+            <!-- Empty state -->
+            <div id="cart-empty" class="flex flex-col items-center justify-center h-full text-center py-8">
+              <span class="material-symbols-outlined text-on-surface-variant/30 text-5xl mb-3">restaurant_menu</span>
+              <p class="text-on-surface-variant/50 font-body-md text-sm italic">Tap any dish to add it to your order</p>
+            </div>
+          </div>
+
+          <!-- Totals + Confirm -->
+          <div class="mt-auto pt-6 border-t border-white/10 space-y-4" id="cart-footer" style="display:none;">
+            <div class="flex justify-between text-on-surface-variant">
+              <span class="font-label-lg">Subtotal</span>
+              <span class="font-label-lg" id="cart-subtotal">$0.00</span>
+            </div>
+            <div class="flex justify-between text-on-surface-variant">
+              <span class="font-label-lg">Service Charge (15%)</span>
+              <span class="font-label-lg" id="cart-service">$0.00</span>
+            </div>
+            <div class="flex justify-between text-on-surface font-bold text-lg pt-2">
+              <span>Total</span>
+              <span class="text-primary" id="cart-total">$0.00</span>
+            </div>
+            <button id="confirm-btn"
+              class="w-full bg-primary text-on-primary py-4 rounded-lg font-label-lg hover:bg-primary-container transition-all flex items-center justify-center gap-2"
+              onclick="confirmOrder()">
+              Confirm Order
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Mobile floating cart bar -->
+    <div class="lg:hidden fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-lg z-50" id="mobile-cart-bar"
+      style="display:none;">
+      <div class="glass-panel p-4 rounded-full flex justify-between items-center px-8 shadow-2xl border-primary/30">
+        <div class="flex items-center gap-4">
+          <div class="relative">
+            <span class="material-symbols-outlined text-primary text-3xl">shopping_cart</span>
+            <span
+              class="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold"
+              id="mobile-cart-count">0</span>
+          </div>
+          <div>
+            <span class="block text-label-sm text-on-surface-variant/70 uppercase">Order Total</span>
+            <span class="text-on-surface font-headline-md" id="mobile-cart-subtotal">$0.00</span>
+          </div>
+        </div>
+        <button
+          class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-lg hover:scale-105 transition-transform"
+          onclick="confirmOrder()">
+          Place Order
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast"
+      class="hidden-toast fixed bottom-8 left-1/2 -translate-x-1/2 z-[200] glass-panel px-6 py-3 rounded-full flex items-center gap-3 border-primary/30 pointer-events-none">
+      <span class="material-symbols-outlined text-primary text-[20px]" id="toast-icon">check_circle</span>
+      <span class="text-on-surface font-label-lg" id="toast-msg">Order placed!</span>
+    </div>
+  </main>
+
+  <!-- BottomNavBar -->
+  <footer class="md:hidden">
+    <nav
+      class="bg-surface-container-highest/90 backdrop-blur-xl fixed bottom-0 w-full flex justify-around items-center pt-2 pb-safe px-4 rounded-t-xl border-t border-white/10 shadow-lg z-50">
+      <div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+        <span class="material-symbols-outlined">home</span>
+        <span class="text-label-sm font-label-sm">Home</span>
+      </div>
+      <div class="flex flex-col items-center justify-center text-primary font-bold scale-110 transition-transform">
+        <span class="material-symbols-outlined">room_service</span>
+        <span class="text-label-sm font-label-sm">Services</span>
+      </div>
+      <div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+        <span class="material-symbols-outlined">calendar_month</span>
+        <span class="text-label-sm font-label-sm">Stay</span>
+      </div>
+      <div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+        <span class="material-symbols-outlined">settings_remote</span>
+        <span class="text-label-sm font-label-sm">Smart</span>
+      </div>
+      <div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+        <span class="material-symbols-outlined">workspace_premium</span>
+        <span class="text-label-sm font-label-sm">Loyalty</span>
+      </div>
+    </nav>
+  </footer>
+
+  <script>
+    // ── Auth helpers ──────────────────────────────────────────────
+    const API = 'http://127.0.0.1:8000/api';
+
+    function getToken() { return localStorage.getItem('access'); }
+    function getRefresh() { return localStorage.getItem('refresh'); }
+    function saveTokens(a, r) {
+      localStorage.setItem('access', a);
+      if (r) localStorage.setItem('refresh', r);
+    }
+    function clearTokens() {
+      localStorage.removeItem('access');
+      localStorage.removeItem('refresh');
+    }
+
+    async function apiFetch(path, opts = {}) {
+      let token = getToken();
+      if (!token) { redirectLogin(); return null; }
+      opts.headers = { ...(opts.headers || {}), 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' };
+      let res = await fetch(API + path, opts);
+      if (res.status === 401) {
+        try {
+          const rr = await fetch(API + '/refresh/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ refresh: getRefresh() }) });
+          if (!rr.ok) throw new Error('refresh failed');
+          const rd = await rr.json();
+          saveTokens(rd.access);
+          opts.headers['Authorization'] = 'Bearer ' + rd.access;
+          res = await fetch(API + path, opts);
+        } catch (e) {
+          console.error('[BestBliss] Token refresh failed:', e);
+          redirectLogin();
+          return null;
+        }
+      }
+      if (!res.ok) { console.error('[BestBliss] API error', res.status, path); return null; }
+      return res.json();
+    }
+
+    function redirectLogin() { clearTokens(); window.location.href = 'Login 0.html'; }
+
+    async function handleLogout() {
+      try {
+        const refresh = getRefresh();
+        if (refresh) await fetch(API + '/logout/', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getToken() }, body: JSON.stringify({ refresh }) });
+      } catch (e) { console.error('[BestBliss] Logout error:', e); }
+      redirectLogin();
+    }
+
+    function populateNavUser() {
+      document.getElementById('username').textContent = localStorage.getItem('username') || 'Guest';
+      document.getElementById('membership').textContent = localStorage.getItem('membership') || '';
+      document.getElementById('user-initials').textContent = localStorage.getItem('user_initials') || '';
+
+    }
+
+    (function guard() { if (!getToken()) { redirectLogin(); } })();
+    document.addEventListener('DOMContentLoaded', populateNavUser);
+
+    // ── Cart State ────────────────────────────────────────────────
+    const cart = {}; // { id: { name, price } }
+
+    function toggleItem(el) {
+      const id = el.dataset.id;
+      const name = el.dataset.name;
+      const price = parseFloat(el.dataset.price);
+
+      if (cart[id]) {
+        // Deselect
+        delete cart[id];
+        el.classList.remove('selected');
+      } else {
+        // Select
+        cart[id] = { name, price };
+        el.classList.add('selected');
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      const ids = Object.keys(cart);
+      const cartList = document.getElementById('cart-list');
+      const cartEmpty = document.getElementById('cart-empty');
+      const cartFooter = document.getElementById('cart-footer');
+      const mobileBar = document.getElementById('mobile-cart-bar');
+
+      // Clear current cart items (keep empty state el)
+      cartList.querySelectorAll('.cart-item').forEach(el => el.remove());
+
+      if (ids.length === 0) {
+        cartEmpty.style.display = '';
+        cartFooter.style.display = 'none';
+        mobileBar.style.display = 'none';
+        return;
+      }
+
+      cartEmpty.style.display = 'none';
+      cartFooter.style.display = '';
+      mobileBar.style.display = '';
+
+      let subtotal = 0;
+
+      ids.forEach(id => {
+        const { name, price } = cart[id];
+        subtotal += price;
+
+        // Small compact cart row
+        const row = document.createElement('div');
+        row.className = 'cart-item cart-item-enter flex items-center justify-between gap-2 bg-white/5 rounded-lg px-3 py-2';
+        row.innerHTML = `
+      <span class="text-on-surface font-body-md text-sm truncate flex-1">${name}</span>
+      <span class="text-primary font-label-lg text-sm whitespace-nowrap">$${price.toFixed(2)}</span>
+      <button class="ml-1 text-on-surface-variant/40 hover:text-error transition-colors" onclick="removeItem('${id}')" title="Remove">
+        <span class="material-symbols-outlined text-[16px]">close</span>
+      </button>
+    `;
+        cartList.appendChild(row);
+      });
+
+      const service = subtotal * 0.15;
+      const total = subtotal + service;
+
+      document.getElementById('cart-subtotal').textContent = '$' + subtotal.toFixed(2);
+      document.getElementById('cart-service').textContent = '$' + service.toFixed(2);
+      document.getElementById('cart-total').textContent = '$' + total.toFixed(2);
+
+      // Mobile bar
+      document.getElementById('mobile-cart-count').textContent = ids.length;
+      document.getElementById('mobile-cart-subtotal').textContent = '$' + subtotal.toFixed(2);
+    }
+
+    function removeItem(id) {
+      if (!cart[id]) return;
+      delete cart[id];
+      // Deselect the menu item
+      const menuEl = document.querySelector(`.menu-item[data-id="${id}"]`);
+      if (menuEl) menuEl.classList.remove('selected');
+      renderCart();
+    }
+
+    // ── Confirm Order ─────────────────────────────────────────────
+    async function confirmOrder() {
+      const ids = Object.keys(cart);
+      if (ids.length === 0) { showToast('Please select at least one item.', 'info'); return; }
+
+      const btn = document.getElementById('confirm-btn');
+      btn.classList.add('btn-confirming');
+      btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Placing order…';
+
+      const items = ids.map(id => ({ item_id: id, name: cart[id].name, price: cart[id].price }));
+      const subtotal = items.reduce((s, i) => s + i.price, 0);
+      const payload = {
+        items,
+        subtotal: parseFloat(subtotal.toFixed(2)),
+        service_charge: parseFloat((subtotal * 0.15).toFixed(2)),
+        total: parseFloat((subtotal * 1.15).toFixed(2))
+      };
+
+      const result = await apiFetch('/dining/order/', {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+
+      btn.classList.remove('btn-confirming');
+      btn.innerHTML = 'Confirm Order <span class="material-symbols-outlined">chevron_right</span>';
+
+      if (result) {
+        showToast('Order placed successfully!', 'success');
+        // Clear cart
+        ids.forEach(id => {
+          const menuEl = document.querySelector(`.menu-item[data-id="${id}"]`);
+          if (menuEl) menuEl.classList.remove('selected');
+          delete cart[id];
+        });
+        renderCart();
+      } else {
+        showToast('Failed to place order. Please try again.', 'error');
+      }
+    }
+
+    // ── Toast ─────────────────────────────────────────────────────
+    let toastTimer = null;
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toast-icon');
+      const msgEl = document.getElementById('toast-msg');
+      const iconMap = { success: 'check_circle', error: 'error', info: 'info' };
+
+      icon.textContent = iconMap[type] || 'info';
+      msgEl.textContent = msg;
+      toast.classList.remove('hidden-toast');
+
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden-toast'), 3000);
+    }
+  </script>
+</body>
+
+</html>

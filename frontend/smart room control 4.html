@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
+
         .glass-panel {
             background: rgba(30, 32, 32, 0.75);
             backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .climate-dial {
             background: conic-gradient(from 180deg, #f2ca50 0%, #121414 75%);
         }
+
         body {
             background-color: #121414;
             color: #e2e2e2;
             overflow-x: hidden;
         }
-    
+
         .nav-link-active {
             color: #f2ca50;
             position: relative;
         }
+
         .nav-link-active::after {
             content: '';
             position: absolute;
@@ -40,14 +49,123 @@
             border-radius: 50%;
             background-color: #f2ca50;
         }
+
         .glass-surface {
             background: rgba(242, 202, 80, 0.1);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(242, 202, 80, 0.2);
         }
 
+        /* ── Climate Dial ── */
+        #climate-svg-track { transition: stroke-dashoffset 0.4s ease; }
+
+        /* ── Atmosphere buttons ── */
+        .atmo-btn {
+            background: var(--atmo-bg, #282a2b);
+            color: var(--atmo-fg, #e2e2e2);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        .atmo-btn.active {
+            --atmo-bg: #f2ca50;
+            --atmo-fg: #3c2f00;
+            box-shadow: 0 4px 20px rgba(242,202,80,0.35);
+            border-color: transparent;
+        }
+        .atmo-btn:hover:not(.active) { background: #333535; }
+
+        /* ── Curtain slider ── */
+        #curtain-range {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 9999px;
+            outline: none;
+            cursor: pointer;
+            background: linear-gradient(to right, #f2ca50 var(--pct, 65%), #282a2b var(--pct, 65%));
+        }
+        #curtain-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #f2ca50;
+            box-shadow: 0 0 10px rgba(242,202,80,0.5);
+            cursor: pointer;
+        }
+        #curtain-range::-moz-range-thumb {
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #f2ca50;
+            box-shadow: 0 0 10px rgba(242,202,80,0.5);
+            cursor: pointer;
+        }
+
+        /* ── Media player progress ── */
+        #vol-range {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 128px; height: 4px;
+            border-radius: 9999px;
+            outline: none;
+            cursor: pointer;
+            background: linear-gradient(to right, rgba(242,202,80,0.6) var(--vol, 75%), #282a2b var(--vol, 75%));
+        }
+        #vol-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: #f2ca50;
+            cursor: pointer;
+        }
+        #vol-range::-moz-range-thumb {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: #f2ca50;
+            cursor: pointer;
+            border: none;
+        }
+
+        #track-progress {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%; height: 3px;
+            border-radius: 9999px;
+            outline: none;
+            cursor: pointer;
+            background: linear-gradient(to right, #f2ca50 var(--prog, 0%), #282a2b var(--prog, 0%));
+        }
+        #track-progress::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #f2ca50;
+            cursor: pointer;
+        }
+        #track-progress::-moz-range-thumb {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #f2ca50;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* curtain open/close tab highlight */
+        .curtain-tab { cursor: pointer; padding-bottom: 4px; transition: color 0.2s, border-color 0.2s; }
+        .curtain-tab.active { color: #f2ca50; border-bottom: 1px solid #f2ca50; }
+        .curtain-tab:not(.active) { color: #99907c; border-bottom: 1px solid transparent; }
+
+        /* play icon fill toggle */
+        .fill-icon { font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+
+        /* mobile bottom-nav safe area */
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+        }
     </style>
-<script id="tailwind-config">
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -127,312 +245,738 @@
                         "body-md": ["Manrope"]
                     },
                     "fontSize": {
-                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
-                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
-                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
-                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
                     }
                 },
             },
         }
     </script>
 </head>
+
 <body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col">
-<!-- TopAppBar -->
-<nav class="sticky z-[100] top-0 w-full bg-surface-dim/80 backdrop-blur-3xl border-b border-white/5 px-container-padding-mobile md:px-container-padding-desktop h-20 flex items-center justify-between">
-<div class="flex items-center gap-12">
-<span class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
-<div class="hidden md:flex items-center gap-8">
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="dashboard 1.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
-<span>Home</span>
-</a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="Dining 3.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="restaurant">restaurant</span>
-<span>Services <span class="text-[10px] opacity-60 ml-0.5">(Dining)</span></span>
-</a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="stay 2.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="calendar_month">calendar_month</span>
-<span>Stay <span class="text-[10px] opacity-60 ml-0.5">(Bookings)</span></span>
-</a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active" href="smart room control 4.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="settings_remote">settings_remote</span>
-<span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
-</a>
-<a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group" href="loyallty 3.html">
-<span class="material-symbols-outlined text-[20px]" data-icon="workspace_premium">workspace_premium</span>
-<span>Loyalty</span>
-</a>
-</div>
-</div>
-<div class="flex items-center gap-6">
-<div class="hidden lg:flex items-center gap-3 glass-surface px-4 py-2 rounded-full border-white/5">
-<div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold" id="user-initials">JD</div>
-<span class="text-label-sm font-label-sm text-on-surface" id="username">Guest</span>
-<span class="w-1 h-1 bg-primary rounded-full"></span>
-<span class="text-label-sm font-label-sm text-primary" id="membership">Member</span>
-</div>
-<div class="flex gap-2">
-<button class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors" onclick="handleLogout()">
-<span class="material-symbols-outlined text-on-surface-variant text-[20px]">logout</span>
-</button>
-</div>
-</div>
-</nav>
-<main class="flex-grow flex flex-col md:flex-row relative">
-<!-- Background Image Veil -->
-<div class="fixed inset-0 z-0">
-<img class="w-full h-full object-cover opacity-30" data-alt="A breathtaking view of a modern luxury suite at dusk. Floor-to-ceiling windows reveal a serene mountain landscape under a twilight sky. The interior features dark marble surfaces, plush velvet furniture in charcoal, and warm golden accent lighting. The mood is tranquil, exclusive, and extremely high-end, utilizing glassmorphism textures in the environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUfQU5Cgp7sFwLWLLUoq5o-4IrPft5EUMmiunIJH3EBxXBPEgSivOrlaUmRxuZDwbwwDb91EPEZ1ehupk4vJWgkS9HO6yENdsrEOZqaHFTd8ncpJAKf0g-JTkJOwm39fMupW_VwnfBHAtY_mzPZ5KAXAoEyvMhoewU-RoDLvkAfduDwdbq0ccGeuF1RkDcIiCjmP6NEK8EHKBeWp3fkjlc6eI7St9YuR8wLYL4zXKxtQKPadciZQvApDtZhXCMhXIZmB3lOG7FGQSY"/>
-<div class="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
-</div>
-<div class="relative z-10 w-full max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop py-stack-lg flex flex-col md:flex-row gap-gutter">
-<!-- Left Pane: Climate Control -->
-<section class="flex-1 flex flex-col items-center justify-center glass-panel rounded-xl p-stack-lg min-h-[500px]">
-<div class="text-center mb-stack-md">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Climate Control</h2>
-<p class="font-label-lg text-label-lg text-on-surface-variant">Master Suite • West Wing</p>
-</div>
-<!-- Climate Dial UI -->
-<div class="relative w-72 h-72 rounded-full p-1 flex items-center justify-center shadow-[0_0_50px_rgba(242,202,80,0.1)]">
-<div class="absolute inset-0 rounded-full border-4 border-surface-container-highest opacity-20"></div>
-<!-- Visual Arc Segment -->
-<div class="absolute inset-0 rounded-full border-4 border-primary border-t-transparent border-l-transparent rotate-45 shadow-[0_0_15px_#f2ca50]"></div>
-<div class="w-60 h-60 rounded-full bg-surface-container-lowest flex flex-col items-center justify-center border border-white/5">
-<span class="font-headline-xl text-headline-xl text-primary leading-none">22°</span>
-<span class="font-label-lg text-label-lg text-on-surface-variant mt-2 uppercase tracking-widest">Current</span>
-</div>
-<!-- Target Knob Placeholder -->
-<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 w-4 h-4 bg-primary rounded-full shadow-[0_0_10px_#f2ca50]"></div>
-</div>
-<div class="mt-stack-lg flex gap-12 items-center">
-<button class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors group">
-<span class="material-symbols-outlined text-on-surface group-hover:text-primary">remove</span>
-</button>
-<div class="text-center">
-<span class="block font-headline-md text-headline-md text-on-surface">21°C</span>
-<span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Target</span>
-</div>
-<button class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors group">
-<span class="material-symbols-outlined text-on-surface group-hover:text-primary">add</span>
-</button>
-</div>
-</section>
-<!-- Right Pane: Smart Controls Grid -->
-<section class="flex-[1.5] grid grid-cols-1 md:grid-cols-2 gap-gutter">
-<!-- Lighting Atmosphere -->
-<div class="glass-panel rounded-xl p-6 flex flex-col gap-4">
-<div class="flex items-center justify-between">
-<h3 class="font-headline-md text-headline-md">Atmosphere</h3>
-<span class="material-symbols-outlined text-primary" data-weight="fill">light_mode</span>
-</div>
-<div class="grid grid-cols-2 gap-3">
-<button class="bg-primary text-on-primary font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1 shadow-[0_4px_20px_rgba(242,202,80,0.3)]">
-<span class="material-symbols-outlined">night_shelter</span>
+    <!-- TopAppBar -->
+    <nav
+        class="sticky z-[100] top-0 w-full bg-surface-dim/80 backdrop-blur-3xl border-b border-white/5 px-container-padding-mobile md:px-container-padding-desktop h-20 flex items-center justify-between">
+        <div class="flex items-center gap-12">
+            <span
+                class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+                    href="dashboard 1.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+                    <span>Home</span>
+                </a>
+                <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+                    href="Dining 3.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="restaurant">restaurant</span>
+                    <span>Services <span class="text-[10px] opacity-60 ml-0.5">(Dining)</span></span>
+                </a>
+                <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+                    href="stay 2.html">
+                    <span class="material-symbols-outlined text-[20px]" data-icon="calendar_month">calendar_month</span>
+                    <span>Stay <span class="text-[10px] opacity-60 ml-0.5">(Bookings)</span></span>
+                </a>
+                <a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active"
+                    href="smart room control 4.html">
+                    <span class="material-symbols-outlined text-[20px]"
+                        data-icon="settings_remote">settings_remote</span>
+                    <span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
+                </a>
+                <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+                    href="loyallty 3.html">
+                    <span class="material-symbols-outlined text-[20px]"
+                        data-icon="workspace_premium">workspace_premium</span>
+                    <span>Loyalty</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="hidden lg:flex items-center gap-3 glass-surface px-4 py-2 rounded-full border-white/5">
+                <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold"
+                    id="user-initials">JD</div>
+                <span class="text-label-sm font-label-sm text-on-surface" id="username">Guest</span>
+                <span class="w-1 h-1 bg-primary rounded-full"></span>
+                <span class="text-label-sm font-label-sm text-primary" id="membership">Member</span>
+            </div>
+            <div class="flex gap-2">
+                <button
+                    class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors"
+                    onclick="handleLogout()">
+                    <span class="material-symbols-outlined text-on-surface-variant text-[20px]">logout</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex flex-col md:flex-row relative pb-32 md:pb-28">
+        <!-- Background Image Veil -->
+        <div class="fixed inset-0 z-0">
+            <img class="w-full h-full object-cover opacity-30"
+                alt="Luxury hotel suite background"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUfQU5Cgp7sFwLWLLUoq5o-4IrPft5EUMmiunIJH3EBxXBPEgSivOrlaUmRxuZDwbwwDb91EPEZ1ehupk4vJWgkS9HO6yENdsrEOZqaHFTd8ncpJAKf0g-JTkJOwm39fMupW_VwnfBHAtY_mzPZ5KAXAoEyvMhoewU-RoDLvkAfduDwdbq0ccGeuF1RkDcIiCjmP6NEK8EHKBeWp3fkjlc6eI7St9YuR8wLYL4zXKxtQKPadciZQvApDtZhXCMhXIZmB3lOG7FGQSY" />
+            <div class="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
+        </div>
+
+        <div
+            class="relative z-10 w-full max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop py-stack-lg flex flex-col md:flex-row gap-gutter">
+
+            <!-- Left Pane: Climate Control -->
+            <section
+                class="flex-1 flex flex-col items-center justify-center glass-panel rounded-xl p-stack-lg min-h-[500px]">
+                <div class="text-center mb-stack-md">
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface">Climate Control</h2>
+                    <p class="font-label-lg text-label-lg text-on-surface-variant">Master Suite • West Wing</p>
+                </div>
+
+                <!-- Climate Dial — SVG-based, interactive -->
+                <div class="relative w-72 h-72 flex items-center justify-center select-none"
+                     id="dial-container"
+                     style="touch-action: none;">
+                    <!-- SVG arc -->
+                    <svg class="absolute inset-0 w-full h-full -rotate-[135deg]" viewBox="0 0 288 288">
+                        <!-- Track -->
+                        <circle cx="144" cy="144" r="128"
+                            fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"
+                            stroke-dasharray="603 603" stroke-linecap="round"/>
+                        <!-- Active arc -->
+                        <circle id="climate-svg-track" cx="144" cy="144" r="128"
+                            fill="none" stroke="#f2ca50" stroke-width="6"
+                            stroke-dasharray="0 603" stroke-linecap="round"
+                            style="filter: drop-shadow(0 0 6px #f2ca50);"/>
+                    </svg>
+
+                    <!-- Knob dot — rotates around rim -->
+                    <div id="dial-knob"
+                         class="absolute w-5 h-5 bg-primary rounded-full shadow-[0_0_12px_#f2ca50] cursor-grab active:cursor-grabbing"
+                         style="top: 0; left: 50%; transform: translate(-50%, -50%); transform-origin: center;">
+                    </div>
+
+                    <!-- Inner display -->
+                    <div class="w-60 h-60 rounded-full bg-surface-container-lowest flex flex-col items-center justify-center border border-white/5 z-10">
+                        <span class="font-headline-xl text-headline-xl text-primary leading-none" id="current-temp-display">22°</span>
+                        <span class="font-label-lg text-label-lg text-on-surface-variant mt-2 uppercase tracking-widest">Current</span>
+                    </div>
+                </div>
+
+                <!-- +/- controls -->
+                <div class="mt-stack-lg flex gap-12 items-center">
+                    <button id="temp-minus"
+                        class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors group">
+                        <span class="material-symbols-outlined text-on-surface group-hover:text-primary">remove</span>
+                    </button>
+                    <div class="text-center">
+                        <span class="block font-headline-md text-headline-md text-on-surface" id="target-temp-display">21°C</span>
+                        <span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Target</span>
+                    </div>
+                    <button id="temp-plus"
+                        class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors group">
+                        <span class="material-symbols-outlined text-on-surface group-hover:text-primary">add</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Right Pane: Smart Controls Grid -->
+            <section class="flex-[1.5] grid grid-cols-1 md:grid-cols-2 gap-gutter">
+
+                <!-- Lighting Atmosphere -->
+                <div class="glass-panel rounded-xl p-6 flex flex-col gap-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-headline-md text-headline-md">Atmosphere</h3>
+                        <span class="material-symbols-outlined text-primary" data-weight="fill">light_mode</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button data-atmo="relax"
+                            class="atmo-btn active font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1">
+                            <span class="material-symbols-outlined">night_shelter</span>
                             Relax
                         </button>
-<button class="bg-surface-container-high hover:bg-surface-container-highest transition-colors text-on-surface font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1 border border-white/5">
-<span class="material-symbols-outlined">menu_book</span>
+                        <button data-atmo="read"
+                            class="atmo-btn font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1">
+                            <span class="material-symbols-outlined">menu_book</span>
                             Read
                         </button>
-<button class="bg-surface-container-high hover:bg-surface-container-highest transition-colors text-on-surface font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1 border border-white/5">
-<span class="material-symbols-outlined">dark_mode</span>
+                        <button data-atmo="sleep"
+                            class="atmo-btn font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1">
+                            <span class="material-symbols-outlined">dark_mode</span>
                             Sleep
                         </button>
-<button class="bg-surface-container-high hover:bg-surface-container-highest transition-colors text-on-surface font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1 border border-white/5">
-<span class="material-symbols-outlined">wb_twilight</span>
+                        <button data-atmo="morning"
+                            class="atmo-btn font-label-lg text-label-lg py-4 rounded-lg flex flex-col items-center gap-1">
+                            <span class="material-symbols-outlined">wb_twilight</span>
                             Morning
                         </button>
-</div>
-</div>
-<!-- Curtains Control -->
-<div class="glass-panel rounded-xl p-6 flex flex-col gap-4">
-<div class="flex items-center justify-between">
-<h3 class="font-headline-md text-headline-md">Curtains</h3>
-<span class="material-symbols-outlined text-primary">curtains</span>
-</div>
-<div class="flex-grow flex flex-col justify-center gap-6">
-<div class="flex justify-between items-center px-2">
-<button class="font-label-lg text-label-lg text-primary border-b border-primary pb-1">Open</button>
-<button class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Closed</button>
-</div>
-<div class="relative w-full h-2 bg-surface-container-highest rounded-full">
-<div class="absolute top-0 left-0 h-full w-[65%] bg-primary rounded-full"></div>
-<div class="absolute top-1/2 left-[65%] -translate-y-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full border-2 border-primary shadow-xl cursor-pointer"></div>
-</div>
-<p class="text-center font-label-sm text-label-sm text-on-surface-variant">65% Transparency • Solar Shield Active</p>
-</div>
-</div>
-<!-- Environmental Stats -->
-<div class="glass-panel rounded-xl p-6 md:col-span-2">
-<h3 class="font-headline-md text-headline-md mb-6">Environment</h3>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
-<span class="material-symbols-outlined text-primary">humidity_percentage</span>
-</div>
-<div>
-<span class="block font-label-sm text-label-sm text-on-surface-variant">Humidity</span>
-<span class="block font-headline-md text-headline-md text-on-surface">42%</span>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
-<span class="material-symbols-outlined text-primary">air</span>
-</div>
-<div>
-<span class="block font-label-sm text-label-sm text-on-surface-variant">Air Quality</span>
-<span class="block font-headline-md text-headline-md text-on-surface">Excellent</span>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
-<span class="material-symbols-outlined text-primary">thermometer</span>
-</div>
-<div>
-<span class="block font-label-sm text-label-sm text-on-surface-variant">Outside</span>
-<span class="block font-headline-md text-headline-md text-on-surface">18°C</span>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
-<span class="material-symbols-outlined text-primary">wb_sunny</span>
-</div>
-<div>
-<span class="block font-label-sm text-label-sm text-on-surface-variant">UV Index</span>
-<span class="block font-headline-md text-headline-md text-on-surface">Low</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-</main>
-<!-- Bottom Media Player (The Curator Style) -->
-<footer class="fixed bottom-0 left-0 w-full z-50 p-container-padding-mobile md:p-gutter">
-<div class="max-w-[1440px] mx-auto glass-panel rounded-2xl p-4 flex items-center justify-between shadow-2xl border border-white/10">
-<div class="flex items-center gap-4 flex-1">
-<div class="w-14 h-14 rounded-lg overflow-hidden border border-white/10 shrink-0">
-<img class="w-full h-full object-cover" data-alt="A vintage vinyl record spinning on a high-end gold-plated turntable. Soft jazz club lighting with deep blue and amber tones creates an intimate atmosphere. The composition is artistic and minimalist, emphasizing the texture of the vinyl and the luxurious sheen of the gold machinery, perfectly fitting the 'Atmospheric Luxury' design language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdXXfyNMxLEjOTGGhWPAOFI7rOJiQfUg_vq-s7o2xLc2RdSYsUC6o2fUi3bBjezMfzUSI4y-91I7imcryarX-zhoBba7HhS1fzpOuq8uW2kDWLU4IHWbeB2OCNFxqkTZNYI2i5mmHBfH-sZfdXqWdTdwI1Ut7ozR7z4k4ulEPLYXZoVt-LJib5ZpoJjvecc2MbhTQ6ynq6_Wx0A1ipPijVV-Xz6s9VSTXdA75DKdgj-9lMm3oOj-HXDMHeFilCgJy6Mb9CAO2kK5Hn"/>
-</div>
-<div class="hidden sm:block">
-<h4 class="font-headline-md text-lg text-primary leading-tight">Ambient Jazz Collection</h4>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Curated for BestBliss Suites</p>
-</div>
-</div>
-<div class="flex items-center gap-6">
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">skip_previous</button>
-<button class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-[0_0_20px_#f2ca50] transition-transform active:scale-95">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-</button>
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">skip_next</button>
-</div>
-<div class="flex-1 hidden md:flex items-center justify-end gap-4">
-<span class="material-symbols-outlined text-on-surface-variant text-sm">volume_up</span>
-<div class="w-32 h-1 bg-surface-container-highest rounded-full overflow-hidden">
-<div class="w-3/4 h-full bg-primary/40"></div>
-</div>
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors ml-4">playlist_play</button>
-</div>
-</div>
-</footer>
-<!-- Mobile Navigation Shell (BottomNavBar Fallback) -->
-<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center pt-2 pb-safe px-4 bg-surface-container-highest/90 backdrop-blur-xl z-50 rounded-t-xl border-t border-white/10 shadow-lg">
-<a class="flex flex-col items-center justify-center text-primary font-bold scale-110 transition-transform" href="#">
-<span class="material-symbols-outlined">home</span>
-<span class="text-label-sm font-label-sm">Home</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
-<span class="material-symbols-outlined">room_service</span>
-<span class="text-label-sm font-label-sm">Services</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
-<span class="material-symbols-outlined">calendar_month</span>
-<span class="text-label-sm font-label-sm">Stay</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
-<span class="material-symbols-outlined">settings_remote</span>
-<span class="text-label-sm font-label-sm">Smart</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="#">
-<span class="material-symbols-outlined">workspace_premium</span>
-<span class="text-label-sm font-label-sm">Loyalty</span>
-</a>
-</nav>
+                    </div>
+                </div>
+
+                <!-- Curtains Control -->
+                <div class="glass-panel rounded-xl p-6 flex flex-col gap-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-headline-md text-headline-md">Curtains</h3>
+                        <span class="material-symbols-outlined text-primary">curtains</span>
+                    </div>
+                    <div class="flex-grow flex flex-col justify-center gap-6">
+                        <div class="flex justify-between items-center px-2">
+                            <button class="curtain-tab active font-label-lg text-label-lg" data-curtain="open">Open</button>
+                            <button class="curtain-tab font-label-lg text-label-lg" data-curtain="closed">Closed</button>
+                        </div>
+                        <!-- Custom range slider -->
+                        <input id="curtain-range" type="range" min="0" max="100" value="65" />
+                        <p class="text-center font-label-sm text-label-sm text-on-surface-variant" id="curtain-label">
+                            65% Transparency • Solar Shield Active
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Environmental Stats -->
+                <div class="glass-panel rounded-xl p-6 md:col-span-2">
+                    <h3 class="font-headline-md text-headline-md mb-6">Environment</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">humidity_percentage</span>
+                            </div>
+                            <div>
+                                <span class="block font-label-sm text-label-sm text-on-surface-variant">Humidity</span>
+                                <span class="block font-headline-md text-headline-md text-on-surface" id="env-humidity">—</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">air</span>
+                            </div>
+                            <div>
+                                <span class="block font-label-sm text-label-sm text-on-surface-variant">Air Quality</span>
+                                <span class="block font-headline-md text-headline-md text-on-surface" id="env-air-quality">—</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">thermometer</span>
+                            </div>
+                            <div>
+                                <span class="block font-label-sm text-label-sm text-on-surface-variant">Outside</span>
+                                <span class="block font-headline-md text-headline-md text-on-surface" id="env-outside">—</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-high border border-white/5 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">wb_sunny</span>
+                            </div>
+                            <div>
+                                <span class="block font-label-sm text-label-sm text-on-surface-variant">UV Index</span>
+                                <span class="block font-headline-md text-headline-md text-on-surface" id="env-uv">—</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Bottom Media Player -->
+    <footer class="fixed bottom-0 left-0 w-full z-50 p-container-padding-mobile md:p-gutter">
+        <div class="max-w-[1440px] mx-auto glass-panel rounded-2xl px-4 pt-3 pb-3 flex flex-col gap-2 shadow-2xl border border-white/10">
+            <!-- Progress bar row -->
+            <div class="flex items-center gap-3 px-1">
+                <span class="text-label-sm font-label-sm text-on-surface-variant w-8 text-right" id="track-current">0:00</span>
+                <input id="track-progress" type="range" min="0" max="100" value="0" class="flex-1" />
+                <span class="text-label-sm font-label-sm text-on-surface-variant w-8" id="track-duration">3:45</span>
+            </div>
+            <!-- Controls row -->
+            <div class="flex items-center justify-between">
+                <!-- Track info -->
+                <div class="flex items-center gap-4 flex-1 min-w-0">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden border border-white/10 shrink-0">
+                        <img class="w-full h-full object-cover" id="album-art"
+                            alt="Album art"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdXXfyNMxLEjOTGGhWPAOFI7rOJiQfUg_vq-s7o2xLc2RdSYsUC6o2fUi3bBjezMfzUSI4y-91I7imcryarX-zhoBba7HhS1fzpOuq8uW2kDWLU4IHWbeB2OCNFxqkTZNYI2i5mmHBfH-sZfdXqWdTdwI1Ut7ozR7z4k4ulEPLYXZoVt-LJib5ZpoJjvecc2MbhTQ6ynq6_Wx0A1ipPijVV-Xz6s9VSTXdA75DKdgj-9lMm3oOj-HXDMHeFilCgJy6Mb9CAO2kK5Hn" />
+                    </div>
+                    <div class="hidden sm:block min-w-0">
+                        <h4 class="font-headline-md text-lg text-primary leading-tight truncate" id="track-title">Ambient Jazz Collection</h4>
+                        <p class="font-label-sm text-label-sm text-on-surface-variant truncate" id="track-artist">Curated for BestBliss Suites</p>
+                    </div>
+                </div>
+                <!-- Playback controls -->
+                <div class="flex items-center gap-5">
+                    <button id="btn-prev"
+                        class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">skip_previous</button>
+                    <button id="btn-play"
+                        class="w-11 h-11 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-[0_0_20px_#f2ca50] transition-transform active:scale-95">
+                        <span class="material-symbols-outlined fill-icon text-[22px]">play_arrow</span>
+                    </button>
+                    <button id="btn-next"
+                        class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">skip_next</button>
+                </div>
+                <!-- Volume + playlist -->
+                <div class="flex-1 hidden md:flex items-center justify-end gap-3">
+                    <button id="btn-mute" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-[20px]">volume_up</button>
+                    <input id="vol-range" type="range" min="0" max="100" value="75" />
+                    <button id="btn-playlist"
+                        class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors ml-3">playlist_play</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Playlist Modal -->
+    <div id="playlist-modal"
+         class="fixed inset-0 z-[200] flex items-end md:items-center justify-center bg-black/60 backdrop-blur-sm hidden"
+         onclick="closePlaylist(event)">
+        <div class="glass-panel rounded-t-2xl md:rounded-2xl w-full max-w-md p-6 max-h-[70vh] flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+                <h3 class="font-headline-md text-headline-md">Queue</h3>
+                <button onclick="closePlaylistBtn()" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">close</button>
+            </div>
+            <div class="overflow-y-auto flex-1 flex flex-col gap-2" id="playlist-list"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation Shell -->
+    <nav
+        class="md:hidden fixed bottom-0 w-full flex justify-around items-center pt-2 pb-safe px-4 bg-surface-container-highest/90 backdrop-blur-xl z-[60] rounded-t-xl border-t border-white/10 shadow-lg">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="dashboard 1.html">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-label-sm font-label-sm">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="Dining 3.html">
+            <span class="material-symbols-outlined">room_service</span>
+            <span class="text-label-sm font-label-sm">Services</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="stay 2.html">
+            <span class="material-symbols-outlined">calendar_month</span>
+            <span class="text-label-sm font-label-sm">Stay</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary font-bold scale-110 transition-transform" href="smart room control 4.html">
+            <span class="material-symbols-outlined">settings_remote</span>
+            <span class="text-label-sm font-label-sm">Smart</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="loyallty 3.html">
+            <span class="material-symbols-outlined">workspace_premium</span>
+            <span class="text-label-sm font-label-sm">Loyalty</span>
+        </a>
+    </nav>
 
 <script>
-// ── Auth helpers ──────────────────────────────────────────────
-const API = 'http://127.0.0.1:8000/api/';
+// ══════════════════════════════════════════════════════════
+//  Auth helpers
+// ══════════════════════════════════════════════════════════
+const API = 'http://127.0.0.1:8000/api';
 
-function getToken() { return localStorage.getItem('bb_access'); }
-function getRefresh() { return localStorage.getItem('bb_refresh'); }
+function getToken()   { return localStorage.getItem('access'); }
+function getRefresh() { return localStorage.getItem('refresh'); }
 function saveTokens(a, r) {
-  localStorage.setItem('bb_access', a);
-  if (r) localStorage.setItem('bb_refresh', r);
+    localStorage.setItem('access', a);
+    if (r) localStorage.setItem('refresh', r);
 }
 function clearTokens() {
-  localStorage.removeItem('bb_access');
-  localStorage.removeItem('bb_refresh');
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
 }
 
 async function apiFetch(path, opts = {}) {
-  let token = getToken();
-  if (!token) { redirectLogin(); return null; }
-  opts.headers = { ...(opts.headers || {}), 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' };
-  let res = await fetch(API + path, opts);
-  if (res.status === 401) {
-    // try refresh
-    try {
-      const rr = await fetch(API + '/refresh/', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ refresh: getRefresh() }) });
-      if (!rr.ok) throw new Error('refresh failed');
-      const rd = await rr.json();
-      saveTokens(rd.access);
-      opts.headers['Authorization'] = 'Bearer ' + rd.access;
-      res = await fetch(API + path, opts);
-    } catch(e) {
-      console.error('[BestBliss] Token refresh failed:', e);
-      redirectLogin();
-      return null;
+    let token = getToken();
+    if (!token) { redirectLogin(); return null; }
+    opts.headers = { ...(opts.headers || {}), 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' };
+    let res = await fetch(API + path, opts);
+    if (res.status === 401) {
+        try {
+            const rr = await fetch(API + '/refresh/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ refresh: getRefresh() })
+            });
+            if (!rr.ok) throw new Error('refresh failed');
+            const rd = await rr.json();
+            saveTokens(rd.access);
+            opts.headers['Authorization'] = 'Bearer ' + rd.access;
+            res = await fetch(API + path, opts);
+        } catch (e) { redirectLogin(); return null; }
     }
-  }
-  if (!res.ok) { console.error('[BestBliss] API error', res.status, path); return null; }
-  return res.json();
+    if (!res.ok) { console.error('[BestBliss] API error', res.status, path); return null; }
+    return res.json();
 }
 
 function redirectLogin() { clearTokens(); window.location.href = 'Login 0.html'; }
 
 async function handleLogout() {
-  try {
-    const refresh = getRefresh();
-    if (refresh) await fetch(API + '/logout/', { method: 'POST', headers: {'Content-Type':'application/json', 'Authorization': 'Bearer ' + getToken()}, body: JSON.stringify({ refresh }) });
-  } catch(e) { console.error('[BestBliss] Logout error:', e); }
-  redirectLogin();
+    try {
+        const refresh = getRefresh();
+        if (refresh) await fetch(API + '/logout/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getToken() },
+            body: JSON.stringify({ refresh })
+        });
+    } catch (e) { console.error('[BestBliss] Logout error:', e); }
+    redirectLogin();
 }
 
-// ── Populate nav user pill ────────────────────────────────────
-async function populateNavUser() {
-  const data = await apiFetch('/dashboard/');
-  if (!data) return;
-  const nameEl = document.getElementById('username');
-  const memberEl = document.getElementById('membership');
-  const initialsEl = document.getElementById('user-initials');
-  if (nameEl) nameEl.textContent = data.name || 'Guest';
-  if (memberEl) memberEl.textContent = data.membership_status || '';
-  if (initialsEl) {
-    const parts = (data.name || 'G').split(' ');
-    initialsEl.textContent = parts.map(p => p[0]).join('').toUpperCase().slice(0, 2);
-  }
+function populateNavUser() {
+    document.getElementById('username').textContent   = localStorage.getItem('username')      || 'Guest';
+    document.getElementById('membership').textContent = localStorage.getItem('membership')    || '';
+    document.getElementById('user-initials').textContent = localStorage.getItem('user_initials') || '';
 }
 
-// ── Guard: redirect to login if no token ─────────────────────
-(function guard() {
-  if (!getToken()) { redirectLogin(); }
+// ══════════════════════════════════════════════════════════
+//  Climate dial
+// ══════════════════════════════════════════════════════════
+const MIN_TEMP = 16, MAX_TEMP = 30;
+const ARC_TOTAL = 603;          // circumference * (270/360) ≈ 603
+const ARC_DEG   = 270;          // sweep of the dial
+
+let currentTemp = 22;
+let targetTemp  = 21;
+
+function tempToFraction(t) {
+    return Math.max(0, Math.min(1, (t - MIN_TEMP) / (MAX_TEMP - MIN_TEMP)));
+}
+
+function updateDialVisuals() {
+    // Arc fill
+    const frac = tempToFraction(targetTemp);
+    const dash  = frac * ARC_TOTAL;
+    document.getElementById('climate-svg-track').setAttribute('stroke-dasharray', `${dash} ${ARC_TOTAL}`);
+
+    // Knob position: starts at bottom-left (-135°), sweeps 270° clockwise
+    const angleDeg = -135 + frac * ARC_DEG;  // degrees from top (CSS 0 = top)
+    const angleRad = (angleDeg - 90) * Math.PI / 180;
+    const cx = 144, cy = 144, r = 128;
+    // Convert to SVG coords then map to % of 288px container
+    const kx = cx + r * Math.cos(angleRad);
+    const ky = cy + r * Math.sin(angleRad);
+    const pctX = (kx / 288) * 100;
+    const pctY = (ky / 288) * 100;
+
+    const knob = document.getElementById('dial-knob');
+    knob.style.left   = pctX + '%';
+    knob.style.top    = pctY + '%';
+    knob.style.transform = 'translate(-50%, -50%)';
+
+    document.getElementById('target-temp-display').textContent = targetTemp + '°C';
+    document.getElementById('current-temp-display').textContent = currentTemp + '°';
+}
+
+function setTargetTemp(t) {
+    targetTemp = Math.max(MIN_TEMP, Math.min(MAX_TEMP, t));
+    updateDialVisuals();
+    // POST to backend (fire-and-forget)
+    apiFetch('/smart/climate/', {
+        method: 'POST',
+        body: JSON.stringify({ target_temperature: targetTemp })
+    }).catch(() => {});
+}
+
+document.getElementById('temp-minus').addEventListener('click', () => setTargetTemp(targetTemp - 1));
+document.getElementById('temp-plus').addEventListener('click',  () => setTargetTemp(targetTemp + 1));
+
+// Drag on dial container
+(function setupDialDrag() {
+    const container = document.getElementById('dial-container');
+    let dragging = false;
+
+    function angleFromEvent(e) {
+        const touch = e.touches ? e.touches[0] : e;
+        const rect  = container.getBoundingClientRect();
+        const cx    = rect.left + rect.width  / 2;
+        const cy    = rect.top  + rect.height / 2;
+        const dx    = touch.clientX - cx;
+        const dy    = touch.clientY - cy;
+        // angle from top (0 = 12 o'clock)
+        let angle   = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+        if (angle < 0) angle += 360;
+        return angle;
+    }
+
+    function angleToTemp(angle) {
+        // Dial goes from 225° (bottom-left) clockwise to 135° (bottom-right)
+        // Map into 0..270 range
+        let adj = angle - 225;
+        if (adj < 0) adj += 360;
+        if (adj > ARC_DEG) adj = adj > 315 ? 0 : ARC_DEG;
+        const frac = adj / ARC_DEG;
+        return Math.round(MIN_TEMP + frac * (MAX_TEMP - MIN_TEMP));
+    }
+
+    function onMove(e) {
+        if (!dragging) return;
+        e.preventDefault();
+        const t = angleToTemp(angleFromEvent(e));
+        if (t !== targetTemp) setTargetTemp(t);
+    }
+
+    container.addEventListener('mousedown',  () => { dragging = true; });
+    container.addEventListener('touchstart', () => { dragging = true; }, { passive: true });
+    window.addEventListener('mousemove',  onMove);
+    window.addEventListener('touchmove',  onMove, { passive: false });
+    window.addEventListener('mouseup',    () => { dragging = false; });
+    window.addEventListener('touchend',   () => { dragging = false; });
 })();
 
-document.addEventListener('DOMContentLoaded', populateNavUser);
-</script>
+// ══════════════════════════════════════════════════════════
+//  Atmosphere buttons
+// ══════════════════════════════════════════════════════════
+document.querySelectorAll('[data-atmo]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-atmo]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        apiFetch('/smart/atmosphere/', {
+            method: 'POST',
+            body: JSON.stringify({ mode: btn.dataset.atmo })
+        }).catch(() => {});
+    });
+});
 
-</body></html>
+// ══════════════════════════════════════════════════════════
+//  Curtain slider
+// ══════════════════════════════════════════════════════════
+const curtainRange = document.getElementById('curtain-range');
+const curtainLabel = document.getElementById('curtain-label');
+
+function updateCurtainLabel(v) {
+    const pct = parseInt(v);
+    const shield = pct > 50 ? ' • Solar Shield Active' : '';
+    curtainLabel.textContent = `${pct}% Transparency${shield}`;
+    curtainRange.style.setProperty('--pct', pct + '%');
+}
+
+curtainRange.addEventListener('input', e => {
+    updateCurtainLabel(e.target.value);
+});
+
+curtainRange.addEventListener('change', e => {
+    apiFetch('/smart/curtains/', {
+        method: 'POST',
+        body: JSON.stringify({ transparency: parseInt(e.target.value) })
+    }).catch(() => {});
+});
+
+// Open / Closed tabs
+document.querySelectorAll('[data-curtain]').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('[data-curtain]').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const val = tab.dataset.curtain === 'open' ? 65 : 0;
+        curtainRange.value = val;
+        updateCurtainLabel(val);
+        apiFetch('/smart/curtains/', {
+            method: 'POST',
+            body: JSON.stringify({ transparency: val })
+        }).catch(() => {});
+    });
+});
+
+// Init curtain
+updateCurtainLabel(65);
+
+// ══════════════════════════════════════════════════════════
+//  Environment data
+// ══════════════════════════════════════════════════════════
+const HOTEL_LAT = 28.6139;
+const HOTEL_LON = 77.2090;
+
+async function loadSmartData() {
+    const data = await apiFetch(`/smart/?lat=${HOTEL_LAT}&lon=${HOTEL_LON}`);
+    if (!data || !data.metrics) {
+        console.warn('[BestBliss] Smart data unavailable.');
+        return;
+    }
+    const m = data.metrics;
+    const el = id => document.getElementById(id);
+    el('env-outside').textContent    = `${m.temperature.value}${m.temperature.unit}`;
+    el('env-humidity').textContent   = `${m.humidity.value}${m.humidity.unit}`;
+    el('env-air-quality').textContent = m.air_quality.classification;
+    el('env-uv').textContent         = m.uv_index.classification;
+
+    // Also update the current (room) temperature if provided
+    if (m.room_temperature) {
+        currentTemp = m.room_temperature.value;
+        updateDialVisuals();
+    }
+
+    // Restore target if backend echoes it
+    if (data.target_temperature) {
+        targetTemp = data.target_temperature;
+        updateDialVisuals();
+    }
+
+    // Restore atmosphere mode
+    if (data.atmosphere_mode) {
+        document.querySelectorAll('[data-atmo]').forEach(b => b.classList.remove('active'));
+        const atmoBtn = document.querySelector(`[data-atmo="${data.atmosphere_mode}"]`);
+        if (atmoBtn) atmoBtn.classList.add('active');
+    }
+
+    // Restore curtain
+    if (data.curtain_transparency != null) {
+        curtainRange.value = data.curtain_transparency;
+        updateCurtainLabel(data.curtain_transparency);
+    }
+}
+
+// ══════════════════════════════════════════════════════════
+//  Media Player
+// ══════════════════════════════════════════════════════════
+const PLAYLIST = [
+    { title: 'Ambient Jazz Collection', artist: 'Curated for BestBliss Suites', duration: 225 },
+    { title: 'Evening Lounge',          artist: 'BestBliss Original',            duration: 198 },
+    { title: 'Midnight Serenity',       artist: 'BestBliss Original',            duration: 312 },
+    { title: 'Golden Hour',             artist: 'BestBliss Original',            duration: 256 },
+    { title: 'Velvet Mornings',         artist: 'BestBliss Original',            duration: 183 },
+];
+
+let playerState = {
+    trackIndex: 0,
+    playing:    false,
+    elapsed:    0,
+    volume:     75,
+    muted:      false,
+    timer:      null,
+};
+
+function formatTime(sec) {
+    const m = Math.floor(sec / 60);
+    const s = String(sec % 60).padStart(2, '0');
+    return `${m}:${s}`;
+}
+
+function syncPlayerUI() {
+    const track = PLAYLIST[playerState.trackIndex];
+    document.getElementById('track-title').textContent    = track.title;
+    document.getElementById('track-artist').textContent   = track.artist;
+    document.getElementById('track-duration').textContent = formatTime(track.duration);
+    document.getElementById('track-current').textContent  = formatTime(playerState.elapsed);
+
+    const pct = (playerState.elapsed / track.duration) * 100;
+    const prog = document.getElementById('track-progress');
+    prog.max   = track.duration;
+    prog.value = playerState.elapsed;
+    prog.style.setProperty('--prog', pct.toFixed(1) + '%');
+
+    const playIcon = document.querySelector('#btn-play span');
+    playIcon.textContent = playerState.playing ? 'pause' : 'play_arrow';
+
+    // Volume
+    const volRange = document.getElementById('vol-range');
+    volRange.value = playerState.muted ? 0 : playerState.volume;
+    volRange.style.setProperty('--vol', (playerState.muted ? 0 : playerState.volume) + '%');
+
+    const muteBtn = document.getElementById('btn-mute');
+    muteBtn.textContent = playerState.muted || playerState.volume === 0 ? 'volume_off'
+                        : playerState.volume < 40 ? 'volume_down' : 'volume_up';
+}
+
+function startTimer() {
+    clearInterval(playerState.timer);
+    playerState.timer = setInterval(() => {
+        if (!playerState.playing) return;
+        playerState.elapsed++;
+        if (playerState.elapsed >= PLAYLIST[playerState.trackIndex].duration) {
+            nextTrack();
+        } else {
+            syncPlayerUI();
+        }
+    }, 1000);
+}
+
+function playPause() {
+    playerState.playing = !playerState.playing;
+    if (playerState.playing) startTimer();
+    else clearInterval(playerState.timer);
+    syncPlayerUI();
+}
+
+function prevTrack() {
+    if (playerState.elapsed > 3) {
+        playerState.elapsed = 0;
+    } else {
+        playerState.trackIndex = (playerState.trackIndex - 1 + PLAYLIST.length) % PLAYLIST.length;
+        playerState.elapsed = 0;
+    }
+    if (playerState.playing) startTimer();
+    syncPlayerUI();
+}
+
+function nextTrack() {
+    playerState.trackIndex = (playerState.trackIndex + 1) % PLAYLIST.length;
+    playerState.elapsed = 0;
+    if (playerState.playing) startTimer();
+    syncPlayerUI();
+}
+
+document.getElementById('btn-play').addEventListener('click', playPause);
+document.getElementById('btn-prev').addEventListener('click', prevTrack);
+document.getElementById('btn-next').addEventListener('click', nextTrack);
+
+document.getElementById('track-progress').addEventListener('input', e => {
+    playerState.elapsed = parseInt(e.target.value);
+    const pct = (playerState.elapsed / PLAYLIST[playerState.trackIndex].duration) * 100;
+    e.target.style.setProperty('--prog', pct.toFixed(1) + '%');
+    document.getElementById('track-current').textContent = formatTime(playerState.elapsed);
+});
+
+document.getElementById('vol-range').addEventListener('input', e => {
+    playerState.volume = parseInt(e.target.value);
+    playerState.muted  = playerState.volume === 0;
+    e.target.style.setProperty('--vol', playerState.volume + '%');
+    syncPlayerUI();
+});
+
+document.getElementById('btn-mute').addEventListener('click', () => {
+    playerState.muted = !playerState.muted;
+    syncPlayerUI();
+});
+
+// Playlist modal
+document.getElementById('btn-playlist').addEventListener('click', () => {
+    const modal = document.getElementById('playlist-modal');
+    const list  = document.getElementById('playlist-list');
+    list.innerHTML = PLAYLIST.map((t, i) => `
+        <button onclick="selectTrack(${i})" class="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors text-left w-full ${i === playerState.trackIndex ? 'bg-primary/10 border border-primary/20' : ''}">
+            <span class="w-6 h-6 flex items-center justify-center text-label-sm font-label-sm ${i === playerState.trackIndex ? 'text-primary' : 'text-on-surface-variant'}">${i === playerState.trackIndex ? '▶' : i+1}</span>
+            <div class="flex-1 min-w-0">
+                <p class="font-label-lg text-label-lg ${i === playerState.trackIndex ? 'text-primary' : 'text-on-surface'} truncate">${t.title}</p>
+                <p class="font-label-sm text-label-sm text-on-surface-variant truncate">${t.artist}</p>
+            </div>
+            <span class="font-label-sm text-label-sm text-on-surface-variant shrink-0">${formatTime(t.duration)}</span>
+        </button>
+    `).join('');
+    modal.classList.remove('hidden');
+});
+
+function selectTrack(i) {
+    playerState.trackIndex = i;
+    playerState.elapsed    = 0;
+    if (playerState.playing) startTimer();
+    syncPlayerUI();
+    closePlaylistBtn();
+}
+
+function closePlaylist(e) {
+    if (e.target === document.getElementById('playlist-modal')) closePlaylistBtn();
+}
+function closePlaylistBtn() {
+    document.getElementById('playlist-modal').classList.add('hidden');
+}
+
+// ══════════════════════════════════════════════════════════
+//  Guard + Init
+// ══════════════════════════════════════════════════════════
+(function guard() {
+    if (!getToken()) redirectLogin();
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+    populateNavUser();
+    updateDialVisuals();
+    syncPlayerUI();
+    loadSmartData();
+});
+</script>
+</body>
+</html>

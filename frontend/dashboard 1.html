@@ -200,11 +200,13 @@
         </nav>
         <main class="max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop py-8 md:py-12">
             <header class="mb-stack-lg">
-                <h1 class="text-headline-xl font-headline-xl text-on-surface ">Welcome back, <span id="username">Mr. Doe</span></h1>
+                <h1 class="text-headline-xl font-headline-xl text-on-surface ">Welcome back, <span id="username">Mr.
+                        Doe</span></h1>
                 <p class="text-body-lg font-body-lg text-on-surface-variant flex items-center gap-2 mt-1">
                     <span class="material-symbols-outlined text-primary text-[20px]"
                         data-icon="meeting_room">meeting_room</span>
-                    Room 402 <span class="mx-2 opacity-30 currentdate">|</span> Checkout <span id="date">>Oct 24</span>
+                    Room : NA <span class="mx-2 opacity-30 currentdate">|</span><span id="UIdate">>Oct
+                        24</span>
                 </p>
             </header>
 
@@ -371,18 +373,29 @@
 </body>
 
 <script>
+    const today = new Date();
+
+    // 2. Format it to show short month name and numeric day
+    const formattedToday = today.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric'
+    });
+
+    document.getElementById('UIdate').textContent = formattedToday;
+
+
     // ── Auth helpers ──────────────────────────────────────────────
     const API = 'http://127.0.0.1:8000/api';
 
-    function getToken() { return localStorage.getItem('bb_access'); }
-    function getRefresh() { return localStorage.getItem('bb_refresh'); }
+    function getToken() { return localStorage.getItem('access'); }
+    function getRefresh() { return localStorage.getItem('refresh'); }
     function saveTokens(a, r) {
-        localStorage.setItem('bb_access', a);
-        if (r) localStorage.setItem('bb_refresh', r);
+        localStorage.setItem('access', a);
+        if (r) localStorage.setItem('refresh', r);
     }
     function clearTokens() {
-        localStorage.removeItem('bb_access');
-        localStorage.removeItem('bb_refresh');
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
     }
 
     async function apiFetch(path, opts = {}) {
@@ -429,28 +442,29 @@
         document.getElementById('username').textContent = data.name || 'Guest';
         const initialsEl = document.getElementById('user-initials');
         nameEl.textContent = data.name || 'Guest';
-        localStorage.setItem('user_name', data.name);
-        localStorage.setItem('membership_status', data.membership_status);
+        localStorage.setItem('username', data.name);
+        localStorage.setItem('membership', data.membership_status);
         localStorage.setItem('user_initials', initialsEl.textContent);
 
-        document.getElementById('offer_title').textContent = data.offer.offer_title || 'Afternoon Relaxation';
+        document.getElementById('offer_title').textContent = data.offer[0].offer_title || 'Afternoon Relaxation';
         document.getElementById('offer_desc').textContent = data.offer[0].offer_description || 'Enjoy a complimentary 30-minute hydrotherapy session. Available daily until 4 PM.';
         document.getElementById('event_name').textContent = data.event[0].event_name || 'The Golden Hour';
         console.log(data.event[0].event_name);
         document.getElementById('event_desc').textContent = data.event[0].event_description || 'Small-batch bourbon, elderflower, honey, and 24k gold leaf flakes.';
         document.getElementById('event_location').textContent = data.event[0].event_location || 'The Alchemist’s Rooftop';
         document.getElementById('event_time').textContent = data.event[0].event_time || '01:00 AM';
+        document.getElementById('UIdate').textContent = formattedToday;
 
         memberEl.textContent = data.membership_status || '';
         const parts = (data.name || 'G').split(' ');
         initialsEl.textContent = parts.map(p => p[0]).join('').toUpperCase().slice(0, 2);
     }
-        // ── Guard: redirect to login if no token ─────────────────────
-        (function guard() {
-            if (!getToken()) { redirectLogin(); }
-        })();
+    // ── Guard: redirect to login if no token ─────────────────────
+    (function guard() {
+        if (!getToken()) { redirectLogin(); }
+    })();
 
-        document.addEventListener('DOMContentLoaded', populateNavUser);
+    document.addEventListener('DOMContentLoaded', populateNavUser);
 
 </script>
 

@@ -333,19 +333,21 @@
 </a>
 </nav>
 
+</body>
+
 <script>
 // ── Auth helpers ──────────────────────────────────────────────
 const API = 'http://127.0.0.1:8000/api';
 
-function getToken() { return localStorage.getItem('bb_access'); }
-function getRefresh() { return localStorage.getItem('bb_refresh'); }
+function getToken() { return localStorage.getItem('access'); }
+function getRefresh() { return localStorage.getItem('refresh'); }
 function saveTokens(a, r) {
-  localStorage.setItem('bb_access', a);
-  if (r) localStorage.setItem('bb_refresh', r);
+  localStorage.setItem('access', a);
+  if (r) localStorage.setItem('refresh', r);
 }
 function clearTokens() {
-  localStorage.removeItem('bb_access');
-  localStorage.removeItem('bb_refresh');
+  localStorage.removeItem('access');
+  localStorage.removeItem('refresh');
 }
 
 async function apiFetch(path, opts = {}) {
@@ -383,19 +385,12 @@ async function handleLogout() {
 }
 
 // ── Populate nav user pill ────────────────────────────────────
-async function populateNavUser() {
-  const data = await apiFetch('/dashboard/');
-  if (!data) return;
-  const nameEl = document.getElementById('username');
-  const memberEl = document.getElementById('membership');
-  const initialsEl = document.getElementById('user-initials');
-  if (nameEl) nameEl.textContent = data.name || 'Guest';
-  if (memberEl) memberEl.textContent = data.membership_status || '';
-  if (initialsEl) {
-    const parts = (data.name || 'G').split(' ');
-    initialsEl.textContent = parts.map(p => p[0]).join('').toUpperCase().slice(0, 2);
-  }
-}
+function populateNavUser() {
+      document.getElementById('username').textContent = localStorage.getItem('username') || 'Guest';
+      document.getElementById('membership').textContent = localStorage.getItem('membership') || '';
+      document.getElementById('user-initials').textContent = localStorage.getItem('user_initials') || '';
+
+    }
 
 // ── Guard: redirect to login if no token ─────────────────────
 (function guard() {
@@ -404,5 +399,4 @@ async function populateNavUser() {
 
 document.addEventListener('DOMContentLoaded', populateNavUser);
 </script>
-
-</body></html>
+</html>

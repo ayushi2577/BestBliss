@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+#data left - food,booking,special events
+
 class Rooms(models.Model):
     room_number=models.CharField(null=False,unique=True,max_length=10)
     room_type=models.CharField(null=False,max_length=20)
@@ -55,6 +57,7 @@ class membership_plans(models.Model):
     plan_name=models.CharField(null=False,max_length=100)
     offer_title=models.CharField(null=False,max_length=100)
     offer_description=models.CharField(null=False,max_length=500)
+    tier_level=models.IntegerField(null=False,default=1)
     price=models.IntegerField(null=False)
     def __str__(self):
         return self.plan_name
@@ -62,11 +65,18 @@ class membership_plans(models.Model):
 class Privilages(models.Model):
     privilage_name=models.CharField(null=False,max_length=50)
     privilage_desc=models.CharField(null=False,max_length=1000)
-    tier_level=models.IntegerField(null=False)
+    tier_level=models.IntegerField(null=False,default=1)
 
 class Redemption_items(models.Model):
     item_name=models.CharField(null=False,max_length=100)
     item_description=models.CharField(null=False,max_length=500)
     points_required=models.IntegerField(null=False)
+
+class Orders(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_orders')
+    items=models.ManyToManyField(food_menu,related_name='order_items')
+    total_price=models.IntegerField(null=False)
+    order_date=models.DateTimeField(auto_now_add=True)
+    
 
 #when making orders of food then use many to many field

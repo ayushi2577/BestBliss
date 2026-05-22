@@ -164,7 +164,7 @@
 <label class="font-body-md text-body-md text-on-surface-variant cursor-pointer select-none" for="remember">Keep me signed in</label>
 </div>
 <!-- CTA -->
-<button class="w-full bg-primary hover:bg-primary-container text-on-primary py-4 rounded-none font-label-lg text-label-lg uppercase tracking-widest transition-all duration-300 shadow-xl hover:shadow-primary/20 active:scale-[0.98]" type="submit" onclick="signin()">
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary py-4 rounded-none font-label-lg text-label-lg uppercase tracking-widest transition-all duration-300 shadow-xl hover:shadow-primary/20 active:scale-[0.98]" type="submit">
                         Sign In
                     </button>
 </form>
@@ -208,15 +208,15 @@
 <div id="login-error" class="text-red-400 text-sm text-center mt-2"></div>
 
 <script>
-const API = 'https://<your-domain>/api';
+const API = 'http://localhost:8000/api';
 
 function saveTokens(a, r) {
-  localStorage.setItem('bb_access', a);
-  localStorage.setItem('bb_refresh', r);
+  localStorage.setItem('access', a);
+  localStorage.setItem('refresh', r);
 }
 
 // If already logged in, go to dashboard
-if (localStorage.getItem('bb_access')) {
+if (localStorage.getItem('access')) {
   window.location.href = 'dashboard 1.html';
 }
 
@@ -271,42 +271,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-<script>
-        function signin(){
-                email=document.getElementById("email").value
-                password=document.getElementById("password").value
-                document.getElementById("email").value=""
-                document.getElementById("password").value=""
-
-                if (email=="") {
-                    alert("Please enter your email")
-                    return 
-                }
-                else if(password==""){
-                    alert("Please enter your password")
-                    return
-                }
-                res=fetch("http://127.0.0.1:8000/api/login/",{
-                    method:"POST",
-                    headers:{
-                        "Content-Type":"application/json"
-                    },
-                    body:JSON.stringify({
-                        "email":email,
-                        "password":password
-                    })
-                }).then(res=>res.json()).then(data=>{
-                  console.log(data)
-                    if (data) {
-                        localStorage.setItem("bb_access",data.access)
-                        localStorage.setItem("bb_refresh",data.refresh)
-                        window.location.href="dashboard 1.html"
-                    }
-                    else{
-                        alert("Wrong Credentials")
-                    }
-                })
-                
-        }
-</script>
 </html>

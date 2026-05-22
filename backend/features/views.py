@@ -63,12 +63,31 @@ def loyalty(request):
     membership=request.user.membership
     point=request.user.reward_points
     referal_link=request.user.referal_link
-    privilages=PrivilagesSerializer(Privilages.objects.filter(tier_level__gte=request.user.tier_level),many=True).data
-    redemption_items=RedemptionitemsSerializer(Redemption_items.objects.all(),many=True).data
+    points_needed=membership_plans.objects.filter(tier_level__gt=request.user.tier_level).order_by('tier_level').first().price or 0
+    privilages=PrivilagesSerializer(Privilages.objects.filter(tier_level=request.user.tier_level),many=True).data
     return Response({
         "membership":membership,
         "reward_points":point,
         "referal_link":referal_link,
         "privilages":privilages,
-        "redemption_items":redemption_items
+        "points_needed":points_needed
     })
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def place_order(request):
+    items_name=request.data.get('items',[])
+    items=[]
+    for i in items_name:
+        f=food_menu.objects.filter(item_name=i['name'],availability=True).first()
+        if f:
+            items.append(f)
+    if not items:
+        return Response({"error": "No valid items selected"}, status=400)
+    total=request.data.get('total',0)
+    order=Orders.objects.create(user=request.user,total_price=float(total))
+    order.items.set(items)
+    order.save()
+
+    return Response({"message":"Order placed successfully"
+                     ,"order_id": order.id})
