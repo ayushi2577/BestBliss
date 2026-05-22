@@ -56,6 +56,26 @@ class OrdersSerializer(serializers.ModelSerializer):
         model=Orders
         fields='__all__'
 
+class OfferorderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Offerorder
+        fields='__all__'
+
+class EventBookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=EventBooking
+        fields='__all__'
+
+class SpecialEventBookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=SpecialEventBooking
+        fields='__all__'
+
+class RedemptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Redemption
+        fields='__all__'
+
 
 
         

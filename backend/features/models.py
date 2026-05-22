@@ -72,11 +72,32 @@ class Redemption_items(models.Model):
     item_description=models.CharField(null=False,max_length=500)
     points_required=models.IntegerField(null=False)
 
+#food
 class Orders(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_orders')
     items=models.ManyToManyField(food_menu,related_name='order_items')
     total_price=models.IntegerField(null=False)
     order_date=models.DateTimeField(auto_now_add=True)
+
+class Offerorder(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_offer_orders')
+    offer=models.ForeignKey(membership_plans,on_delete=models.CASCADE,related_name='offer_orders')
+    order_date=models.DateTimeField(auto_now_add=True)
+
+class EventBooking(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_event_bookings')
+    event=models.ForeignKey(weekly_events,on_delete=models.CASCADE,related_name='event_bookings')
+    booking_date=models.DateTimeField(auto_now_add=True)
+
+class SpecialEventBooking(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_special_event_bookings')
+    event=models.ForeignKey(special_events,on_delete=models.CASCADE,related_name='special_event_bookings')
+    booking_date=models.DateTimeField(auto_now_add=True)
+
+class Redemption(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_redemption')
+    item=models.ForeignKey(Redemption_items,on_delete=models.CASCADE,related_name='redemption')
+    redemption_date=models.DateTimeField(auto_now_add=True)
     
 
 #when making orders of food then use many to many field

@@ -5,7 +5,6 @@ from .smart_view import smart
 urlpatterns=[
     path('dashboard/',Dashboard,name='dashboard'),
     path('stay/',stay,name='stay'),
-    path('dining/',dining,name='dining'),
     path('loyalty/',loyalty,name='loyalty'),
     path('smart/',smart,name='smart'),
     path('dining/order/',place_order,name='place_order'),
