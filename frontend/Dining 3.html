@@ -245,6 +245,11 @@
           <span class="material-symbols-outlined text-[20px]">workspace_premium</span>
           <span>Loyalty</span>
         </a>
+        <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+          href="history.html">
+          <span class="material-symbols-outlined text-[20px]">history</span>
+          <span>History</span>
+        </a>
       </div>
     </div>
     <div class="flex items-center gap-6">
@@ -701,16 +706,12 @@
       btn.classList.add('btn-confirming');
       btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Placing order…';
 
-      const items = ids.map(id => ({ item_id: id, name: cart[id].name, price: cart[id].price }));
-      const subtotal = items.reduce((s, i) => s + i.price, 0);
-      const payload = {
-        items,
-        subtotal: parseFloat(subtotal.toFixed(2)),
-        service_charge: parseFloat((subtotal * 0.15).toFixed(2)),
-        total: parseFloat((subtotal * 1.15).toFixed(2))
-      };
+      // Backend expects: { items: ["Item Name 1", "Item Name 2", ...] }
+      // It looks up items by name and checks availability
+      const itemNames = ids.map(id => cart[id].name);
+      const payload = { items: itemNames };
 
-      const result = await apiFetch('/dining/order/', {
+      const result = await apiFetch('/orders/food/', {
         method: 'POST',
         body: JSON.stringify(payload)
       });

@@ -179,6 +179,11 @@
                         data-icon="workspace_premium">workspace_premium</span>
                     <span>Loyalty</span>
                 </a>
+                <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+                    href="history.html">
+                    <span class="material-symbols-outlined text-[20px]">history</span>
+                    <span>History</span>
+                </a>
             </div>
         </div>
         <div class="flex items-center gap-6">
@@ -459,25 +464,44 @@
 
         // ── Populate nav user pill ────────────────────────────────────
         async function populateNavUser() {
-
             document.getElementById('username').textContent = localStorage.getItem('username') || 'Guest';
             document.getElementById('membership').textContent = localStorage.getItem('membership') || '';
             document.getElementById('user-initials').textContent = localStorage.getItem('user_initials') || '';
+        }
 
+        // ── Load rooms from backend ────────────────────────────────────
+        async function loadRooms() {
+            // The stay endpoint returns upcoming/past/current bookings (not a room catalog).
+            // Room catalog is not a dedicated API endpoint - rooms are embedded in booking data.
+            // We keep the static display for the room cards and only wire up the Book Now buttons
+            // to navigate to order.html with the room details pre-filled.
+            wireRoomButtons();
+        }
 
-            const data = await apiFetch('/stay/');
-            console.log('Dashboard data:', data);
-            if (data) return;
-            document.getElementById('exclusive-name').textContent = data.exclusive.name;
-            document.getElementById('exclusive-price').textContent = `$${data.exclusive.price}`;
-            document.getElementById('exclusive-desc').textContent = data.exclusive.description;
-            document.getElementById('best-seller-name').textContent = data.best_seller.name;
-            document.getElementById('best-seller-price').textContent = `$${data.best_seller.price}`;
-            document.getElementById('best-seller-dec').textContent = data.best_seller.description;
-            document.getElementById('business-choice-name').textContent = data.business_choice.name;
-            document.getElementById('business-choice-desc').textContent = data.business_choice.description;
-            document.getElementById('business-choice-price').textContent = `$${data.business_choice.price}`;
-
+        function wireRoomButtons() {
+            // Wire "Book Now" buttons on the 3 room cards to navigate to order.html
+            const bookBtns = document.querySelectorAll('.glass-panel button');
+            // Room cards: Royal Penthouse, Garden Villa, Skyline Studio
+            const rooms = [
+                { name: 'Royal Penthouse', price: '2450', room_number: '101' },
+                { name: 'Garden Villa',    price: '1800', room_number: '102' },
+                { name: 'Skyline Studio',  price: '950',  room_number: '103' },
+            ];
+            let roomIdx = 0;
+            document.querySelectorAll('.glass-panel .flex-1.py-3.bg-primary').forEach((btn, i) => {
+                if (rooms[i]) {
+                    btn.addEventListener('click', () => {
+                        const r = rooms[i];
+                        const params = new URLSearchParams({
+                            category: 'rooms',
+                            room_name: r.name,
+                            price: r.price,
+                            room_id: r.room_number,
+                        });
+                        window.location.href = 'order.html?' + params.toString();
+                    });
+                }
+            });
         }
 
         // ── Guard: redirect to login if no token ─────────────────────
@@ -485,7 +509,7 @@
             if (!getToken()) { redirectLogin(); }
         })();
 
-        document.addEventListener('DOMContentLoaded', populateNavUser);
+        document.addEventListener('DOMContentLoaded', () => { populateNavUser(); loadRooms(); });
     </script>
 
 </body>

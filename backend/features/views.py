@@ -1,18 +1,15 @@
-from httpcore import request
 
 from .serializer import *
 from .models import weekly_events,special_events,membership_plans
-from datetime import date
+from datetime import date, datetime
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework import APIView  
+from rest_framework.views import APIView
 
 from datetime import date,timedelta 
 from django.utils import timezone
 
-# 1. Get the current time minus 10 minutes
-ten_minutes_ago = timezone.now() - timedelta(minutes=10)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -69,7 +66,8 @@ def loyalty(request):
     membership=request.user.membership
     point=request.user.reward_points
     referal_link=request.user.referal_link
-    points_needed=membership_plans.objects.filter(tier_level__gt=request.user.tier_level).order_by('tier_level').first().price or 0
+    next_plan = membership_plans.objects.filter(tier_level__gt=request.user.tier_level).order_by('tier_level').first()
+    points_needed = next_plan.price if next_plan else 0
     privilages=PrivilagesSerializer(Privilages.objects.filter(tier_level=request.user.tier_level),many=True).data
     return Response({
         "membership":membership,
@@ -79,105 +77,115 @@ def loyalty(request):
         "points_needed":points_needed
     })
 
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def place_order(request):
-    items_name=request.data.get('items',[])
-    items=[]
-    for i in items_name:
-        f=food_menu.objects.filter(item_name=i['name'],availability=True).first()
-        if f:
-            items.append(f)
-    if not items:
-        return Response({"error": "No valid items selected"}, status=400)
-    total=request.data.get('total',0)
-    order=Orders.objects.create(user=request.user,total_price=float(total))
-    order.items.set(items)
-    order.save()
-
-    return Response({"message":"Order placed successfully"
-                     ,"order_id": order.id})
 
 class BookingViewSet(APIView):
+    permission_classes=[IsAuthenticated]
     def post(self, request):
-        room_name=request.data.get('room_name')
-        check_in_date=request.data.get('check_in_date')
-        check_out_date=request.data.get('check_out_date')
-
-        if not all([room_name, check_in_date, check_out_date]):
-            return Response({"error": "Missing required fields"}, status=400)
-
-        room=Rooms.objects.filter(room_name=room_name).room_number
-        booking = Bookings.objects.create(
-            user=request.user,
-            room_number=room,
-            check_in_date=check_in_date,
-            check_out_date=check_out_date
-        )
-
-        serializer = BookingSerializer(booking)
+        serializer=BookingSerializer(data=request.data,context={"request":request})
+        if not serializer.is_valid():
+            return Response(serializer.errors,status=400)
+        serializer.save()
         return Response({'message':'success'})
     
     def get(self,request):
         bookings=Bookings.objects.filter(user=request.user)
-        data=BookingSerializer(bookings,many=True)
+        data=BookingSerializer(bookings,many=True).data
         return Response({'bookings':data})
     
     def delete(self,request):
         booking_id=request.data.get('booking_id')
-        booking=Bookings.objects.filter(id=booking_id)
-        if not booking.exists():
-            return Response({'error':'Booking not found'})
+        try:
+            booking = Bookings.objects.get(id=booking_id)  # ✅ get() not filter()
+        except Bookings.DoesNotExist:
+            return Response({'error': 'Booking not found'}, status=404)
         if request.user!=booking.user:
             return Response({'error':'Unauthorized access'})
         elif booking.check_in_date <= date.today():
             return Response({'error':'Cannot cancel past or current bookings'})
-        if booking.date!=date.today():
+        if booking.booking_date.date()!=date.today():
             return Response({'error':'Bookings can only be cancelled on the day of booking'})
-        Bookings.objects.delete(id=booking_id)
+        booking.delete()
         return Response({'message':'Booking cancelled successfully'})
 
     
 class FoodOrderViewSet(APIView):
+    permission_classes=[IsAuthenticated]
     def post(self,request):
-        items_name=request.data.get('items',[])
-        items=[]
-        for i in items_name:
-            f=food_menu.objects.filter(item_name=i['name'],availability=True).first()
-            if f:
-                items.append(f)
-        if not items:
-            return Response({"error": "No valid items selected"}, status=400)
-        total=request.data.get('total',0)
-        order=Orders.objects.create(user=request.user,total_price=float(total))
-        order.items.set(items)
-        order.save()
-
-        return Response({"message":"Order placed successfully"
-                         ,"order_id": order.id})
+        data = request.data.copy()
+        item_names = data.get('items', [])
     
+        # convert names to IDs
+        item_ids = []
+        for name in item_names:
+            item = food_menu.objects.filter(item_name=name, availability=True).first()
+            if not item:
+                return Response({'error': f"Item '{name}' is not available."}, status=400)
+            item_ids.append(item.id)
+    
+        data['items'] = item_ids  # replace names with IDs
+    
+        serializer = OrdersSerializer(data=data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
     def get(self,request):
         orders=Orders.objects.filter(user=request.user)
-        data=OrdersSerializer(orders,many=True)
+        data=OrdersSerializer(orders,many=True).data
         return Response({'orders':data})
     
     def delete(self,request):
         order_id=request.data.get('order_id')
-        order=Orders.objects.filter(id=order_id)
-        if not order.exists():
+        order=Orders.objects.filter(id=order_id).first()
+        if not order:
             return Response({'error':'Order not found'})
         if request.user!=order.user:
             return Response({'error':'Unauthorized access'})
-        elif order.order_date.date() != date.today() or order.order_time > ten_minutes_ago.time():
+        elif (timezone.now() - order.order_date).total_seconds() > 600:  # 10 minutes
             return Response({'error':'Orders can only be cancelled on the day of order'})
-        Orders.objects.delete(id=order_id)
+        order.delete()
         return Response({'message':'Order cancelled successfully'})
-    
-class OfferOrderViewSet(APIView):    
+  
+class OfferOrderViewSet(APIView):   
+    permission_classes=[IsAuthenticated]
     def post(self,request):
-        offer_id=request.data.get('offer_id')
-        offer=membership_plans.objects.filter(id=offer_id).first()
-        if not offer:
-            return Response({'error':'Offer not found'})
-        order=Offerorder.objects.create(user=request.user,offer=offer)
-        return Response({'message':'Offer ordered successfully','order_id':order.id})
+        serializer=OfferorderSerializer(data=request.data, context={'request': request})
+        if not serializer.is_valid():
+            return Response(serializer.errors,status=400)    
+        serializer.save()
+        return Response({"message":"Offer booked successfully"})
+    
+    def get(self,request):
+        offers=Offerorder.objects.filter(user=request.user)
+        data=OfferorderSerializer(offers,many=True).data
+        return Response({'offers':data})
+    
+class EventBookingViewSet(APIView):
+    permission_classes=[IsAuthenticated]
+    def post(self,request):
+        serializer=EventBookingSerializer(data=request.data, context={'request': request})
+        if not serializer.is_valid():
+            return Response(serializer.errors,status=400)    
+        serializer.save()
+        return Response({"message":"Event booked successfully"})
+    
+    def get(self,request):
+        events=EventBooking.objects.filter(user=request.user)
+        data=EventBookingSerializer(events,many=True).data
+        return Response({'events':data})
+    
+class RedemptionViewSet(APIView):
+    permission_classes=[IsAuthenticated]
+    def post(self,request):
+        serializer=RedemptionSerializer(data=request.data, context={'request': request})
+        if not serializer.is_valid():
+            return Response(serializer.errors,status=400)    
+        serializer.save()
+        return Response({"message":"Item redeemed successfully"})
+    
+    def get(self,request):
+        redemptions=Redemption.objects.filter(user=request.user)
+        data=RedemptionSerializer(redemptions,many=True).data
+        return Response({'redemptions':data})
+    

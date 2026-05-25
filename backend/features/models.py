@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -88,12 +90,7 @@ class EventBooking(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_event_bookings')
     event=models.ForeignKey(weekly_events,on_delete=models.CASCADE,related_name='event_bookings')
     booking_date=models.DateTimeField(auto_now_add=True)
-
-class SpecialEventBooking(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_special_event_bookings')
-    event=models.ForeignKey(special_events,on_delete=models.CASCADE,related_name='special_event_bookings')
-    booking_date=models.DateTimeField(auto_now_add=True)
-
+    
 class Redemption(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_redemption')
     item=models.ForeignKey(Redemption_items,on_delete=models.CASCADE,related_name='redemption')

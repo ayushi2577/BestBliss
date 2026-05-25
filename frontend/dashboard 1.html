@@ -179,6 +179,11 @@
                             data-icon="workspace_premium">workspace_premium</span>
                         <span>Loyalty</span>
                     </a>
+                    <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+                        href="history.html">
+                        <span class="material-symbols-outlined text-[20px]">history</span>
+                        <span>History</span>
+                    </a>
                 </div>
             </div>
             <div class="flex items-center gap-6">
@@ -289,7 +294,7 @@
                                 Afternoon Relaxation</h3>
                             <p class="text-body-md font-body-md text-on-surface-variant max-w-sm mb-6" id="offer_desc">
                                 Enjoy a complimentary 30-minute hydrotherapy session. Available daily until 4 PM.</p>
-                            <button class="text-primary font-label-lg text-label-lg flex items-center gap-2 group/btn">
+                            <button class="text-primary font-label-lg text-label-lg flex items-center gap-2 group/btn" onclick="bookOffer()">
                                 Reserve your spot <span
                                     class="material-symbols-outlined transition-transform group-hover/btn:translate-x-1"
                                     data-icon="arrow_forward">arrow_forward</span>
@@ -333,8 +338,9 @@
                             </div>
                         </div>
                         <button
-                            class="mt-8 border border-primary text-primary hover:bg-primary hover:text-on-primary transition-all py-4 rounded-xl font-label-lg text-label-lg uppercase tracking-widest">
-                            Order to Room
+                            class="mt-8 border border-primary text-primary hover:bg-primary hover:text-on-primary transition-all py-4 rounded-xl font-label-lg text-label-lg uppercase tracking-widest"
+                            onclick="bookEvent()">
+                            Book This Event
                         </button>
                     </div>
                 </div>
@@ -465,6 +471,38 @@
     })();
 
     document.addEventListener('DOMContentLoaded', populateNavUser);
+
+    function bookOffer() {
+        const title = document.getElementById('offer_title').textContent;
+        const desc  = document.getElementById('offer_desc').textContent;
+        const membership = localStorage.getItem('membership') || '';
+        const offerId = localStorage.getItem('dashboard_offer_id') || '';
+        const params = new URLSearchParams({
+            category:    'offers',
+            offer_title: title,
+            offer_desc:  desc,
+            membership:  membership,
+            offer_id:    offerId
+        });
+        window.location.href = 'order.html?' + params.toString();
+    }
+
+    function bookEvent() {
+        const name     = document.getElementById('event_name').textContent;
+        const desc     = document.getElementById('event_desc').textContent;
+        const location = document.getElementById('event_location').textContent;
+        const time     = document.getElementById('event_time').textContent;
+        const eventId  = localStorage.getItem('dashboard_event_id') || '';
+        const params = new URLSearchParams({
+            category:       'events',
+            event_name:     name,
+            event_desc:     desc,
+            event_location: location,
+            event_time:     time,
+            event_id:       eventId
+        });
+        window.location.href = 'order.html?' + params.toString();
+    }
 
 </script>
 

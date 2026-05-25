@@ -295,6 +295,11 @@
                         data-icon="workspace_premium">workspace_premium</span>
                     <span>Loyalty</span>
                 </a>
+                <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+                    href="history.html">
+                    <span class="material-symbols-outlined text-[20px]">history</span>
+                    <span>History</span>
+                </a>
             </div>
         </div>
         <div class="flex items-center gap-6">
@@ -665,11 +670,7 @@ function updateDialVisuals() {
 function setTargetTemp(t) {
     targetTemp = Math.max(MIN_TEMP, Math.min(MAX_TEMP, t));
     updateDialVisuals();
-    // POST to backend (fire-and-forget)
-    apiFetch('/smart/climate/', {
-        method: 'POST',
-        body: JSON.stringify({ target_temperature: targetTemp })
-    }).catch(() => {});
+    // Note: Climate control is UI-only; backend only provides environmental data via GET /smart/
 }
 
 document.getElementById('temp-minus').addEventListener('click', () => setTargetTemp(targetTemp - 1));
@@ -725,10 +726,7 @@ document.querySelectorAll('[data-atmo]').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('[data-atmo]').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        apiFetch('/smart/atmosphere/', {
-            method: 'POST',
-            body: JSON.stringify({ mode: btn.dataset.atmo })
-        }).catch(() => {});
+        // Atmosphere mode is UI-only; no backend endpoint for this control
     });
 });
 
@@ -750,10 +748,7 @@ curtainRange.addEventListener('input', e => {
 });
 
 curtainRange.addEventListener('change', e => {
-    apiFetch('/smart/curtains/', {
-        method: 'POST',
-        body: JSON.stringify({ transparency: parseInt(e.target.value) })
-    }).catch(() => {});
+    // Curtain control is UI-only; no backend endpoint for this control
 });
 
 // Open / Closed tabs
@@ -764,10 +759,7 @@ document.querySelectorAll('[data-curtain]').forEach(tab => {
         const val = tab.dataset.curtain === 'open' ? 65 : 0;
         curtainRange.value = val;
         updateCurtainLabel(val);
-        apiFetch('/smart/curtains/', {
-            method: 'POST',
-            body: JSON.stringify({ transparency: val })
-        }).catch(() => {});
+        // Curtain control is UI-only; no backend endpoint
     });
 });
 
@@ -793,30 +785,8 @@ async function loadSmartData() {
     el('env-air-quality').textContent = m.air_quality.classification;
     el('env-uv').textContent         = m.uv_index.classification;
 
-    // Also update the current (room) temperature if provided
-    if (m.room_temperature) {
-        currentTemp = m.room_temperature.value;
-        updateDialVisuals();
-    }
-
-    // Restore target if backend echoes it
-    if (data.target_temperature) {
-        targetTemp = data.target_temperature;
-        updateDialVisuals();
-    }
-
-    // Restore atmosphere mode
-    if (data.atmosphere_mode) {
-        document.querySelectorAll('[data-atmo]').forEach(b => b.classList.remove('active'));
-        const atmoBtn = document.querySelector(`[data-atmo="${data.atmosphere_mode}"]`);
-        if (atmoBtn) atmoBtn.classList.add('active');
-    }
-
-    // Restore curtain
-    if (data.curtain_transparency != null) {
-        curtainRange.value = data.curtain_transparency;
-        updateCurtainLabel(data.curtain_transparency);
-    }
+    // Update current (outside) temperature display only
+    // Room controls (target temp, atmosphere, curtains) are client-side only
 }
 
 // ══════════════════════════════════════════════════════════
