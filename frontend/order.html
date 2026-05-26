@@ -198,7 +198,7 @@
 <h2 class="font-headline-lg text-[28px] md:text-[32px] mb-1 text-white">Complete Your Reservation</h2>
 <p class="font-body-md text-[13px] text-on-surface-variant">Review details and confirm your stay at Gilded Serenity.</p>
 </div>
-<form class="flex-grow flex flex-col" onsubmit="event.preventDefault();">
+<form class="flex-grow flex flex-col" novalidate onsubmit="event.preventDefault();">
 <!-- Tab Content Container -->
 <div class="space-y-6">
 <!-- Rooms Tab Content -->
@@ -209,17 +209,17 @@
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="relative group">
-<label class="block font-label-sm text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-0.5">Stay Dates</label>
-<div class="flex items-center gap-2 py-2 border-b border-white/10">
+<label class="block font-label-sm text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-0.5 group-focus-within:text-primary transition-colors" for="check_in_date">Check-In Date</label>
+<div class="flex items-center gap-2 py-1 border-b border-white/10">
 <span class="material-symbols-outlined text-primary text-[18px]">calendar_today</span>
-<span class="font-body-md text-white text-[14px]">Oct 24 — Oct 29</span>
+<input class="w-full bg-transparent border-0 py-1 font-body-md text-white focus:ring-0 transition-all text-[14px] cursor-pointer appearance-none [color-scheme:dark]" id="check_in_date" type="date"/>
 </div>
 </div>
 <div class="relative group">
-<label class="block font-label-sm text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-0.5">Occupancy</label>
-<div class="flex items-center gap-2 py-2 border-b border-white/10">
-<span class="material-symbols-outlined text-primary text-[18px]">person</span>
-<span class="font-body-md text-white text-[14px]">2 Adults, 1 Child</span>
+<label class="block font-label-sm text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-0.5 group-focus-within:text-primary transition-colors" for="check_out_date">Check-Out Date</label>
+<div class="flex items-center gap-2 py-1 border-b border-white/10">
+<span class="material-symbols-outlined text-primary text-[18px]">calendar_month</span>
+<input class="w-full bg-transparent border-0 py-1 font-body-md text-white focus:ring-0 transition-all text-[14px] cursor-pointer appearance-none [color-scheme:dark]" id="check_out_date" type="date"/>
 </div>
 </div>
 </div>
@@ -303,34 +303,28 @@
   </div>
 </div>
 </div>
-<!-- Offers Tab Content - Compact -->
+<!-- Offers Tab Content -->
 <div class="tab-content" id="content-offers">
-<div class="space-y-1">
-<div class="flex items-center justify-between px-3 py-2 border border-white/10 rounded hover:border-primary/50 transition-all cursor-pointer group bg-white/[0.02]" data-code="GS_SUMMER_24">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-[18px]">sell</span>
-<p class="text-[11px] font-medium text-white uppercase tracking-wider">GS_SUMMER_24</p>
+<!-- No offer selected state -->
+<div id="offer-empty-state" class="hidden flex-col items-center justify-center py-8 text-center gap-3">
+  <span class="material-symbols-outlined text-on-surface-variant text-[48px]">workspace_premium</span>
+  <p class="text-on-surface-variant text-[13px]">No offer selected.</p>
+  <p class="text-on-surface-variant text-[11px]">Go back to the dashboard or loyalty page and tap an offer to book it.</p>
 </div>
-<span class="text-[9px] text-primary font-bold uppercase tracking-widest">Apply</span>
-</div>
-<div class="flex items-center justify-between px-3 py-2 border border-white/10 rounded hover:border-primary/50 transition-all cursor-pointer group bg-white/[0.02]" data-code="ANNIVERSARY_GIFT">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-[18px]">card_giftcard</span>
-<p class="text-[11px] font-medium text-white uppercase tracking-wider">ANNIVERSARY_GIFT</p>
-</div>
-<span class="text-[9px] text-primary font-bold uppercase tracking-widest">Apply</span>
-</div>
-</div>
-<div id="offer-prefill-card" class="hidden flex items-center gap-3 p-3 border border-primary/30 rounded-lg bg-primary/5 mb-2">
-  <span class="material-symbols-outlined text-primary text-[20px]">workspace_premium</span>
-  <div>
-    <p class="text-white text-[13px] font-medium" id="order-offer-title">—</p>
-    <p class="text-on-surface-variant text-[11px]" id="order-offer-desc">—</p>
+<!-- Offer prefill card (shown when offer_id is present) -->
+<div id="offer-prefill-card" class="flex items-start gap-4 p-4 border border-primary/40 rounded-lg bg-primary/5">
+  <span class="material-symbols-outlined text-primary text-[28px] mt-0.5">workspace_premium</span>
+  <div class="flex-1">
+    <p class="font-label-sm text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-1">Selected Offer</p>
+    <p class="text-white text-[15px] font-medium leading-snug" id="order-offer-title">—</p>
+    <p class="text-on-surface-variant text-[12px] mt-1" id="order-offer-desc">—</p>
   </div>
 </div>
-<div class="relative mt-1">
-<input class="w-full bg-transparent border-0 border-b border-white/10 py-1 font-body-lg text-white placeholder:text-white/10 focus:ring-0 transition-all text-[15px]" placeholder="Promo Code" type="text"/>
-<button class="absolute right-0 bottom-1 text-primary font-bold text-[9px] uppercase tracking-widest">Validate</button>
+<div class="mt-2 p-3 border border-primary/20 rounded-lg bg-primary/5">
+  <p class="text-[11px] text-primary font-label-lg uppercase tracking-wider flex items-center gap-1">
+    <span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+    Complimentary — Included with your membership
+  </p>
 </div>
 </div>
 </div>
@@ -482,12 +476,34 @@
       }
     }
 
-    if (params.check_in && params.check_out) {
-      const dateEls = document.querySelectorAll("#content-rooms .font-body-md");
-      if (dateEls[0]) dateEls[0].textContent = formatDate(params.check_in) + " \u2014 " + formatDate(params.check_out);
+    // Pre-fill date inputs from URL params (user can still change them)
+    var today = new Date().toISOString().split("T")[0];
+    var checkInInput  = document.getElementById("check_in_date");
+    var checkOutInput = document.getElementById("check_out_date");
+    if (checkInInput) {
+      checkInInput.min = today;
+      checkInInput.value = params.check_in || "";
     }
-    const occEls = document.querySelectorAll("#content-rooms .font-body-md");
-    if (occEls[1]) occEls[1].textContent = params.adults + " Adults, " + params.children + " Child";
+    if (checkOutInput) {
+      // Set min to tomorrow by default; update dynamically when check-in changes
+      var minOut = params.check_in || today;
+      var minOutDate = new Date(minOut);
+      minOutDate.setDate(minOutDate.getDate() + 1);
+      checkOutInput.min = minOutDate.toISOString().split("T")[0];
+      checkOutInput.value = params.check_out || "";
+    }
+    if (checkInInput) {
+      checkInInput.addEventListener("change", function() {
+        if (checkOutInput && this.value) {
+          var d = new Date(this.value);
+          d.setDate(d.getDate() + 1);
+          checkOutInput.min = d.toISOString().split("T")[0];
+          if (checkOutInput.value && checkOutInput.value <= this.value) {
+            checkOutInput.value = d.toISOString().split("T")[0];
+          }
+        }
+      });
+    }
 
     // Price display
     const priceEl = document.querySelector(".font-headline-md");
@@ -515,17 +531,28 @@
       if (el3) el3.textContent = params.event_time;
     }
 
-    // Offers
-    if (params.offer_title) {
-      var card = document.getElementById("offer-prefill-card");
-      if (card) card.classList.remove("hidden");
+    // Offers — show the offer card if we have offer data, otherwise show empty state
+    var offerCard  = document.getElementById("offer-prefill-card");
+    var offerEmpty = document.getElementById("offer-empty-state");
+    if (params.offer_title && params.offer_id) {
+      if (offerCard)  offerCard.style.display  = "flex";
+      if (offerEmpty) offerEmpty.style.display = "none";
       var t = document.getElementById("order-offer-title");
       if (t) t.textContent = params.offer_title;
       var d = document.getElementById("order-offer-desc");
       if (d) d.textContent = params.offer_desc || "";
+    } else {
+      if (offerCard)  offerCard.style.display  = "none";
+      if (offerEmpty) offerEmpty.style.display = "flex";
     }
 
     // Redemption
+    // Populate available balance from localStorage (set by loyalty page)
+    var balanceEl = document.getElementById("available-balance");
+    if (balanceEl) {
+      var savedPoints = localStorage.getItem("reward_points");
+      balanceEl.textContent = savedPoints ? Number(savedPoints).toLocaleString() : "\u2014";
+    }
     if (params.item_name) {
       var rcard = document.getElementById("redemption-prefill-card");
       if (rcard) rcard.classList.remove("hidden");
@@ -593,31 +620,61 @@
   function buildPayload() {
     var params = getParams();
     if (activeCategory === "rooms") {
-      // room_number should be the PK (integer id) of the Rooms record.
-      // The stay.html page passes room_id as the room_number string (e.g. "101").
-      // BookingSerializer resolves room_number as a Rooms FK by pk.
-      // If room_id is a number string, it could be the pk or the room_number CharField.
-      // We pass it as-is and let the backend validate.
+      // Read dates from the actual input fields so user-edits are captured
+      var checkInEl  = document.getElementById("check_in_date");
+      var checkOutEl = document.getElementById("check_out_date");
+      var checkIn    = checkInEl  ? checkInEl.value  : params.check_in;
+      var checkOut   = checkOutEl ? checkOutEl.value : params.check_out;
+      if (!checkIn || !checkOut) {
+        throw new Error("Please select both Check-In and Check-Out dates.");
+      }
+      if (checkIn >= checkOut) {
+        throw new Error("Check-Out date must be after Check-In date.");
+      }
+      var today = new Date().toISOString().split("T")[0];
+      if (checkIn < today) {
+        throw new Error("Check-In date cannot be in the past.");
+      }
+      // room_id is now the integer PK of the Rooms model (sent from stay page via room.id)
+      var roomPk = params.room_id ? parseInt(params.room_id, 10) : null;
+      if (!roomPk) {
+        throw new Error("Room ID is missing. Please go back and select a room.");
+      }
       return {
-        room_number: params.room_id,
-        check_in_date: params.check_in,
-        check_out_date: params.check_out
+        room_number: roomPk,       // BookingSerializer FK expects integer PK of Rooms
+        check_in_date: checkIn,
+        check_out_date: checkOut
       };
     }
     if (activeCategory === "redemption") {
-      // RedemptionSerializer expects item = pk (integer) of Redemption_items
-      // Use item_id if available (passed from loyalty page), else item_name as fallback
-      return { item: params.item_id || params.item_name };
+      // RedemptionSerializer expects item = integer PK of Redemption_items
+      var itemPk = params.item_id ? parseInt(params.item_id, 10) : null;
+      if (!itemPk) {
+        throw new Error("Redemption item ID is missing. Please go back and select an item.");
+      }
+      return { item: itemPk };
     }
     if (activeCategory === "offers") {
-      // OfferorderSerializer expects offer = pk (integer) of membership_plans
-      // Use offer_id if available (stored from dashboard), else fallback
-      return { offer: params.offer_id || params.offer_title || params.membership };
+      // OfferorderSerializer expects offer = integer PK of membership_plans
+      // offer_id is set from tier_level which maps to membership_plans PK
+      var offerPk = params.offer_id ? parseInt(params.offer_id, 10) : null;
+      if (!offerPk) {
+        // Fallback: try localStorage
+        var storedTier = localStorage.getItem("user_tier_level") || localStorage.getItem("dashboard_offer_id");
+        offerPk = storedTier ? parseInt(storedTier, 10) : null;
+      }
+      if (!offerPk) {
+        throw new Error("Offer ID is missing. Please go back to the dashboard and try again.");
+      }
+      return { offer: offerPk };
     }
     if (activeCategory === "events") {
-      // EventBookingSerializer expects event = pk (integer) of weekly_events
-      // Use event_id if available (stored from dashboard), else event_name as fallback
-      return { event: params.event_id || params.event_name };
+      // EventBookingSerializer expects event = integer PK of weekly_events
+      var eventPk = params.event_id ? parseInt(params.event_id, 10) : null;
+      if (!eventPk) {
+        throw new Error("Event ID is missing. Please go back to the dashboard and try again.");
+      }
+      return { event: eventPk };
     }
     return {};
   }
@@ -659,11 +716,18 @@
     var btn = document.querySelector('button[type="submit"]');
     if (!getToken()) {
       showToast("Session expired. Please log in again.", true);
-      setTimeout(function () { window.location.href = "Login 0.html"; }, 1500);
+      setTimeout(function () { window.location.href = "index.html"; }, 1500);
       return;
     }
     setButtonState(btn, "loading");
-    var payload = buildPayload();
+    var payload;
+    try {
+      payload = buildPayload();
+    } catch (buildErr) {
+      showToast(buildErr.message, true);
+      setButtonState(btn, "idle");
+      return;
+    }
     var endpoint = ENDPOINTS[activeCategory];
 
     try {
@@ -676,7 +740,7 @@
         var ok = await attemptTokenRefresh();
         if (!ok) {
           showToast("Session expired. Redirecting to login\u2026", true);
-          setTimeout(function () { window.location.href = "Login 0.html"; }, 1500);
+          setTimeout(function () { window.location.href = "index.html"; }, 1500);
           setButtonState(btn, "idle");
           return;
         }
@@ -687,7 +751,15 @@
         });
       }
       var data = await res.json();
-      if (!res.ok) throw new Error(data.detail || data.message || "Server error");
+      if (!res.ok) {
+        // Extract meaningful error - could be data.detail, data.message, or field-level errors
+        var errMsg = data.detail || data.message || data.error;
+        if (!errMsg && typeof data === "object") {
+          // Flatten field-level errors (e.g. {"offer": ["This field is required."]})
+          errMsg = Object.entries(data).map(function(e) { return e[0] + ": " + e[1]; }).join(" | ");
+        }
+        throw new Error(errMsg || "Server error");
+      }
       setButtonState(btn, "success");
       showToast("Your booking is confirmed!");
       setTimeout(function () {

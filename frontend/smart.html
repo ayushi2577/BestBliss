@@ -269,28 +269,28 @@
                 class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
             <div class="hidden md:flex items-center gap-8">
                 <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
-                    href="dashboard 1.html">
+                    href="dashboard.html">
                     <span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
                     <span>Home</span>
                 </a>
                 <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
-                    href="Dining 3.html">
+                    href="dining.html">
                     <span class="material-symbols-outlined text-[20px]" data-icon="restaurant">restaurant</span>
                     <span>Services <span class="text-[10px] opacity-60 ml-0.5">(Dining)</span></span>
                 </a>
                 <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
-                    href="stay 2.html">
+                    href="stay.html">
                     <span class="material-symbols-outlined text-[20px]" data-icon="calendar_month">calendar_month</span>
                     <span>Stay <span class="text-[10px] opacity-60 ml-0.5">(Bookings)</span></span>
                 </a>
                 <a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active"
-                    href="smart room control 4.html">
+                    href="smart.html">
                     <span class="material-symbols-outlined text-[20px]"
                         data-icon="settings_remote">settings_remote</span>
                     <span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
                 </a>
                 <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
-                    href="loyallty 3.html">
+                    href="loyalty.html">
                     <span class="material-symbols-outlined text-[20px]"
                         data-icon="workspace_premium">workspace_premium</span>
                     <span>Loyalty</span>
@@ -546,23 +546,23 @@
     <!-- Mobile Navigation Shell -->
     <nav
         class="md:hidden fixed bottom-0 w-full flex justify-around items-center pt-2 pb-safe px-4 bg-surface-container-highest/90 backdrop-blur-xl z-[60] rounded-t-xl border-t border-white/10 shadow-lg">
-        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="dashboard 1.html">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="dashboard.html">
             <span class="material-symbols-outlined">home</span>
             <span class="text-label-sm font-label-sm">Home</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="Dining 3.html">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="dining.html">
             <span class="material-symbols-outlined">room_service</span>
             <span class="text-label-sm font-label-sm">Services</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="stay 2.html">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="stay.html">
             <span class="material-symbols-outlined">calendar_month</span>
             <span class="text-label-sm font-label-sm">Stay</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-primary font-bold scale-110 transition-transform" href="smart room control 4.html">
+        <a class="flex flex-col items-center justify-center text-primary font-bold scale-110 transition-transform" href="smart.html">
             <span class="material-symbols-outlined">settings_remote</span>
             <span class="text-label-sm font-label-sm">Smart</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="loyallty 3.html">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary/80" href="loyalty.html">
             <span class="material-symbols-outlined">workspace_premium</span>
             <span class="text-label-sm font-label-sm">Loyalty</span>
         </a>
@@ -608,7 +608,7 @@ async function apiFetch(path, opts = {}) {
     return res.json();
 }
 
-function redirectLogin() { clearTokens(); window.location.href = 'Login 0.html'; }
+function redirectLogin() { clearTokens(); window.location.href = 'index.html'; }
 
 async function handleLogout() {
     try {

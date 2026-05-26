@@ -135,8 +135,7 @@
             <span
                 class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
             <div class="hidden md:flex items-center gap-8">
-                <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
-                    href="dashboard 1.html">
+                <a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active" href="dashboard 1.html">
                     <span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
                     <span>Home</span>
                 </a>
@@ -156,7 +155,8 @@
                         data-icon="settings_remote">settings_remote</span>
                     <span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
                 </a>
-                <a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active" href="loyallty 3.html">
+                <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+                    href="loyallty 3.html">
                     <span class="material-symbols-outlined text-[20px]"
                         data-icon="workspace_premium">workspace_premium</span>
                     <span>Loyalty</span>
@@ -172,9 +172,9 @@
             <div class="hidden lg:flex items-center gap-3 glass-surface px-4 py-2 rounded-full border-white/5">
                 <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold"
                     id="user-initials">JD</div>
-                <span class="text-label-sm font-label-sm text-on-surface" id="username">Guest</span>
+                <span class="text-label-sm font-label-sm text-on-surface username">Guest</span>
                 <span class="w-1 h-1 bg-primary rounded-full"></span>
-                <span class="text-label-sm font-label-sm text-primary" id="membership">Member</span>
+                <span class="text-label-sm font-label-sm text-primary membership">Member</span>
             </div>
             <div class="flex gap-2">
                 <button
@@ -334,7 +334,7 @@
                     </div>
                     <div id="redemption-container" class="flex gap-gutter overflow-x-auto pb-4 scrollbar-hide">
                         <!-- Redemption Item 1 -->
-                        <div class="min-w-[400px] glass-card rounded-xl overflow-hidden group cursor-pointer" onclick="bookRedemption('Private Cliffside Dinner', 'A bespoke 5-course menu prepared by our executive chef on a private terrace.', 85000)">
+                        <div class="min-w-[400px] glass-card rounded-xl overflow-hidden group cursor-pointer">
                             <div class="h-56 overflow-hidden">
                                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                     data-alt="A private dinner setup on a secluded balcony overlooking a Mediterranean coastline at night. A table for two is set with fine china, crystal glasses, and gold cutlery, lit by soft candle glows. The background shows the faint shimmer of coastal lights. High-end, atmospheric luxury style with rich blacks and golden highlights."
@@ -351,7 +351,7 @@
                             </div>
                         </div>
                         <!-- Redemption Item 2 -->
-                        <div class="min-w-[400px] glass-card rounded-xl overflow-hidden group cursor-pointer" onclick="bookRedemption('Island Helicopter Tour', 'See the world from a new perspective with a private sunset flight for two.', 120000)">
+                        <div class="min-w-[400px] glass-card rounded-xl overflow-hidden group cursor-pointer">
                             <div class="h-56 overflow-hidden">
                                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                     data-alt="A luxury helicopter hovering over a tropical island archipelago at sunset. The sky is a gradient of deep indigo and fiery gold. The helicopter has a sleek, black metallic finish. The overall mood is one of extreme exclusivity and high-octane luxury travel, cinematic quality."
@@ -369,7 +369,7 @@
                             </div>
                         </div>
                         <!-- Redemption Item 3 -->
-                        <div class="min-w-[400px] glass-card rounded-xl overflow-hidden group cursor-pointer" onclick="bookRedemption('Vintage Yacht Escape', 'A full-day charter on our restored 1960s classic yacht including full crew and catering.', 250000)">
+                        <div class="min-w-[400px] glass-card rounded-xl overflow-hidden group cursor-pointer">
                             <div class="h-56 overflow-hidden">
                                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                     data-alt="An interior view of a contemporary, high-end yacht lounge. Sleek charcoal leather furniture, polished dark wood accents, and subtle golden LED strip lighting. The large windows show a calm ocean under a starry sky. The style is ultra-modern, minimalist, and atmospheric luxury."
@@ -465,7 +465,7 @@
     // ── Redirect ─────────────────────────────────────────────────
     function redirectLogin() {
         clearTokens();
-        window.location.href = 'Login 0.html';
+        window.location.href = 'index.html';
     }
 
     // ── Auth Fetch ───────────────────────────────────────────────
@@ -555,107 +555,89 @@
 
     // ── Local User Data ──────────────────────────────────────────
     function populateNavUser() {
+        document.getElementById('username').textContent = localStorage.getItem('username') || 'Guest';
+        document.getElementById('membership').textContent = localStorage.getItem('membership') || '';
+        document.getElementById('user-initials').textContent = localStorage.getItem('user_initials') || '';
 
-        document.getElementById('username').textContent =
-            localStorage.getItem('username') || 'Guest';
-
-        document.getElementById('user-initials').textContent =
-            localStorage.getItem('user-initials') || 'G';
-
-        document.getElementById('membership').textContent =
-            localStorage.getItem('membership') || 'Member';
     }
 
     // ── Loyalty Data ─────────────────────────────────────────────
     async function loadLoyaltyData() {
-    const data = await apiFetch('/loyalty/');
+        const data = await apiFetch('/loyalty/');
 
-    if (!data) return;
-    console.log('Loyalty Data:', data);
+        if (!data) return;
+        console.log('Loyalty Data:', data);
 
-    // 1. Membership Tier
-    const membershipTierEl = document.getElementById('membership-tier');
-    if (membershipTierEl) {
-        membershipTierEl.textContent = data.membership || 'Member';
-    }
-
-    // 2. Safe Points Parsing
-    const maxPoints = Number(data.points_needed || 0);
-    const currentPoints = Number(data.reward_points || 0);
-    const pointsLeftToUpgrade = Math.max(maxPoints - currentPoints, 0);
-
-    // 3. Update Points Display safely without wiping out nested HTML tags
-    // Instead of resetting the whole #reward-points node, we change the text node specifically or target elements
-    const rewardPointsEl = document.getElementById('reward-points');
-    if (rewardPointsEl) {
-        // This targets just the first text node piece (the raw balance number) inside the element safely
-        if (rewardPointsEl.firstChild) {
-            rewardPointsEl.firstChild.textContent = currentPoints.toLocaleString() + " ";
+        // 1. Membership Tier
+        const membershipTierEl = document.getElementById('membership-tier');
+        if (membershipTierEl) {
+            membershipTierEl.textContent = data.membership || 'Member';
         }
-    }
 
-    // 4. Update Target Points Span
-    const maxPointsEl = document.getElementById('max_points');
-    if (maxPointsEl) {
-        maxPointsEl.textContent = maxPoints.toLocaleString();
-    }
+        // 2. Safe Points Parsing
+        const maxPoints = Number(data.points_needed || 0);
+        const currentPoints = Number(data.reward_points || 0);
+        const pointsLeftToUpgrade = Math.max(maxPoints - currentPoints, 0);
 
-    // 5. Update Remaining Points Span
-    const pointsNeededEl = document.getElementById('points_needed');
-    if (pointsNeededEl) {
-        pointsNeededEl.textContent = pointsLeftToUpgrade.toLocaleString();
-    }
-
-    // 6. Progress Bar Styling
-    const percent = maxPoints > 0 ? Math.min((currentPoints / maxPoints) * 100, 100) : 0;
-    const progressBar = document.getElementById('progress-bar');
-    if (progressBar) {
-        progressBar.style.width = percent + '%';
-    }
-
-    // 7. Progress Subtext
-    const upgradeTextEl = document.getElementById('upgrade-text');
-    if (upgradeTextEl) {
-        upgradeTextEl.textContent = `${pointsLeftToUpgrade.toLocaleString()} points until your next upgrade`;
-    }
-
-    // 8. Referral Link Trigger
-    const referralBtn = document.getElementById('referral-btn');
-    if (referralBtn) {
-        referralBtn.onclick = () => {
-            if (data.referal_link) {
-                navigator.clipboard.writeText(data.referal_link);
-                referralBtn.textContent = 'Copied!';
-                console.log('Referral link copied to clipboard:', data.referal_link);
-                setTimeout(() => {
-                    referralBtn.textContent = 'Copy Referral Link';
-                }, 2000);
+        // 3. Update Points Display safely without wiping out nested HTML tags
+        // Instead of resetting the whole #reward-points node, we change the text node specifically or target elements
+        const rewardPointsEl = document.getElementById('reward-points');
+        if (rewardPointsEl) {
+            // This targets just the first text node piece (the raw balance number) inside the element safely
+            if (rewardPointsEl.firstChild) {
+                rewardPointsEl.firstChild.textContent = currentPoints.toLocaleString() + " ";
             }
-        };
-    } 
-    
-    document.getElementById('privilage-1-title').textContent = data.privilages[0]?.privilage_name|| '';
-    document.getElementById('privilage-1-desc').textContent = data.privilages[0]?.privilage_desc || '';
-    document.getElementById('privilage-2-title').textContent = data.privilages[1]?.privilage_name || '';
-    document.getElementById('privilage-2-desc').textContent = data.privilages[1]?.privilage_desc || '';
+        }
 
-}
+        // 4. Update Target Points Span
+        const maxPointsEl = document.getElementById('max_points');
+        if (maxPointsEl) {
+            maxPointsEl.textContent = maxPoints.toLocaleString();
+        }
 
+        // 5. Update Remaining Points Span
+        const pointsNeededEl = document.getElementById('points_needed');
+        if (pointsNeededEl) {
+            pointsNeededEl.textContent = pointsLeftToUpgrade.toLocaleString();
+        }
 
-    // ── Book Redemption ──────────────────────────────────────────
-    function bookRedemption(itemName, itemDesc, pointsRequired, itemId) {
-        const params = new URLSearchParams({
-            category: 'redemption',
-            item_name: itemName,
-            item_desc: itemDesc,
-            points_required: pointsRequired,
-        });
-        // If we have an item id (pk), include it for accurate backend lookup
-        if (itemId) params.set('item_id', itemId);
-        window.location.href = 'order.html?' + params.toString();
+        // 6. Progress Bar Styling
+        const percent = maxPoints > 0 ? Math.min((currentPoints / maxPoints) * 100, 100) : 0;
+        const progressBar = document.getElementById('progress-bar');
+        if (progressBar) {
+            progressBar.style.width = percent + '%';
+        }
+
+        // 7. Progress Subtext
+        const upgradeTextEl = document.getElementById('upgrade-text');
+        if (upgradeTextEl) {
+            upgradeTextEl.textContent = `${pointsLeftToUpgrade.toLocaleString()} points until your next upgrade`;
+        }
+
+        // 8. Referral Link Trigger
+        const referralBtn = document.getElementById('referral-btn');
+        if (referralBtn) {
+            referralBtn.onclick = () => {
+                if (data.referal_link) {
+                    navigator.clipboard.writeText(data.referal_link);
+                    referralBtn.textContent = 'Copied!';
+                    console.log('Referral link copied to clipboard:', data.referal_link);
+                    setTimeout(() => {
+                        referralBtn.textContent = 'Copy Referral Link';
+                    }, 2000);
+                }
+            };
+        }
+
+        document.getElementById('privilage-1-title').textContent = data.privilages[0]?.privilage_name || '';
+        document.getElementById('privilage-1-desc').textContent = data.privilages[0]?.privilage_desc || '';
+        document.getElementById('privilage-2-title').textContent = data.privilages[1]?.privilage_name || '';
+        document.getElementById('privilage-2-desc').textContent = data.privilages[1]?.privilage_desc || '';
+
     }
 
-// ── Guard ────────────────────────────────────────────────────
+
+    // ── Guard ────────────────────────────────────────────────────
     (function guard() {
 
         if (!getToken()) {

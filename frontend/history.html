@@ -1,552 +1,653 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Guest History | Gilded Serenity</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "surface": "#121414",
-                    "surface-container-lowest": "#0c0f0f",
-                    "surface-bright": "#37393a",
-                    "on-tertiary-fixed-variant": "#5d4201",
-                    "surface-dim": "#121414",
-                    "primary-fixed": "#ffe088",
-                    "on-tertiary-fixed": "#261900",
-                    "surface-container-highest": "#333535",
-                    "surface-tint": "#e9c349",
-                    "secondary-fixed-dim": "#c8c6c5",
-                    "surface-container-high": "#282a2b",
-                    "on-secondary-fixed": "#1c1b1b",
-                    "on-primary-fixed": "#241a00",
-                    "primary-fixed-dim": "#e9c349",
-                    "on-tertiary-container": "#5b4000",
-                    "secondary-container": "#474746",
-                    "primary-container": "#d4af37",
-                    "on-error-container": "#ffdad6",
-                    "inverse-on-surface": "#2f3131",
-                    "tertiary-fixed-dim": "#e9c176",
-                    "on-error": "#690005",
-                    "tertiary-container": "#d3ad65",
-                    "on-primary-fixed-variant": "#574500",
-                    "outline": "#99907c",
-                    "on-primary": "#3c2f00",
-                    "surface-container": "#1e2020",
-                    "primary": "#f2ca50",
-                    "outline-variant": "#4d4635",
-                    "error-container": "#93000a",
-                    "error": "#ffb4ab",
-                    "surface-container-low": "#1a1c1c",
-                    "tertiary-fixed": "#ffdea5",
-                    "on-secondary": "#313030",
-                    "on-background": "#e2e2e2",
-                    "secondary": "#c8c6c5",
-                    "on-tertiary": "#412d00",
-                    "on-surface-variant": "#d0c5af",
-                    "background": "#121414",
-                    "on-primary-container": "#554300",
-                    "inverse-surface": "#e2e2e2",
-                    "on-secondary-container": "#b7b5b4",
-                    "on-secondary-fixed-variant": "#474746",
-                    "secondary-fixed": "#e5e2e1",
-                    "tertiary": "#f1c97d",
-                    "surface-variant": "#333535",
-                    "inverse-primary": "#735c00",
-                    "on-surface": "#e2e2e2"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "container-padding-desktop": "64px",
-                    "stack-lg": "48px",
-                    "container-padding-mobile": "20px",
-                    "stack-md": "24px",
-                    "stack-sm": "12px",
-                    "gutter": "24px",
-                    "base": "8px"
-            },
-            "fontFamily": {
-                    "headline-lg-mobile": ["Playfair Display"],
-                    "label-lg": ["Manrope"],
-                    "body-md": ["Manrope"],
-                    "headline-xl": ["Playfair Display"],
-                    "label-sm": ["Manrope"],
-                    "headline-md": ["Playfair Display"],
-                    "headline-lg": ["Playfair Display"],
-                    "body-lg": ["Manrope"]
-            },
-            "fontSize": {
-                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
-                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
-                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
-                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
-            }
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Guest History | Gilded Serenity</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface": "#121414",
+            "surface-container-lowest": "#0c0f0f",
+            "surface-bright": "#37393a",
+            "on-tertiary-fixed-variant": "#5d4201",
+            "surface-dim": "#121414",
+            "primary-fixed": "#ffe088",
+            "on-tertiary-fixed": "#261900",
+            "surface-container-highest": "#333535",
+            "surface-tint": "#e9c349",
+            "secondary-fixed-dim": "#c8c6c5",
+            "surface-container-high": "#282a2b",
+            "on-secondary-fixed": "#1c1b1b",
+            "on-primary-fixed": "#241a00",
+            "primary-fixed-dim": "#e9c349",
+            "on-tertiary-container": "#5b4000",
+            "secondary-container": "#474746",
+            "primary-container": "#d4af37",
+            "on-error-container": "#ffdad6",
+            "inverse-on-surface": "#2f3131",
+            "tertiary-fixed-dim": "#e9c176",
+            "on-error": "#690005",
+            "tertiary-container": "#d3ad65",
+            "on-primary-fixed-variant": "#574500",
+            "outline": "#99907c",
+            "on-primary": "#3c2f00",
+            "surface-container": "#1e2020",
+            "primary": "#f2ca50",
+            "outline-variant": "#4d4635",
+            "error-container": "#93000a",
+            "error": "#ffb4ab",
+            "surface-container-low": "#1a1c1c",
+            "tertiary-fixed": "#ffdea5",
+            "on-secondary": "#313030",
+            "on-background": "#e2e2e2",
+            "secondary": "#c8c6c5",
+            "on-tertiary": "#412d00",
+            "on-surface-variant": "#d0c5af",
+            "background": "#121414",
+            "on-primary-container": "#554300",
+            "inverse-surface": "#e2e2e2",
+            "on-secondary-container": "#b7b5b4",
+            "on-secondary-fixed-variant": "#474746",
+            "secondary-fixed": "#e5e2e1",
+            "tertiary": "#f1c97d",
+            "surface-variant": "#333535",
+            "inverse-primary": "#735c00",
+            "on-surface": "#e2e2e2"
           },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "container-padding-desktop": "64px",
+            "stack-lg": "48px",
+            "container-padding-mobile": "20px",
+            "stack-md": "24px",
+            "stack-sm": "12px",
+            "gutter": "24px",
+            "base": "8px"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Playfair Display"],
+            "label-lg": ["Manrope"],
+            "body-md": ["Manrope"],
+            "headline-xl": ["Playfair Display"],
+            "label-sm": ["Manrope"],
+            "headline-md": ["Playfair Display"],
+            "headline-lg": ["Playfair Display"],
+            "body-lg": ["Manrope"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+          }
         },
-      }
-    </script>
-<style>
-        body {
-            background-color: #121414;
-            color: #e2e2e2;
-            -webkit-font-smoothing: antialiased;
-        }
-        .glass-panel {
-            background: rgba(30, 32, 32, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        .active-tab-indicator {
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: #f2ca50;
-        }
-        .hero-gradient {
-            background: linear-gradient(to bottom, rgba(18, 20, 20, 0) 0%, rgba(18, 20, 20, 1) 100%);
-        }
-        .ghost-border {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-    </style>
+      },
+    }
+  </script>
+  <style>
+    body {
+      background-color: #121414;
+      color: #e2e2e2;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .glass-panel {
+      background: rgba(30, 32, 32, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+
+    .active-tab-indicator {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #f2ca50;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(to bottom, rgba(18, 20, 20, 0) 0%, rgba(18, 20, 20, 1) 100%);
+    }
+
+    .ghost-border {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
 </head>
+
 <body class="font-body-md text-body-md overflow-x-hidden">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-container-padding-desktop py-4 bg-surface/80 backdrop-blur-xl border-b border-white/10 transition-all duration-300 ease-in-out">
-<div class="font-headline-md text-headline-md font-bold text-primary">BESTBLISS</div>
-<div class="hidden md:flex gap-8 items-center">
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="dashboard 1.html">Home</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="Dining 3.html">Services</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="stay 2.html">Stay</a>
-<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1" href="history.html">History</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="loyallty 3.html">Loyalty</a>
-</div>
-<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded font-label-lg hover:brightness-110 transition-all" onclick="handleLogout()">
-            Logout
+  <!-- TopNavBar -->
+  <nav
+    class="sticky z-[100] top-0 w-full bg-surface-dim/80 backdrop-blur-3xl border-b border-white/5 px-container-padding-mobile md:px-container-padding-desktop h-20 flex items-center justify-between">
+    <div class="flex items-center gap-12">
+      <span
+        class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
+      <div class="hidden md:flex items-center gap-8">
+        <a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active" href="dashboard.html">
+          <span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
+          <span>Home</span>
+        </a>
+        <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+          href="dining.html">
+          <span class="material-symbols-outlined text-[20px]" data-icon="restaurant">restaurant</span>
+          <span>Services <span class="text-[10px] opacity-60 ml-0.5">(Dining)</span></span>
+        </a>
+        <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+          href="stay.html">
+          <span class="material-symbols-outlined text-[20px]" data-icon="calendar_month">calendar_month</span>
+          <span>Stay <span class="text-[10px] opacity-60 ml-0.5">(Bookings)</span></span>
+        </a>
+        <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+          href="smart.html">
+          <span class="material-symbols-outlined text-[20px]" data-icon="settings_remote">settings_remote</span>
+          <span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
+        </a>
+        <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+          href="loyalty.html">
+          <span class="material-symbols-outlined text-[20px]" data-icon="workspace_premium">workspace_premium</span>
+          <span>Loyalty</span>
+        </a>
+        <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
+          href="history.html">
+          <span class="material-symbols-outlined text-[20px]">history</span>
+          <span>History</span>
+        </a>
+      </div>
+    </div>
+    <div class="flex items-center gap-6">
+      <div class="hidden lg:flex items-center gap-3 glass-surface px-4 py-2 rounded-full border-white/5">
+        <div
+          class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold"
+          id="user-initials">JD</div>
+        <span class="text-label-sm font-label-sm text-on-surface username">Guest</span>
+        <span class="w-1 h-1 bg-primary rounded-full"></span>
+        <span class="text-label-sm font-label-sm text-primary membership">Member</span>
+      </div>
+      <div class="flex gap-2">
+        <button
+          class="w-10 h-10 glass-surface rounded-full flex items-center justify-center hover:border-primary/50 transition-colors"
+          onclick="handleLogout()">
+          <span class="material-symbols-outlined text-on-surface-variant text-[20px]">logout</span>
         </button>
-</nav>
-<!-- Background Atmospheric Layer -->
-<div class="fixed inset-0 -z-10 h-screen w-full">
-<img class="w-full h-full object-cover opacity-30" data-alt="A luxurious hotel lobby at night with warm golden lighting reflecting on polished dark marble floors. Tall pillars and exquisite floral arrangements are visible in the background, creating an atmosphere of quiet exclusivity and prestige. The color palette is dominated by deep charcoals and glowing ambers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvZ6I-E5sEcRP7btMPbbodXZblgZf0Azl6dtKGdNUILvchnVeds_FUhyMG0jpdhFz4FEoGLXJ1cixQIWg3LGCc4dLOqC9K_w2DmJhVTCd13zJykhZh9HhTQiUZD9lX26rSMi7wusnzXNLGsUniiagsbT7yTZnCPP1Vrb_y3nkLHeauy82J4ydPy3Vmbl80snz-120csKzIJtJMa81sE8Gy9MzWlSO2VEYO9-BVQ5ikXPcb3J2nfrHf2lcMUVXBZo7WlEwbrSIFx-Ek"/>
-<div class="absolute inset-0 hero-gradient"></div>
-</div>
-<!-- Main Content -->
-<main class="pt-32 pb-20 px-container-padding-desktop max-w-[1200px] mx-auto min-h-screen">
-<!-- Header Section -->
-<header class="mb-12">
-<h1 class="font-headline-xl text-headline-xl text-white mb-2">Guest History</h1>
-<p class="font-body-lg text-on-surface-variant max-w-2xl">A curated archive of your journey with Gilded Serenity. Review past experiences, redemptions, and exclusive offers tailored to your prestige tier.</p>
-</header>
-<!-- The Curator (Tab Container) -->
-<section class="glass-panel rounded-xl overflow-hidden mb-8">
-<div class="flex border-b border-white/10 px-6">
-<button class="relative py-4 px-8 font-label-lg text-primary transition-all" id="tab-redemptions" onclick="switchTab('redemptions')">
-                    Redemptions
-                    <div class="active-tab-indicator" id="indicator-redemptions"></div>
-</button>
-<button class="relative py-4 px-8 font-label-lg text-on-surface-variant hover:text-primary transition-all" id="tab-orders" onclick="switchTab('orders')">
-                    Orders
-                    <div class="active-tab-indicator hidden" id="indicator-orders"></div>
-</button>
-<button class="relative py-4 px-8 font-label-lg text-on-surface-variant hover:text-primary transition-all" id="tab-offers" onclick="switchTab('offers')">
-                    Offers
-                    <div class="active-tab-indicator hidden" id="indicator-offers"></div>
-</button>
-<button class="relative py-4 px-8 font-label-lg text-on-surface-variant hover:text-primary transition-all" id="tab-activities" onclick="switchTab('activities')">
-                    Activities
-                    <div class="active-tab-indicator hidden" id="indicator-activities"></div>
-</button>
-</div>
-<!-- List Content -->
-<div class="p-2" id="history-container">
-<!-- Redemption Entries -->
-<div class="space-y-2 p-4" data-tab-content="redemptions">
-<div class="flex items-center justify-between p-4 rounded-lg ghost-border hover:bg-white/5 transition-all group">
-<div class="flex items-center gap-6">
-<div class="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-primary">
-<span class="material-symbols-outlined" data-icon="king_bed">king_bed</span>
-</div>
-<div>
-<h3 class="font-headline-md text-headline-md text-white">Royal Suite</h3>
-<p class="font-label-sm text-on-surface-variant">Redemption • Oct 14, 2024</p>
-</div>
-</div>
-<div class="text-right">
-<p class="font-headline-md text-primary">12,500 pts</p>
-<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Completed</p>
-</div>
-</div>
-</div>
-<!-- Order Entries (Initially Hidden) -->
-<div class="hidden space-y-2 p-4" data-tab-content="orders">
-<div class="flex items-center justify-between p-4 rounded-lg ghost-border hover:bg-white/5 transition-all group">
-<div class="flex items-center gap-6">
-<div class="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-primary">
-<span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
-</div>
-<div>
-<h3 class="font-headline-md text-headline-md text-white">Signature Wagyu Burger</h3>
-<p class="font-label-sm text-on-surface-variant">In-Room Dining • Aug 12, 2024</p>
-</div>
-</div>
-<div class="text-right">
-<p class="font-headline-md text-primary">$42.00</p>
-<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Charged to Room</p>
-</div>
-</div>
-</div>
-<!-- Offer Entries (Initially Hidden) -->
-<div class="hidden space-y-2 p-4" data-tab-content="offers">
-<div class="flex items-center justify-between p-4 rounded-lg ghost-border hover:bg-white/5 transition-all group">
-<div class="flex items-center gap-6">
-<div class="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-primary">
-<span class="material-symbols-outlined" data-icon="workspace_premium">workspace_premium</span>
-</div>
-<div>
-<h3 class="font-headline-md text-headline-md text-white">Club Lounge Access</h3>
-<p class="font-label-sm text-on-surface-variant">Tier Reward • Sept 28, 2024</p>
-</div>
-</div>
-<div class="text-right">
-<p class="font-headline-md text-primary">VIP Tier</p>
-<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Active Status</p>
-</div>
-</div>
-</div>
-<!-- Activities Entries (Empty State Sample) -->
-<div class="hidden p-12 text-center" data-tab-content="activities">
-<span class="material-symbols-outlined text-on-surface-variant/20 text-6xl mb-4" data-icon="calendar_today">calendar_today</span>
-<p class="font-body-md text-on-surface-variant">No activity records found for this period.</p>
-</div>
-</div>
-</section>
-<!-- Stats Grid (Bento Style) -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="glass-panel p-6 rounded-xl">
-<p class="font-label-sm text-on-surface-variant mb-2">Member Since</p>
-<h4 class="font-headline-md text-white">November 2022</h4>
-<div class="mt-4 h-1 w-full bg-white/5 rounded-full overflow-hidden">
-<div class="h-full bg-primary w-3/4"></div>
-</div>
-</div>
-<div class="glass-panel p-6 rounded-xl">
-<p class="font-label-sm text-on-surface-variant mb-2">Total Points</p>
-<h4 class="font-headline-md text-primary">48,250</h4>
-<p class="font-label-sm text-on-surface-variant mt-2">Next reward at 50,000</p>
-</div>
-<div class="glass-panel p-6 rounded-xl flex items-center justify-between">
-<div>
-<p class="font-label-sm text-on-surface-variant mb-2">Current Tier</p>
-<h4 class="font-headline-md text-white">Gilded Platinum</h4>
-</div>
-<div class="text-primary">
-<span class="material-symbols-outlined text-4xl" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
-</div>
-</div>
-</div>
-</main>
-<!-- Footer -->
-<footer class="w-full py-stack-lg px-container-padding-desktop flex flex-col md:flex-row justify-between items-center bg-surface-container-lowest border-t border-white/10">
-<div class="font-headline-sm text-headline-sm font-bold text-primary mb-6 md:mb-0">BESTBLISS</div>
-<div class="flex flex-wrap justify-center gap-8 mb-6 md:mb-0">
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Careers</a>
-</div>
-<div class="font-body-md text-body-md text-on-surface-variant opacity-80">© 2024 BESTBLISS Luxury Hotels. All rights reserved.</div>
-</footer>
-<script>
-        function switchTab(tabName) {
-            // Hide all content
-            document.querySelectorAll('[data-tab-content]').forEach(el => {
-                el.classList.add('hidden');
+      </div>
+    </div>
+  </nav>
+  <!-- Background Atmospheric Layer -->
+  <div class="fixed inset-0 -z-10 h-screen w-full">
+    <img class="w-full h-full object-cover opacity-30"
+      data-alt="A luxurious hotel lobby at night with warm golden lighting reflecting on polished dark marble floors. Tall pillars and exquisite floral arrangements are visible in the background, creating an atmosphere of quiet exclusivity and prestige. The color palette is dominated by deep charcoals and glowing ambers."
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvZ6I-E5sEcRP7btMPbbodXZblgZf0Azl6dtKGdNUILvchnVeds_FUhyMG0jpdhFz4FEoGLXJ1cixQIWg3LGCc4dLOqC9K_w2DmJhVTCd13zJykhZh9HhTQiUZD9lX26rSMi7wusnzXNLGsUniiagsbT7yTZnCPP1Vrb_y3nkLHeauy82J4ydPy3Vmbl80snz-120csKzIJtJMa81sE8Gy9MzWlSO2VEYO9-BVQ5ikXPcb3J2nfrHf2lcMUVXBZo7WlEwbrSIFx-Ek" />
+    <div class="absolute inset-0 hero-gradient"></div>
+  </div>
+  <!-- Main Content -->
+  <main class="pt-32 pb-20 px-container-padding-desktop max-w-[1200px] mx-auto min-h-screen">
+    <!-- Header Section -->
+    <header class="mb-12">
+      <h1 class="font-headline-xl text-headline-xl text-white mb-2">Guest History</h1>
+      <p class="font-body-lg text-on-surface-variant max-w-2xl">A curated archive of your journey with Gilded Serenity.
+        Review past experiences, redemptions, and exclusive offers tailored to your prestige tier.</p>
+    </header>
+    <!-- The Curator (Tab Container) -->
+    <section class="glass-panel rounded-xl overflow-hidden mb-8">
+      <div class="flex border-b border-white/10 px-6">
+        <button class="relative py-4 px-8 font-label-lg text-primary transition-all" id="tab-redemptions"
+          onclick="switchTab('redemptions')">
+          Redemptions
+          <div class="active-tab-indicator" id="indicator-redemptions"></div>
+        </button>
+        <button class="relative py-4 px-8 font-label-lg text-on-surface-variant hover:text-primary transition-all"
+          id="tab-orders" onclick="switchTab('orders')">
+          Orders
+          <div class="active-tab-indicator hidden" id="indicator-orders"></div>
+        </button>
+        <button class="relative py-4 px-8 font-label-lg text-on-surface-variant hover:text-primary transition-all"
+          id="tab-offers" onclick="switchTab('offers')">
+          Offers
+          <div class="active-tab-indicator hidden" id="indicator-offers"></div>
+        </button>
+        <button class="relative py-4 px-8 font-label-lg text-on-surface-variant hover:text-primary transition-all"
+          id="tab-activities" onclick="switchTab('activities')">
+          Activities
+          <div class="active-tab-indicator hidden" id="indicator-activities"></div>
+        </button>
+      </div>
+      <!-- List Content -->
+      <div class="p-2" id="history-container">
+        <!-- Redemption Entries -->
+        <div class="space-y-2 p-4" data-tab-content="redemptions">
+          <div
+            class="flex items-center justify-between p-4 rounded-lg ghost-border hover:bg-white/5 transition-all group">
+            <div class="flex items-center gap-6">
+              <div class="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-primary">
+                <span class="material-symbols-outlined" data-icon="king_bed">king_bed</span>
+              </div>
+              <div>
+                <h3 class="font-headline-md text-headline-md text-white">Royal Suite</h3>
+                <p class="font-label-sm text-on-surface-variant">Redemption • Oct 14, 2024</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-headline-md text-primary">12,500 pts</p>
+              <p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Completed</p>
+            </div>
+          </div>
+        </div>
+        <!-- Order Entries (Initially Hidden) -->
+        <div class="hidden space-y-2 p-4" data-tab-content="orders">
+          <div
+            class="flex items-center justify-between p-4 rounded-lg ghost-border hover:bg-white/5 transition-all group">
+            <div class="flex items-center gap-6">
+              <div class="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-primary">
+                <span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+              </div>
+              <div>
+                <h3 class="font-headline-md text-headline-md text-white">Signature Wagyu Burger</h3>
+                <p class="font-label-sm text-on-surface-variant">In-Room Dining • Aug 12, 2024</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-headline-md text-primary">$42.00</p>
+              <p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Charged to Room</p>
+            </div>
+          </div>
+        </div>
+        <!-- Offer Entries (Initially Hidden) -->
+        <div class="hidden space-y-2 p-4" data-tab-content="offers">
+          <div
+            class="flex items-center justify-between p-4 rounded-lg ghost-border hover:bg-white/5 transition-all group">
+            <div class="flex items-center gap-6">
+              <div class="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-primary">
+                <span class="material-symbols-outlined" data-icon="workspace_premium">workspace_premium</span>
+              </div>
+              <div>
+                <h3 class="font-headline-md text-headline-md text-white">Club Lounge Access</h3>
+                <p class="font-label-sm text-on-surface-variant">Tier Reward • Sept 28, 2024</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="font-headline-md text-primary">VIP Tier</p>
+              <p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Active Status</p>
+            </div>
+          </div>
+        </div>
+        <!-- Activities Entries (Empty State Sample) -->
+        <div class="hidden p-12 text-center" data-tab-content="activities">
+          <span class="material-symbols-outlined text-on-surface-variant/20 text-6xl mb-4"
+            data-icon="calendar_today">calendar_today</span>
+          <p class="font-body-md text-on-surface-variant">No activity records found for this period.</p>
+        </div>
+      </div>
+    </section>
+    <!-- Stats Grid (Bento Style) 
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-panel p-6 rounded-xl">
+        <p class="font-label-sm text-on-surface-variant mb-2">Member Since</p>
+        <h4 class="font-headline-md text-white">November 2022</h4>
+        <div class="mt-4 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+          <div class="h-full bg-primary w-3/4"></div>
+        </div>
+      </div>
+      <div class="glass-panel p-6 rounded-xl">
+        <p class="font-label-sm text-on-surface-variant mb-2">Total Points</p>
+        <h4 class="font-headline-md text-primary">48,250</h4>
+        <p class="font-label-sm text-on-surface-variant mt-2">Next reward at 50,000</p>
+      </div>
+      <div class="glass-panel p-6 rounded-xl flex items-center justify-between">
+        <div>
+          <p class="font-label-sm text-on-surface-variant mb-2">Current Tier</p>
+          <h4 class="font-headline-md text-white">Gilded Platinum</h4>
+        </div>
+        <div class="text-primary">
+          <span class="material-symbols-outlined text-4xl" data-icon="stars"
+            style="font-variation-settings: 'FILL' 1;">stars</span>
+        </div>
+      </div>
+    </div>-->
+  </main>
+  <!-- Footer -->
+  <footer
+    class="w-full py-stack-lg px-container-padding-desktop flex flex-col md:flex-row justify-between items-center bg-surface-container-lowest border-t border-white/10">
+    <div class="font-headline-sm text-headline-sm font-bold text-primary mb-6 md:mb-0">BESTBLISS</div>
+    <div class="flex flex-wrap justify-center gap-8 mb-6 md:mb-0">
+      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors"
+        href="#">Privacy Policy</a>
+      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms
+        of Service</a>
+      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors"
+        href="#">Contact Us</a>
+      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors"
+        href="#">Careers</a>
+    </div>
+    <div class="font-body-md text-body-md text-on-surface-variant opacity-80">© 2024 BESTBLISS Luxury Hotels. All rights
+      reserved.</div>
+  </footer>
+  <script>
+    function switchTab(tabName) {
+      // Hide all content
+      document.querySelectorAll('[data-tab-content]').forEach(el => {
+        el.classList.add('hidden');
+      });
+
+      // Show selected content
+      document.querySelector(`[data-tab-content="${tabName}"]`).classList.remove('hidden');
+
+      // Reset all tabs
+      document.querySelectorAll('button[id^="tab-"]').forEach(btn => {
+        btn.classList.remove('text-primary');
+        btn.classList.add('text-on-surface-variant');
+      });
+
+      // Hide all indicators
+      document.querySelectorAll('div[id^="indicator-"]').forEach(ind => {
+        ind.classList.add('hidden');
+      });
+
+      // Active state for selected
+      const activeTab = document.getElementById(`tab-${tabName}`);
+      activeTab.classList.add('text-primary');
+      activeTab.classList.remove('text-on-surface-variant');
+
+      const activeIndicator = document.getElementById(`indicator-${tabName}`);
+      activeIndicator.classList.remove('hidden');
+    }
+
+    // Initialize view with micro-interaction logic
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 20) {
+        nav.classList.add('py-2', 'bg-surface/95');
+        nav.classList.remove('py-4', 'bg-surface/80');
+      } else {
+        nav.classList.remove('py-2', 'bg-surface/95');
+        nav.classList.add('py-4', 'bg-surface/80');
+      }
+    });
+  </script>
+  <script>
+    // ============================================================
+    // HISTORY.HTML — BestBliss Guest History Logic
+    // Fetches data from actual Django backend endpoints
+    // Tokens stored as 'access' / 'refresh' in localStorage
+    // ============================================================
+    (function () {
+      "use strict";
+
+      const API = "http://127.0.0.1:8000/api";
+
+      function getToken() { return localStorage.getItem("access") || null; }
+      function getRefresh() { return localStorage.getItem("refresh") || null; }
+      function saveToken(a) { localStorage.setItem("access", a); }
+
+      // Make handleLogout available globally for the nav button
+      window.handleLogout = async function () {
+        try {
+          const refresh = getRefresh();
+          if (refresh) {
+            await fetch(API + "/logout/", {
+              method: "POST",
+              headers: { "Content-Type": "application/json", "Authorization": "Bearer " + getToken() },
+              body: JSON.stringify({ refresh })
             });
-            
-            // Show selected content
-            document.querySelector(`[data-tab-content="${tabName}"]`).classList.remove('hidden');
-            
-            // Reset all tabs
-            document.querySelectorAll('button[id^="tab-"]').forEach(btn => {
-                btn.classList.remove('text-primary');
-                btn.classList.add('text-on-surface-variant');
+          }
+        } catch (e) { }
+        localStorage.removeItem("access");
+        localStorage.removeItem("refresh");
+        window.location.href = "index.html";
+      };
+
+      function authHeaders() {
+        return {
+          "Content-Type": "application/json",
+          ...(getToken() ? { Authorization: "Bearer " + getToken() } : {}),
+        };
+      }
+
+      async function attemptTokenRefresh() {
+        const refresh = getRefresh();
+        if (!refresh) return false;
+        try {
+          const res = await fetch(API + "/refresh/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ refresh }),
+          });
+          if (!res.ok) return false;
+          const d = await res.json();
+          saveToken(d.access);
+          return true;
+        } catch (_) { return false; }
+      }
+
+      async function apiFetch(path) {
+        let res = await fetch(API + path, { headers: authHeaders() });
+        if (res.status === 401) {
+          const ok = await attemptTokenRefresh();
+          if (!ok) { window.location.href = "index.html"; return null; }
+          res = await fetch(API + path, { headers: authHeaders() });
+        }
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      }
+
+      // ── Icon/label maps ──────────────────────────────────────────
+      const ICONS = {
+        redemptions: "redeem",
+        orders: "restaurant",
+        offers: "workspace_premium",
+        activities: "calendar_today",
+      };
+
+      function formatDate(iso) {
+        if (!iso) return "\u2014";
+        return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+      }
+
+      // ── Build one entry row ──────────────────────────────────────
+      function buildEntryHTML(tab, item) {
+        const icon = ICONS[tab] || "star";
+        let title = "";
+        let label = "";
+        let value = "";
+        let status = "";
+        let date = formatDate(item.redemption_date || item.order_date || item.booking_date || item.created_at);
+
+        if (tab === "redemptions") {
+          // /orders/redemptions/ returns: { id, user, item (FK int or nested), redemption_date }
+          // If backend returns nested item object with item_name, use it. Otherwise fall back to id.
+          if (item.item && typeof item.item === "object" && item.item.item_name) {
+            title = item.item.item_name;
+            value = item.item.points_required ? Number(item.item.points_required).toLocaleString() + " pts" : "\u2014";
+          } else {
+            title = item.item_name || ("Redemption Item #" + (item.item || item.id || ""));
+            value = item.points_required ? Number(item.points_required).toLocaleString() + " pts" : "\u2014";
+          }
+          label = "Redemption";
+          status = "Completed";
+        } else if (tab === "orders") {
+          // /orders/food/ returns: { id, user, items (list of FK ints or nested), total_price, order_date }
+          // If items are nested objects, list their names. Otherwise show total.
+          var itemNames = [];
+          if (item.items && Array.isArray(item.items)) {
+            item.items.forEach(function (it) {
+              if (it && typeof it === "object" && it.item_name) {
+                itemNames.push(it.item_name);
+              }
             });
-            
-            // Hide all indicators
-            document.querySelectorAll('div[id^="indicator-"]').forEach(ind => {
-                ind.classList.add('hidden');
-            });
-            
-            // Active state for selected
-            const activeTab = document.getElementById(`tab-${tabName}`);
-            activeTab.classList.add('text-primary');
-            activeTab.classList.remove('text-on-surface-variant');
-            
-            const activeIndicator = document.getElementById(`indicator-${tabName}`);
-            activeIndicator.classList.remove('hidden');
+          }
+          title = itemNames.length > 0 ? itemNames.join(", ") : ("Food Order #" + (item.id || ""));
+          label = "In-Room Dining";
+          value = item.total_price != null ? "$" + Number(item.total_price).toFixed(2) : "\u2014";
+          status = "Charged to Room";
+        } else if (tab === "offers") {
+          // /orders/offers/ returns: { id, user, offer (FK int or nested), order_date }
+          if (item.offer && typeof item.offer === "object" && item.offer.plan_name) {
+            title = item.offer.offer_title || item.offer.plan_name;
+            value = item.offer.plan_name;
+          } else {
+            title = item.offer_title || item.offer_name || ("Membership Offer #" + (item.offer || item.id || ""));
+            value = item.membership || "Member Benefit";
+          }
+          label = "Member Offer";
+          status = "Active";
+        } else if (tab === "activities") {
+          // /orders/events/ returns: { id, user, event (FK int or nested), booking_date }
+          if (item.event && typeof item.event === "object" && item.event.event_name) {
+            title = item.event.event_name;
+            value = item.event.event_location || "Hotel Event";
+          } else {
+            title = item.event_name || ("Event Booking #" + (item.event || item.id || ""));
+            value = item.event_location || "Hotel Event";
+          }
+          label = "Event Booking";
+          status = "Booked";
         }
 
-        // Initialize view with micro-interaction logic
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 20) {
-                nav.classList.add('py-2', 'bg-surface/95');
-                nav.classList.remove('py-4', 'bg-surface/80');
-            } else {
-                nav.classList.remove('py-2', 'bg-surface/95');
-                nav.classList.add('py-4', 'bg-surface/80');
-            }
-        });
-    </script>
-<script>
-// ============================================================
-// HISTORY.HTML — BestBliss Guest History Logic
-// Fetches data from actual Django backend endpoints
-// Tokens stored as 'access' / 'refresh' in localStorage
-// ============================================================
-(function () {
-  "use strict";
-
-  const API = "http://127.0.0.1:8000/api";
-
-  function getToken()   { return localStorage.getItem("access") || null; }
-  function getRefresh() { return localStorage.getItem("refresh") || null; }
-  function saveToken(a) { localStorage.setItem("access", a); }
-
-  // Make handleLogout available globally for the nav button
-  window.handleLogout = async function() {
-    try {
-      const refresh = getRefresh();
-      if (refresh) {
-        await fetch(API + "/logout/", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Authorization": "Bearer " + getToken() },
-          body: JSON.stringify({ refresh })
-        });
-      }
-    } catch(e) {}
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    window.location.href = "Login 0.html";
-  };
-
-  function authHeaders() {
-    return {
-      "Content-Type": "application/json",
-      ...(getToken() ? { Authorization: "Bearer " + getToken() } : {}),
-    };
-  }
-
-  async function attemptTokenRefresh() {
-    const refresh = getRefresh();
-    if (!refresh) return false;
-    try {
-      const res = await fetch(API + "/refresh/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ refresh }),
-      });
-      if (!res.ok) return false;
-      const d = await res.json();
-      saveToken(d.access);
-      return true;
-    } catch (_) { return false; }
-  }
-
-  async function apiFetch(path) {
-    let res = await fetch(API + path, { headers: authHeaders() });
-    if (res.status === 401) {
-      const ok = await attemptTokenRefresh();
-      if (!ok) { window.location.href = "Login 0.html"; return null; }
-      res = await fetch(API + path, { headers: authHeaders() });
-    }
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    return res.json();
-  }
-
-  // ── Icon/label maps ──────────────────────────────────────────
-  const ICONS = {
-    redemptions: "redeem",
-    orders:      "restaurant",
-    offers:      "workspace_premium",
-    activities:  "calendar_today",
-  };
-
-  function formatDate(iso) {
-    if (!iso) return "\u2014";
-    return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-  }
-
-  // ── Build one entry row ──────────────────────────────────────
-  function buildEntryHTML(tab, item) {
-    const icon = ICONS[tab] || "star";
-    let title  = item.title || item.item_name || item.offer || item.event || item.room_number || "\u2014";
-    let label  = "";
-    let value  = "";
-    let status = "";
-    let date   = formatDate(item.redemption_date || item.order_date || item.booking_date || item.created_at);
-
-    if (tab === "redemptions") {
-      // item from /orders/redemptions/ — has item (FK id), redemption_date
-      title  = item.item_name || ("Redemption #" + (item.id || ""));
-      label  = "Redemption";
-      value  = item.points_required ? Number(item.points_required).toLocaleString() + " pts" : "\u2014";
-      status = "Completed";
-    } else if (tab === "orders") {
-      // item from /orders/food/ — has total_price, order_date
-      title  = "Food Order #" + (item.id || "");
-      label  = "In-Room Dining";
-      value  = item.total_price ? "$" + Number(item.total_price).toFixed(2) : "\u2014";
-      status = "Charged to Room";
-    } else if (tab === "offers") {
-      // item from /orders/offers/ — has offer (FK id), order_date
-      title  = item.offer_name || ("Offer #" + (item.id || ""));
-      label  = "Member Offer";
-      value  = "COMPLIMENTARY";
-      status = "Active";
-    } else if (tab === "activities") {
-      // item from /orders/events/ — has event (FK id), booking_date
-      title  = item.event_name || ("Event #" + (item.id || ""));
-      label  = "Event Booking";
-      value  = "FREE";
-      status = "Booked";
-    }
-
-    return '<div class="flex items-center justify-between p-4 rounded-lg ghost-border hover:bg-white/5 transition-all group">' +
-      '<div class="flex items-center gap-6">' +
-        '<div class="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-primary">' +
+        return '<div class="flex items-center justify-between p-4 rounded-lg ghost-border hover:bg-white/5 transition-all group">' +
+          '<div class="flex items-center gap-6">' +
+          '<div class="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-primary">' +
           '<span class="material-symbols-outlined">' + icon + '</span>' +
-        '</div>' +
-        '<div>' +
+          '</div>' +
+          '<div>' +
           '<h3 class="font-headline-md text-headline-md text-white">' + title + '</h3>' +
           '<p class="font-label-sm text-on-surface-variant">' + label + ' \u2022 ' + date + '</p>' +
-        '</div>' +
-      '</div>' +
-      '<div class="text-right">' +
-        '<p class="font-headline-md text-primary">' + value + '</p>' +
-        '<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">' + status + '</p>' +
-      '</div>' +
-    '</div>';
-  }
+          '</div>' +
+          '</div>' +
+          '<div class="text-right">' +
+          '<p class="font-headline-md text-primary">' + value + '</p>' +
+          '<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">' + status + '</p>' +
+          '</div>' +
+          '</div>';
+      }
 
-  function buildEmptyHTML() {
-    return '<div class="p-12 text-center">' +
-      '<span class="material-symbols-outlined text-on-surface-variant/20 text-6xl mb-4">calendar_today</span>' +
-      '<p class="font-body-md text-on-surface-variant">No records found for this period.</p>' +
-    '</div>';
-  }
+      function buildEmptyHTML() {
+        return '<div class="p-12 text-center">' +
+          '<span class="material-symbols-outlined text-on-surface-variant/20 text-6xl mb-4">calendar_today</span>' +
+          '<p class="font-body-md text-on-surface-variant">No records found for this period.</p>' +
+          '</div>';
+      }
 
-  function buildSkeletonHTML() {
-    return Array.from({ length: 2 }, () =>
-      '<div class="flex items-center justify-between p-4 rounded-lg ghost-border animate-pulse">' +
-        '<div class="flex items-center gap-6">' +
+      function buildSkeletonHTML() {
+        return Array.from({ length: 2 }, () =>
+          '<div class="flex items-center justify-between p-4 rounded-lg ghost-border animate-pulse">' +
+          '<div class="flex items-center gap-6">' +
           '<div class="w-12 h-12 rounded-full bg-white/5"></div>' +
           '<div class="space-y-2">' +
-            '<div class="h-4 w-40 bg-white/5 rounded"></div>' +
-            '<div class="h-3 w-24 bg-white/5 rounded"></div>' +
+          '<div class="h-4 w-40 bg-white/5 rounded"></div>' +
+          '<div class="h-3 w-24 bg-white/5 rounded"></div>' +
           '</div>' +
-        '</div>' +
-        '<div class="text-right space-y-2">' +
+          '</div>' +
+          '<div class="text-right space-y-2">' +
           '<div class="h-4 w-20 bg-white/5 rounded ml-auto"></div>' +
           '<div class="h-3 w-16 bg-white/5 rounded ml-auto"></div>' +
-        '</div>' +
-      '</div>'
-    ).join("");
-  }
-
-  // ── Endpoint per tab ─────────────────────────────────────────
-  const TAB_ENDPOINTS = {
-    redemptions: "/orders/redemptions/",
-    orders:      "/orders/food/",
-    offers:      "/orders/offers/",
-    activities:  "/orders/events/",
-  };
-
-  const cache = {};
-
-  async function loadTab(tabName) {
-    const container = document.querySelector('[data-tab-content="' + tabName + '"]');
-    if (!container) return;
-    if (cache[tabName]) { container.innerHTML = cache[tabName]; return; }
-
-    container.innerHTML = '<div class="space-y-2">' + buildSkeletonHTML() + '</div>';
-
-    const path = TAB_ENDPOINTS[tabName];
-    if (!path) return;
-
-    try {
-      const data = await apiFetch(path);
-      if (!data) return;
-
-      const items = Array.isArray(data)
-        ? data : (data.results || data.orders || data.offers || data.events || data.redemptions || []);
-
-      let html;
-      if (!items || items.length === 0) {
-        html = buildEmptyHTML();
-      } else {
-        html = '<div class="space-y-2">' + items.map(function(item) { return buildEntryHTML(tabName, item); }).join("") + '</div>';
+          '</div>' +
+          '</div>'
+        ).join("");
       }
-      cache[tabName] = html;
-      container.innerHTML = html;
 
-    } catch (err) {
-      container.innerHTML =
-        '<div class="p-8 text-center">' +
-          '<p class="font-body-md text-error">Failed to load records. Please try again.</p>' +
-          '<button onclick="loadTab(\'' + tabName + '\')" class="mt-4 text-primary font-label-lg text-xs uppercase tracking-wider">Retry</button>' +
-        '</div>';
-    }
-  }
+      // ── Endpoint per tab ─────────────────────────────────────────
+      const TAB_ENDPOINTS = {
+        redemptions: "/orders/redemptions/",
+        orders: "/orders/food/",
+        offers: "/orders/offers/",
+        activities: "/orders/events/",
+      };
 
-  // ── Hook into existing switchTab ─────────────────────────────
-  var _origSwitch = window.switchTab;
-  window.switchTab = function (tabName) {
-    _origSwitch(tabName);
-    loadTab(tabName);
-  };
+      const cache = {};
 
-  // ── Read tab from URL (e.g. history.html?tab=offers) ─────────
-  function resolveInitialTab() {
-    const p = new URLSearchParams(window.location.search);
-    var tab = p.get("tab");
-    // Map order.html categories to history tabs
-    var MAP = { rooms: "orders", redemption: "redemptions", offers: "offers", events: "activities" };
-    return MAP[tab] || tab || "redemptions";
-  }
+      async function loadTab(tabName) {
+        const container = document.querySelector('[data-tab-content="' + tabName + '"]');
+        if (!container) return;
+        if (cache[tabName]) { container.innerHTML = cache[tabName]; return; }
 
-  // ── Init ─────────────────────────────────────────────────────
-  document.addEventListener("DOMContentLoaded", function () {
-    if (!getToken()) { window.location.href = "Login 0.html"; return; }
+        container.innerHTML = '<div class="space-y-2">' + buildSkeletonHTML() + '</div>';
 
-    var initialTab = resolveInitialTab();
-    // Switch to the correct tab visually and load its data
-    _origSwitch(initialTab);
-    loadTab(initialTab);
-  });
-})();
-</script>
-</body></html>
+        const path = TAB_ENDPOINTS[tabName];
+        if (!path) return;
+
+        try {
+          const data = await apiFetch(path);
+          if (!data) return;
+
+          const items = Array.isArray(data)
+            ? data : (data.results || data.orders || data.offers || data.events || data.redemptions || []);
+
+          let html;
+          if (!items || items.length === 0) {
+            html = buildEmptyHTML();
+          } else {
+            html = '<div class="space-y-2">' + items.map(function (item) { return buildEntryHTML(tabName, item); }).join("") + '</div>';
+          }
+          cache[tabName] = html;
+          container.innerHTML = html;
+
+        } catch (err) {
+          container.innerHTML =
+            '<div class="p-8 text-center">' +
+            '<p class="font-body-md text-error">Failed to load records. Please try again.</p>' +
+            '<button onclick="loadTab(\'' + tabName + '\')" class="mt-4 text-primary font-label-lg text-xs uppercase tracking-wider">Retry</button>' +
+            '</div>';
+        }
+      }
+
+      // ── Hook into existing switchTab ─────────────────────────────
+      var _origSwitch = window.switchTab;
+      window.switchTab = function (tabName) {
+        _origSwitch(tabName);
+        loadTab(tabName);
+      };
+
+      // ── Read tab from URL (e.g. history.html?tab=offers) ─────────
+      function resolveInitialTab() {
+        const p = new URLSearchParams(window.location.search);
+        var tab = p.get("tab");
+        // Map order.html categories to history tabs
+        var MAP = { rooms: "orders", redemption: "redemptions", offers: "offers", events: "activities" };
+        return MAP[tab] || tab || "redemptions";
+      }
+
+      // ── Init ─────────────────────────────────────────────────────
+      document.addEventListener("DOMContentLoaded", function () {
+        if (!getToken()) { window.location.href = "index.html"; return; }
+
+        var initialTab = resolveInitialTab();
+        // Switch to the correct tab visually and load its data
+        _origSwitch(initialTab);
+        loadTab(initialTab);
+      });
+    })();
+  </script>
+</body>
+
+</html>

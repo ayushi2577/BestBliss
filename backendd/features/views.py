@@ -62,7 +62,7 @@ def stay(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getrooms(request):
-    query=Rooms.objects.all()
+    query=Rooms.objects.filter(availability=True)
     serializer=RoomSerializer(query,many=True)
     return Response(serializer.data)
 
@@ -70,7 +70,7 @@ def getrooms(request):
 @permission_classes([IsAuthenticated])
 def loyalty(request):
     Redemption_query=Redemption_items.objects.all()
-    redemption_items=RedemptionitemsSerializer(Redemption_query,many=True).data
+    Redemption_items=RedemptionitemsSerializer(Redemption_query,many=True).data
     membership=request.user.membership
     point=request.user.reward_points
     referal_link=request.user.referal_link
@@ -83,7 +83,7 @@ def loyalty(request):
         "referal_link":referal_link,
         "privilages":privilages,
         "points_needed":points_needed,
-        "redemption_items":redemption_items
+        "redemption_items":Redemption_items
     })
 
 

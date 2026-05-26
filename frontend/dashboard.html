@@ -152,29 +152,30 @@
                     class="text-headline-md font-headline-md tracking-tighter text-primary font-black uppercase">BESTBLISS</span>
                 <div class="hidden md:flex items-center gap-8">
                     <a class="flex items-center gap-2 font-label-lg text-label-lg nav-link-active"
-                        href="dashboard 1.html">
+                        href="dashboard.html">
                         <span class="material-symbols-outlined text-[20px]" data-icon="home">home</span>
                         <span>Home</span>
                     </a>
                     <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
-                        href="Dining 3.html">
+                        href="dining.html">
+
                         <span class="material-symbols-outlined text-[20px]" data-icon="restaurant">restaurant</span>
                         <span>Services <span class="text-[10px] opacity-60 ml-0.5">(Dining)</span></span>
                     </a>
                     <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
-                        href="stay 2.html">
+                        href="stay.html">
                         <span class="material-symbols-outlined text-[20px]"
                             data-icon="calendar_month">calendar_month</span>
                         <span>Stay <span class="text-[10px] opacity-60 ml-0.5">(Bookings)</span></span>
                     </a>
                     <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
-                        href="smart room control 4.html">
+                        href="smart.html">
                         <span class="material-symbols-outlined text-[20px]"
                             data-icon="settings_remote">settings_remote</span>
                         <span>Smart <span class="text-[10px] opacity-60 ml-0.5">(Controls)</span></span>
                     </a>
                     <a class="flex items-center gap-2 font-label-lg text-label-lg text-on-surface-variant/60 hover:text-primary transition-colors group"
-                        href="loyallty 3.html">
+                        href="loyalty.html">
                         <span class="material-symbols-outlined text-[20px]"
                             data-icon="workspace_premium">workspace_premium</span>
                         <span>Loyalty</span>
@@ -428,7 +429,7 @@
         return res.json();
     }
 
-    function redirectLogin() { clearTokens(); window.location.href = 'Login 0.html'; }
+    function redirectLogin() { clearTokens(); window.location.href = 'index.html'; }
 
     async function handleLogout() {
         try {
@@ -452,13 +453,42 @@
         localStorage.setItem('membership', data.membership_status);
         localStorage.setItem('user_initials', initialsEl.textContent);
 
-        document.getElementById('offer_title').textContent = data.offer[0].offer_title || 'Afternoon Relaxation';
-        document.getElementById('offer_desc').textContent = data.offer[0].offer_description || 'Enjoy a complimentary 30-minute hydrotherapy session. Available daily until 4 PM.';
+        const offerData = data.offer && data.offer[0] ? data.offer[0] : {};
+        document.getElementById('offer_title').textContent = offerData.offer_title || 'Member Exclusive Offer';
+        document.getElementById('offer_desc').textContent = offerData.offer_description || 'Enjoy your exclusive member benefit.';
+        // If backend returns the membership_plans PK in the offer (after backend fix), use it directly.
+        // Otherwise fall back to tier_level proxy via /loyalty/.
+        if (offerData.id != null) {
+            localStorage.setItem('dashboard_offer_id',    offerData.id);
+            localStorage.setItem('dashboard_offer_title', offerData.offer_title || '');
+            localStorage.setItem('dashboard_offer_desc',  offerData.offer_description || '');
+        }
+        apiFetch('/loyalty/').then(function(loyaltyData) {
+            if (loyaltyData) {
+                if (loyaltyData.reward_points != null) {
+                    localStorage.setItem('reward_points', loyaltyData.reward_points);
+                }
+                // Use tier_level as membership_plans PK proxy ONLY if we didn't get a real id above
+                if (offerData.id == null && loyaltyData.privilages && loyaltyData.privilages[0]) {
+                    const priv = loyaltyData.privilages[0];
+                    const tierLevel = priv.tier_level;
+                    if (tierLevel != null) {
+                        localStorage.setItem('dashboard_offer_id',    tierLevel);
+                        localStorage.setItem('dashboard_offer_title', offerData.offer_title || priv.privilage_name || '');
+                        localStorage.setItem('dashboard_offer_desc',  offerData.offer_description || priv.privilage_desc || '');
+                        localStorage.setItem('user_tier_level',       tierLevel);
+                    }
+                }
+            }
+        }).catch(function(){});
         document.getElementById('event_name').textContent = data.event[0].event_name || 'The Golden Hour';
         console.log(data.event[0].event_name);
         document.getElementById('event_desc').textContent = data.event[0].event_description || 'Small-batch bourbon, elderflower, honey, and 24k gold leaf flakes.';
         document.getElementById('event_location').textContent = data.event[0].event_location || 'The Alchemist’s Rooftop';
         document.getElementById('event_time').textContent = data.event[0].event_time || '01:00 AM';
+        if (data.event[0] && data.event[0].id != null) {
+            localStorage.setItem('dashboard_event_id', data.event[0].id);
+        }
         document.getElementById('UIdate').textContent = formattedToday;
 
         memberEl.textContent = data.membership_status || '';
@@ -473,10 +503,14 @@
     document.addEventListener('DOMContentLoaded', populateNavUser);
 
     function bookOffer() {
-        const title = document.getElementById('offer_title').textContent;
-        const desc  = document.getElementById('offer_desc').textContent;
+        const title      = localStorage.getItem('dashboard_offer_title') || document.getElementById('offer_title').textContent;
+        const desc       = localStorage.getItem('dashboard_offer_desc')  || document.getElementById('offer_desc').textContent;
         const membership = localStorage.getItem('membership') || '';
-        const offerId = localStorage.getItem('dashboard_offer_id') || '';
+        const offerId    = localStorage.getItem('dashboard_offer_id') || '';
+        if (!offerId) {
+            alert('Offer details are still loading. Please wait a moment and try again.');
+            return;
+        }
         const params = new URLSearchParams({
             category:    'offers',
             offer_title: title,
@@ -493,6 +527,13 @@
         const location = document.getElementById('event_location').textContent;
         const time     = document.getElementById('event_time').textContent;
         const eventId  = localStorage.getItem('dashboard_event_id') || '';
+        if (!eventId) {
+            alert('Event details are still loading. Please wait a moment and try again.');
+            return;
+        }
+        // NOTE: Only weekly_events can be booked (backend EventBooking FK points to weekly_events).
+        // Special events (event_date specific) are display-only. The dashboard shows either
+        // today's special event OR today's weekly event. If an event id is available, it is safe to book.
         const params = new URLSearchParams({
             category:       'events',
             event_name:     name,

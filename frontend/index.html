@@ -217,7 +217,7 @@ function saveTokens(a, r) {
 
 // If already logged in, go to dashboard
 if (localStorage.getItem('access')) {
-  window.location.href = 'dashboard 1.html';
+  window.location.href = 'dashboard.html';
 }
 
 async function handleLogin(e) {
@@ -251,7 +251,7 @@ async function handleLogin(e) {
     const data = await res.json();
     saveTokens(data.access, data.refresh);
     console.log('[BestBliss] Login successful, redirecting to dashboard.');
-    window.location.href = 'dashboard 1.html';
+    window.location.href = 'dashboard.html';
   } catch(e) {
     console.error('[BestBliss] Login network error:', e);
     if (errEl) errEl.textContent = 'Network error. Please try again.';

@@ -96,11 +96,6 @@ class OrdersSerializer(serializers.ModelSerializer):
         order = Orders.objects.create(user=user, total_price=total)
         order.items.set(items)
         return order
-    
-    def to_representation(self, instance):
-        rep = super().to_representation(instance)
-        rep['items'] = Food_menuSerializer(instance.items.all(), many=True).data
-        return rep
 
     
 class OfferorderSerializer(serializers.ModelSerializer):
@@ -151,10 +146,11 @@ class RedemptionSerializer(serializers.ModelSerializer):
         read_only_fields=['user']  #allow validate to not expect these feilds from request data as they will be calculated in create method
 
     def validate(self,data):
-        
         item=data.get('item')
         if not item:
             raise serializers.ValidationError("Redemption item must be selected.")
+        if not Redemption_items.objects.filter(item_name=item).exists():
+            raise serializers.ValidationError(f"Redemption item '{item}' does not exist.")
         return data
     
     def create(self, validated_data):
