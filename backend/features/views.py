@@ -30,7 +30,7 @@ def Dashboard(request):
     event=serializer.data
 
     offer=membership_plans.objects.filter(plan_name=request.user.membership)
-    offer_serializer=Membership_planSerializer(offer,fields=['offer_title','offer_description'],many=True)
+    offer_serializer=Membership_planSerializer(offer,fields=['id','offer_title','offer_description'],many=True)
     offer=offer_serializer.data
 
     return Response({
