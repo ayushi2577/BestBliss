@@ -63,7 +63,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database — uses DATABASE_URL env var on Render, falls back to SQLite locally
 DATABASES = {
     'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        engine='django.db.backends.postgresql'
     )
 }
 
