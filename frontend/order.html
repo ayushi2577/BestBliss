@@ -332,22 +332,24 @@
 <div class="mt-12 mb-10">
 <!-- Pricing Summary -->
 <div class="flex items-center justify-between py-4 border-y border-white/5">
-<p class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-[0.2em]">Estimated Stay Total</p>
+<p class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-[0.2em]" id="price-label">Total</p>
 <div class="flex items-baseline gap-2">
-<span class="font-headline-md text-[28px] text-primary font-semibold">$6,200</span>
-<span class="font-label-sm text-[10px] text-on-surface-variant opacity-60 uppercase">USD</span>
+<span class="font-headline-md text-[28px] text-primary font-semibold" id="price-display">—</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant opacity-60 uppercase" id="price-unit"></span>
 </div>
 </div>
 <!-- CTA Section -->
 <div class="mt-8 space-y-4">
-<button class="w-full bg-primary text-on-primary rounded-lg font-label-lg text-label-lg uppercase tracking-[0.3em] hover:brightness-110 active:scale-[0.99] transition-all shadow-[0_15px_40px_rgba(242,202,80,0.15)] py-4" type="submit">
-                            Complete Reservation
+<!-- Points affordability / info banner -->
+<div id="points-status-banner" class="hidden rounded-lg p-3 text-center text-[12px] font-label-lg uppercase tracking-wider"></div>
+<button class="w-full bg-primary text-on-primary rounded-lg font-label-lg text-label-lg uppercase tracking-[0.3em] hover:brightness-110 active:scale-[0.99] transition-all shadow-[0_15px_40px_rgba(242,202,80,0.15)] py-4" type="submit" id="submit-btn">
+                            Reserve Now
                         </button>
 <div class="flex flex-col items-center gap-1">
-<p class="font-label-sm text-[9px] text-on-surface-variant opacity-60 uppercase tracking-[0.15em]">
-                                Secure Checkout — Encrypted SSL Connection
+<p class="font-label-sm text-[9px] text-on-surface-variant opacity-60 uppercase tracking-[0.15em]" id="cta-subtext">
+                                Secure — Encrypted SSL Connection
                             </p>
-<p class="font-label-sm text-[9px] text-on-surface-variant opacity-40">
+<p class="font-label-sm text-[9px] text-on-surface-variant opacity-40" id="cta-subtext2">
                                 No immediate payment required. Free cancellation 48h prior.
                             </p>
 </div>
@@ -502,20 +504,106 @@
             checkOutInput.value = d.toISOString().split("T")[0];
           }
         }
+        recalcRoomPrice();
+      });
+    }
+    if (checkOutInput) {
+      checkOutInput.addEventListener("change", function() {
+        recalcRoomPrice();
       });
     }
 
-    // Price display
-    const priceEl = document.querySelector(".font-headline-md");
-    if (priceEl) {
-      if (params.category === "events") {
-        priceEl.textContent = "FREE";
-      } else if (params.category === "offers" && params.offer_title) {
-        priceEl.textContent = "COMPLIMENTARY";
-      } else if (params.price) {
-        priceEl.textContent = "$" + Number(params.price).toLocaleString();
+    // ── Price + Button per category ──────────────────────────────
+    var priceLabel   = document.getElementById("price-label");
+    var priceDisplay = document.getElementById("price-display");
+    var priceUnit    = document.getElementById("price-unit");
+    var submitBtn    = document.getElementById("submit-btn");
+    var ctaSub       = document.getElementById("cta-subtext");
+    var ctaSub2      = document.getElementById("cta-subtext2");
+
+    function updatePriceAndButton(category) {
+      if (category === "rooms") {
+        if (priceLabel)   priceLabel.textContent   = "Estimated Stay Total";
+        if (priceDisplay) priceDisplay.textContent = "Select dates";
+        if (priceUnit)    priceUnit.textContent     = "";
+        if (submitBtn)    submitBtn.textContent     = "Reserve Now";
+        if (ctaSub)       ctaSub.textContent        = "Secure — Encrypted SSL Connection";
+        if (ctaSub2)      ctaSub2.textContent       = "No immediate payment required. Free cancellation 48h prior.";
+        recalcRoomPrice();
+      } else if (category === "events") {
+        if (priceLabel)   priceLabel.textContent   = "Event Entry";
+        if (priceDisplay) { priceDisplay.textContent = "FREE"; priceDisplay.style.color = "#f2ca50"; }
+        if (priceUnit)    priceUnit.textContent     = "";
+        if (submitBtn)    submitBtn.textContent     = "Register for Event";
+        if (ctaSub)       ctaSub.textContent        = "Complimentary — Included with your membership";
+        if (ctaSub2)      ctaSub2.textContent       = "Your spot will be reserved instantly.";
+      } else if (category === "offers") {
+        if (priceLabel)   priceLabel.textContent   = "Offer Cost";
+        if (priceDisplay) { priceDisplay.textContent = "FREE"; priceDisplay.style.color = "#f2ca50"; }
+        if (priceUnit)    priceUnit.textContent     = "";
+        if (submitBtn)    submitBtn.textContent     = "Claim Offer";
+        if (ctaSub)       ctaSub.textContent        = "Complimentary — Included with your membership tier";
+        if (ctaSub2)      ctaSub2.textContent       = "";
+      } else if (category === "redemption") {
+        var pts = Number(params.points_required || 0);
+        if (priceLabel)   priceLabel.textContent   = "Points Required";
+        if (priceDisplay) { priceDisplay.textContent = pts.toLocaleString() + " pts"; priceDisplay.style.fontSize = "22px"; }
+        if (priceUnit)    priceUnit.textContent     = "";
+        if (submitBtn)    submitBtn.textContent     = "Redeem Reward";
+        if (ctaSub)       ctaSub.textContent        = "Points will be deducted from your balance upon confirmation";
+        if (ctaSub2)      ctaSub2.textContent       = "";
+        // Points affordability check
+        var userPts = Number(localStorage.getItem("reward_points") || 0);
+        var banner  = document.getElementById("points-status-banner");
+        if (banner && pts > 0) {
+          banner.classList.remove("hidden");
+          if (userPts >= pts) {
+            banner.style.cssText = "background:rgba(212,175,55,0.12);color:#f2ca50;border:1px solid rgba(242,202,80,0.3);border-radius:8px;padding:10px;text-align:center;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;";
+            banner.innerHTML = '<span class="material-symbols-outlined" style="font-size:14px;vertical-align:middle;margin-right:4px;font-variation-settings:\'FILL\' 1">check_circle</span>You have enough points (' + userPts.toLocaleString() + ' available)';
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.classList.remove("opacity-40","cursor-not-allowed"); }
+          } else {
+            banner.style.cssText = "background:rgba(147,0,10,0.15);color:#ffb4ab;border:1px solid rgba(255,180,171,0.3);border-radius:8px;padding:10px;text-align:center;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;";
+            banner.innerHTML = '<span class="material-symbols-outlined" style="font-size:14px;vertical-align:middle;margin-right:4px;">lock</span>Insufficient points — need ' + (pts - userPts).toLocaleString() + ' more pts (you have ' + userPts.toLocaleString() + ')';
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.classList.add("opacity-40","cursor-not-allowed"); submitBtn.classList.remove("hover:brightness-110","active:scale-[0.99]"); }
+          }
+        }
       }
     }
+
+    // Room price calculation based on check-in/out dates and room price param
+    function recalcRoomPrice() {
+      var checkInEl  = document.getElementById("check_in_date");
+      var checkOutEl = document.getElementById("check_out_date");
+      var checkIn    = checkInEl  ? checkInEl.value  : params.check_in;
+      var checkOut   = checkOutEl ? checkOutEl.value : params.check_out;
+      var pricePerNight = Number(params.price || 0);
+      if (priceDisplay) {
+        if (checkIn && checkOut && pricePerNight > 0) {
+          var d1    = new Date(checkIn);
+          var d2    = new Date(checkOut);
+          var nights = Math.max(Math.round((d2 - d1) / 86400000), 0);
+          if (nights > 0) {
+            var total = nights * pricePerNight;
+            priceDisplay.textContent = "$" + total.toLocaleString();
+            priceDisplay.style.color = "#f2ca50";
+            if (priceUnit)  priceUnit.textContent  = "USD";
+            if (priceLabel) priceLabel.textContent = nights + " night" + (nights > 1 ? "s" : "") + " total";
+          } else {
+            priceDisplay.textContent = "Select dates";
+            if (priceUnit)  priceUnit.textContent  = "";
+          }
+        } else if (pricePerNight > 0) {
+          priceDisplay.textContent = "$" + pricePerNight.toLocaleString() + " / night";
+          if (priceUnit)  priceUnit.textContent  = "";
+        } else {
+          priceDisplay.textContent = "Select dates";
+          if (priceUnit)  priceUnit.textContent  = "";
+        }
+      }
+    }
+
+    // Remove old price display block (was handled by querySelector)
+    updatePriceAndButton(params.category || "rooms");
 
     // Events
     if (params.event_name) {
@@ -569,6 +657,7 @@
     if (params.category && validTabs.indexOf(params.category) !== -1) {
       switchTab(params.category);
     }
+
   }
 
   var activeCategory = "rooms";
@@ -576,6 +665,13 @@
   window.switchTab = function (tabId) {
     activeCategory = tabId;
     _origSwitch(tabId);
+    // Reset banner + button when switching tabs
+    var banner    = document.getElementById("points-status-banner");
+    var submitBtn = document.getElementById("submit-btn");
+    if (banner)    banner.classList.add("hidden");
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.classList.remove("opacity-40","cursor-not-allowed"); submitBtn.classList.add("hover:brightness-110","active:scale-[0.99]"); }
+    // Rebuild price + button label for the new tab
+    if (typeof updatePriceAndButton === "function") updatePriceAndButton(tabId);
   };
 
   // ── Global: store fetched offer/event pks if available ────────
@@ -679,12 +775,20 @@
     return {};
   }
 
+  var BUTTON_LABELS = {
+    rooms:      "Reserve Now",
+    redemption: "Redeem Reward",
+    offers:     "Claim Offer",
+    events:     "Register for Event",
+  };
+
   function setButtonState(btn, state) {
+    var idleLabel = BUTTON_LABELS[activeCategory] || "Confirm";
     var states = {
-      idle:    { text: "Complete Reservation", disabled: false },
-      loading: { text: "Processing\u2026",     disabled: true  },
-      success: { text: "Confirmed \u2713",     disabled: true  },
-      error:   { text: "Try Again",            disabled: false },
+      idle:    { text: idleLabel,        disabled: false },
+      loading: { text: "Processing…",    disabled: true  },
+      success: { text: "Confirmed ✓",    disabled: true  },
+      error:   { text: "Try Again",      disabled: false },
     };
     var s = states[state] || states.idle;
     btn.textContent = s.text;
