@@ -549,9 +549,7 @@ Fork it, white-label it, and deliver it. The foundation is solid.
 BestBliss is actively evolving. The following features are planned or in progress — some are already visible in the UI as previews of things to come.
 
 ### 🔧 Backend & Auth
-- **Guest Registration API** — A `POST /api/register/` endpoint for self-service account creation *(the registration UI at `register.html` is ready; backend endpoint is upcoming)*
 - **Password Reset Flow** — Email-based password recovery using Django's built-in email framework
-- **PostgreSQL Migration Guide** — Step-by-step instructions for switching from SQLite to PostgreSQL for production
 - **Docker Compose Setup** — Containerised deployment configuration for one-command production launches
 
 ### 🏨 Smart Room Controls
