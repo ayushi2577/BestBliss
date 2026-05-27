@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BestBliss — Create Account</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "surface-container-low": "#1a1c1c",
+          "surface-container": "#1e2020",
+          "surface-container-high": "#282a2b",
+          "surface-dim": "#121414",
+          "surface": "#121414",
+          "primary": "#f2ca50",
+          "primary-container": "#d4af37",
+          "on-primary": "#3c2f00",
+          "on-surface": "#e2e2e2",
+          "on-surface-variant": "#d0c5af",
+          "outline": "#99907c",
+          "outline-variant": "#4d4635",
+          "error": "#ffb4ab",
+          "secondary": "#c8c6c5",
+          "background": "#121414",
+        },
+        fontFamily: {
+          serif: ["Playfair Display", "serif"],
+          sans:  ["Manrope", "sans-serif"],
+        }
+      }
+    }
+  };
+</script>
+<style>
+  body { font-family: "Manrope", sans-serif; background: #121414; color: #e2e2e2; }
+  .brand { font-family: "Playfair Display", serif; }
+  input:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px #1e2020 inset; -webkit-text-fill-color: #e2e2e2; }
+</style>
+</head>
+<body class="min-h-screen flex items-center justify-center px-4 py-12">
+
+  <div class="w-full max-w-md">
+
+    <!-- Logo / Brand -->
+    <div class="text-center mb-10">
+      <h1 class="brand text-4xl font-bold text-primary tracking-wide">BestBliss</h1>
+      <p class="text-on-surface-variant text-sm mt-1 tracking-widest uppercase">Luxury Redefined</p>
+    </div>
+
+    <!-- Card -->
+    <div class="bg-surface-container rounded-2xl p-8 shadow-2xl border border-outline-variant">
+
+      <h2 class="brand text-2xl font-semibold text-on-surface mb-1">Create your account</h2>
+      <p class="text-on-surface-variant text-sm mb-7">Create your account to access exclusive member experiences.</p>
+
+      <!-- Error banner -->
+      <div id="register-error" class="hidden mb-5 rounded-lg bg-red-900/30 border border-red-800 text-error text-sm px-4 py-3"></div>
+      <!-- Success banner -->
+      <div id="register-success" class="hidden mb-5 rounded-lg bg-green-900/30 border border-green-700 text-green-300 text-sm px-4 py-3"></div>
+
+      <!-- Form fields (no <form> tag — handled via JS) -->
+      <div class="space-y-5">
+
+        <div>
+          <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="name">Full Name</label>
+          <input
+            id="name" type="text" maxlength="20" placeholder="e.g. Aryan Sharma"
+            class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
+          />
+        </div>
+
+        <div>
+          <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="email">Email Address</label>
+          <input
+            id="email" type="email" placeholder="you@example.com"
+            class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
+          />
+        </div>
+
+        <div>
+          <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="password">Password</label>
+          <input
+            id="password" type="password" placeholder="Minimum 6 characters"
+            class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
+          />
+        </div>
+
+        <div>
+          <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="confirm-password">Confirm Password</label>
+          <input
+            id="confirm-password" type="password" placeholder="Repeat password"
+            class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
+          />
+        </div>
+
+        <button
+          id="register-btn"
+          onclick="handleRegister()"
+          class="w-full mt-2 bg-primary text-on-primary font-bold py-3 rounded-lg text-sm tracking-wide hover:bg-primary-container transition disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Create Account
+        </button>
+
+      </div>
+
+      <p class="text-center text-sm text-on-surface-variant mt-7">
+        Already have an account?
+        <a href="index.html" class="text-primary font-semibold hover:underline ml-1">Sign in</a>
+      </p>
+
+    </div>
+  </div>
+
+<script>
+const API = 'https://bestbliss-0e4h.onrender.com/api';
+
+// If already logged in, go straight to dashboard
+if (localStorage.getItem('access')) {
+  window.location.href = 'dashboard.html';
+}
+
+function showError(msg) {
+  const el = document.getElementById('register-error');
+  el.textContent = msg;
+  el.classList.remove('hidden');
+  document.getElementById('register-success').classList.add('hidden');
+}
+
+function showSuccess(msg) {
+  const el = document.getElementById('register-success');
+  el.textContent = msg;
+  el.classList.remove('hidden');
+  document.getElementById('register-error').classList.add('hidden');
+}
+
+async function handleRegister() {
+  const name     = document.getElementById('name').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const confirm  = document.getElementById('confirm-password').value;
+  const btn      = document.getElementById('register-btn');
+
+  // Client-side validation
+  if (!name || !email || !password || !confirm) {
+    showError('Please fill in all fields.');
+    return;
+  }
+  if (name.length > 20) {
+    showError('Name must be 20 characters or fewer.');
+    return;
+  }
+  if (password.length < 6) {
+    showError('Password must be at least 6 characters.');
+    return;
+  }
+  if (password !== confirm) {
+    showError('Passwords do not match.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Creating account…';
+
+  try {
+    const res = await fetch(API + '/register/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password })
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      // Django validation errors come back as { field: ["msg"] } or { detail: "msg" }
+      if (data.email)    { showError(data.email[0]); }
+      else if (data.name)     { showError(data.name[0]); }
+      else if (data.password) { showError(data.password[0]); }
+      else if (data.detail)   { showError(data.detail); }
+      else { showError('Registration failed. Please try again.'); }
+      btn.disabled = false;
+      btn.textContent = 'Create Account';
+      return;
+    }
+
+    showSuccess('Account created! Redirecting you to login…');
+    setTimeout(() => { window.location.href = 'index.html'; }, 1800);
+
+  } catch (err) {
+    console.error('[BestBliss] Register error:', err);
+    showError('Network error — please check your connection and try again.');
+    btn.disabled = false;
+    btn.textContent = 'Create Account';
+  }
+}
+
+// Allow Enter key to submit
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') handleRegister();
+});
+</script>
+</body>
+</html>

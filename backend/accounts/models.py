@@ -8,11 +8,11 @@ from django.contrib.auth.models import BaseUserManager,AbstractBaseUser
 class UserManager(BaseUserManager):
     def create_user(self,email,password,name,**extra_fields):
         if not email:
-            raise ValueError("The Email field must be set.")   #should raise vallueerror as http response is at serializer lebvel
+            raise ValueError("The Email field must be set.")  
         if not password:
-            raise ValueError("The Password field must be set.")   #should raise vallueerror as http response is at serializer lebvel
+            raise ValueError("The Password field must be set.") 
         elif not name:
-            raise ValueError("The Name field must be set.")   #should raise vallueerror as http response is at serializer lebvel
+            raise ValueError("The Name field must be set.")   
         
         email=self.normalize_email(email)
         user=self.model(email=email,name=name,**extra_fields)
@@ -30,7 +30,7 @@ class User(AbstractBaseUser):
     id=models.CharField(null=False,unique=True,primary_key=True)
     email=models.EmailField(null=False,unique=True,max_length=50)
     name=models.CharField(null=False,max_length=20)
-    membership=models.CharField(default='customer',max_length=15)
+    membership=models.CharField(default='ustomer',max_length=15)
     tier_level=models.IntegerField(default=1)
     reward_points=models.IntegerField(default=0)
     referal_link=models.CharField(null=False,unique=True,max_length=200)
