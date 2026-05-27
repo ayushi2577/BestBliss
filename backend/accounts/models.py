@@ -30,7 +30,7 @@ class User(AbstractBaseUser):
     id=models.CharField(null=False,unique=True,primary_key=True)
     email=models.EmailField(null=False,unique=True,max_length=50)
     name=models.CharField(null=False,max_length=20)
-    membership=models.CharField(default='ustomer',max_length=15)
+    membership=models.CharField(default='Customer',max_length=15)
     tier_level=models.IntegerField(default=1)
     reward_points=models.IntegerField(default=0)
     referal_link=models.CharField(null=False,unique=True,max_length=200)

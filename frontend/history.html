@@ -637,8 +637,16 @@
         return MAP[tab] || tab || "redemptions";
       }
 
+      function populateNavUser() {
+      document.getElementById('username').textContent = localStorage.getItem('username') || 'Guest';
+      document.getElementById('membership').textContent = localStorage.getItem('membership') || '';
+      document.getElementById('user-initials').textContent = localStorage.getItem('user_initials') || '';
+
+    }
+
       // ── Init ─────────────────────────────────────────────────────
       document.addEventListener("DOMContentLoaded", function () {
+        populateNavUser();
         if (!getToken()) { window.location.href = "index.html"; return; }
 
         var initialTab = resolveInitialTab();
