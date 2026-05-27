@@ -1,11 +1,18 @@
 <div align="center">
 
-# BestBliss
+```
+██████╗ ███████╗███████╗████████╗██████╗ ██╗     ██╗███████╗███████╗
+██╔══██╗██╔════╝██╔════╝╚══██╔══╝██╔══██╗██║     ██║██╔════╝██╔════╝
+██████╔╝█████╗  ███████╗   ██║   ██████╔╝██║     ██║███████╗███████╗
+██╔══██╗██╔══╝  ╚════██║   ██║   ██╔══██╗██║     ██║╚════██║╚════██║
+██████╔╝███████╗███████║   ██║   ██████╔╝███████╗██║███████║███████║
+╚═════╝ ╚══════╝╚══════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝╚══════╝╚══════╝
+```
 
 ### **The Complete Luxury Hotel Web Platform**
 *A full-stack, API-driven hotel management and guest engagement system — built for the modern hospitality era.*
 
-[![Live Demo](https://img.shields.io/badge/⬡%20Live%20Demo-best--bliss.vercel.app-F2CA50?style=for-the-badge&labelColor=1E2020&color=F2CA50)](https://best-bliss.vercel.app)
+---
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-6.0-092E20?style=for-the-badge&logo=django&logoColor=white)
@@ -40,7 +47,7 @@
 10. [Project Structure](#project-structure)
 11. [Who Should Use BestBliss?](#who-should-use-bestbliss)
 12. [BestBliss vs. The Alternatives](#bestbliss-vs-the-alternatives)
-13. [Roadmap & Upcoming Features](#roadmap--upcoming-features)
+13. [Roadmap](#roadmap)
 14. [Contributing](#contributing)
 15. [License](#license)
 
@@ -97,10 +104,10 @@ Every feature in BestBliss is driven by three principles:
 - The dashboard intelligently surfaces special events first when both exist on the same day
 - Guests can book their spot at weekly events through the `EventBooking` system
 
-### Smart Environment Intelligence *(Partially Available)*
-- The `/api/smart/` endpoint is live and returns real-time **temperature**, **humidity**, **UV Index**, and **Air Quality Index** for any GPS coordinates
-- Powered by the free, open-source **Open-Meteo** APIs — no API key required
-- The Smart Suite frontend (`smart.html`) displays environmental data and also shows a **Climate Control** and **Smart Room Controls** UI — these room-control features are UI previews and are not yet connected to a backend (see [Roadmap](#roadmap--upcoming-features))
+### Smart Environment Intelligence
+- A unique value-add feature: the `/api/smart/` endpoint accepts GPS coordinates and returns real-time **temperature**, **humidity**, **UV Index** (with human-readable classification), and **Air Quality Index** (US AQI standard) for any location
+- Powered by the free, open-source **Open-Meteo** and **Open-Meteo Air Quality** APIs — no API key required
+- Enables hotels to surface live weather and air quality data for their guests — ideal for resort properties, wellness retreats, or city hotels wanting to provide concierge-quality environmental context
 
 ---
 
@@ -311,15 +318,15 @@ BestBliss ships with a complete, fully-styled multi-page guest portal:
 
 | Page | File | Description |
 |---|---|---|
-| **Sign In** | `index.html` | Luxury login with split-screen layout |
-| **Dashboard** | `dashboard.html` | Live personalised guest home |
-| **My Stays** | `stay.html` | Stay history by status |
-| **Manage Stay** | `manage_stay.html` | Booking creation and cancellation |
-| **Dining** | `dining.html` | Menu browser and order placement |
-| **Order Tracker** | `order.html` | Food order management |
-| **Loyalty Circle** | `loyalty.html` | Rewards, privileges, and redemption |
-| **Smart Suite** | `smart.html` | Live environmental metrics + smart controls UI *(controls are a UI preview — not yet backend-connected)* |
-| **History** | `history.html` | Complete guest activity log |
+| **Sign In** | `index.html` | Luxury login experience with split-screen layout |
+| **Dashboard** | `dashboard.html` | Personalised guest home with live data |
+| **My Stays** | `stay.html` | Stay history categorised by status |
+| **Manage Stay** | `manage_stay.html` | Booking creation and cancellation interface |
+| **Dining** | `dining.html` | Food menu browser and order placement |
+| **Order Tracker** | `order.html` | Live food order management |
+| **Loyalty Circle** | `loyalty.html` | Rewards, privileges, referral link, and redemption |
+| **Smart Suite** | `smart.html` | Live environmental metrics for guest's location |
+| **History** | `history.html` | Complete guest activity history |
 
 ---
 
@@ -466,7 +473,7 @@ BestBliss/
     ├── dining.html                # Restaurant & dining
     ├── order.html                 # Order tracking
     ├── loyalty.html               # Loyalty & rewards
-    ├── smart.html                 # Environmental intelligence + smart controls UI
+    ├── smart.html                 # Environmental intelligence
     └── history.html               # Full guest history
 ```
 
@@ -544,30 +551,20 @@ Fork it, white-label it, and deliver it. The foundation is solid.
 
 ---
 
-## Roadmap & Upcoming Features
+## Roadmap
 
-BestBliss is actively evolving. The following features are planned or in progress — some are already visible in the UI as previews of things to come.
+The following capabilities are natural next steps for BestBliss and represent the direction for future development:
 
-### 🔧 Backend & Auth
-- **Guest Registration API** — A `POST /api/register/` endpoint for self-service account creation *(the registration UI at `register.html` is ready; backend endpoint is upcoming)*
+- **Guest Registration API** — A `POST /api/register/` endpoint to allow self-service account creation
 - **Password Reset Flow** — Email-based password recovery using Django's built-in email framework
+- **Payment Integration** — Stripe or Razorpay integration for online booking deposits and food order payments
+- **Room Availability Calendar** — Date-aware room availability queries to prevent double-booking
+- **Image Support** — Room photo galleries and food item images via Django's media handling or cloud storage (S3)
+- **Admin Dashboard Frontend** — A hotel-staff-facing UI for managing rooms, menus, events, and viewing all guest activity
+- **Push Notifications** — Booking confirmation and event reminder notifications
 - **PostgreSQL Migration Guide** — Step-by-step instructions for switching from SQLite to PostgreSQL for production
 - **Docker Compose Setup** — Containerised deployment configuration for one-command production launches
-
-### 🏨 Smart Room Controls
-- **IoT Room Integration** — Backend API for the Smart Suite's climate control and room controls UI *(the thermostat, curtains, lighting, and device controls visible on `smart.html` are currently UI previews — real IoT connectivity is in progress)*
-- **Smart Room `smart_id` Activation** — The `smart_id` field already exists on each Room model as a hook; the control layer is upcoming
-
-### 💳 Payments & Booking
-- **Payment Integration** — Stripe or Razorpay integration for online booking deposits and food order payments
-- **Room Availability Calendar** — Date-aware calendar UI to prevent double-booking and improve the booking experience
-### 👥 Engagement & Growth
-- **Push Notifications** — Booking confirmation and event reminder notifications
-- **Referral System Activation** — Full backend logic to reward guests when their referral link converts a signup
 - **Multi-Property Support** — Property-scoped data for hotel groups managing multiple locations
-
-### 🖥️ Admin & Operations
-- **Admin Dashboard Frontend** — A hotel-staff-facing UI for managing rooms, menus, events, and viewing all guest activity without the Django admin panel
 - **Mobile App (React Native / Flutter)** — The REST API is already mobile-ready; a companion app is a natural extension
 
 ---
