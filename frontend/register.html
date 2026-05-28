@@ -7,6 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Identity Services -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -40,14 +42,54 @@
 <style>
   body { font-family: "Manrope", sans-serif; background: #121414; color: #e2e2e2; }
   .brand { font-family: "Playfair Display", serif; }
-  input:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px #1e2020 inset; -webkit-text-fill-color: #e2e2e2; }
+  input:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px #282a2b inset; -webkit-text-fill-color: #e2e2e2; }
+
+  /* OTP input boxes */
+  .otp-input {
+    width: 48px; height: 56px;
+    text-align: center;
+    font-size: 1.5rem; font-weight: 700;
+    background: #282a2b;
+    border: 1px solid #4d4635;
+    border-radius: 0.5rem;
+    color: #e2e2e2;
+    outline: none;
+    transition: border-color 0.2s;
+    caret-color: #f2ca50;
+  }
+  .otp-input:focus { border-color: #f2ca50; box-shadow: 0 0 0 1px #f2ca50; }
+  .otp-input.filled { border-color: #f2ca50; }
+
+  /* Slide transition between steps */
+  .step { transition: opacity 0.3s ease, transform 0.3s ease; }
+  .step.hidden-step { display: none; }
+
+  /* Spinner */
+  .spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(60,47,0,0.3);
+    border-top-color: #3c2f00;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  .spinner-gold {
+    border-color: rgba(242,202,80,0.3);
+    border-top-color: #f2ca50;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Countdown */
+  #countdown { font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body class="min-h-screen flex items-center justify-center px-4 py-12">
 
   <div class="w-full max-w-md">
 
-    <!-- Logo / Brand -->
+    <!-- Logo -->
     <div class="text-center mb-10">
       <h1 class="brand text-4xl font-bold text-primary tracking-wide">BestBliss</h1>
       <p class="text-on-surface-variant text-sm mt-1 tracking-widest uppercase">Luxury Redefined</p>
@@ -56,153 +98,456 @@
     <!-- Card -->
     <div class="bg-surface-container rounded-2xl p-8 shadow-2xl border border-outline-variant">
 
-      <h2 class="brand text-2xl font-semibold text-on-surface mb-1">Create your account</h2>
-      <p class="text-on-surface-variant text-sm mb-7">Create your account to access exclusive member experiences.</p>
+      <!-- ── STEP 1: Registration details ─────────────────────────────── -->
+      <div id="step-1" class="step">
+        <h2 class="brand text-2xl font-semibold text-on-surface mb-1">Create your account</h2>
+        <p class="text-on-surface-variant text-sm mb-7">Fill in your details — we'll verify your email with a one-time code.</p>
 
-      <!-- Error banner -->
-      <div id="register-error" class="hidden mb-5 rounded-lg bg-red-900/30 border border-red-800 text-error text-sm px-4 py-3"></div>
-      <!-- Success banner -->
-      <div id="register-success" class="hidden mb-5 rounded-lg bg-green-900/30 border border-green-700 text-green-300 text-sm px-4 py-3"></div>
+        <!-- Banners -->
+        <div id="s1-error"   class="hidden mb-5 rounded-lg bg-red-900/30 border border-red-800 text-error text-sm px-4 py-3"></div>
+        <div id="s1-success" class="hidden mb-5 rounded-lg bg-green-900/30 border border-green-700 text-green-300 text-sm px-4 py-3"></div>
 
-      <!-- Form fields (no <form> tag — handled via JS) -->
-      <div class="space-y-5">
+        <div class="space-y-5">
+          <div>
+            <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="name">Full Name</label>
+            <input id="name" type="text" maxlength="20" placeholder="e.g. Aryan Sharma"
+              class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"/>
+          </div>
 
-        <div>
-          <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="name">Full Name</label>
-          <input
-            id="name" type="text" maxlength="20" placeholder="e.g. Aryan Sharma"
-            class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
-          />
+          <div>
+            <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="email">Email Address</label>
+            <input id="email" type="email" placeholder="you@example.com"
+              class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"/>
+          </div>
+
+          <div>
+            <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="password">Password</label>
+            <div class="relative">
+              <input id="password" type="password" placeholder="Minimum 8 characters"
+                class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 pr-12 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"/>
+              <button type="button" onclick="togglePwd('password','eye1')"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-xl" id="eye1">visibility</span>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="confirm-password">Confirm Password</label>
+            <div class="relative">
+              <input id="confirm-password" type="password" placeholder="Repeat password"
+                class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 pr-12 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"/>
+              <button type="button" onclick="togglePwd('confirm-password','eye2')"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-xl" id="eye2">visibility</span>
+              </button>
+            </div>
+          </div>
+
+          <button id="send-otp-btn" type="button" onclick="handleSendOTP()"
+            class="w-full mt-2 bg-primary text-on-primary font-bold py-3 rounded-lg text-sm tracking-wide hover:bg-primary-container transition disabled:opacity-50 disabled:cursor-not-allowed">
+            Send Verification Code
+          </button>
         </div>
 
-        <div>
-          <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="email">Email Address</label>
-          <input
-            id="email" type="email" placeholder="you@example.com"
-            class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
-          />
+        <!-- Divider -->
+        <div class="relative flex items-center my-6">
+          <div class="flex-grow border-t border-outline-variant"></div>
+          <span class="flex-shrink mx-4 text-xs text-on-surface-variant/50 uppercase tracking-widest">Or</span>
+          <div class="flex-grow border-t border-outline-variant"></div>
         </div>
 
-        <div>
-          <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="password">Password</label>
-          <input
-            id="password" type="password" placeholder="Minimum 6 characters"
-            class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
-          />
-        </div>
-
-        <div>
-          <label class="block text-on-surface-variant text-xs font-semibold tracking-wider uppercase mb-1.5" for="confirm-password">Confirm Password</label>
-          <input
-            id="confirm-password" type="password" placeholder="Repeat password"
-            class="w-full bg-surface-container-high border border-outline-variant rounded-lg px-4 py-3 text-on-surface text-sm placeholder-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
-          />
-        </div>
-
-        <button
-          id="register-btn"
-          onclick="handleRegister()"
-          class="w-full mt-2 bg-primary text-on-primary font-bold py-3 rounded-lg text-sm tracking-wide hover:bg-primary-container transition disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          Create Account
+        <!-- Google Sign-Up -->
+        <button id="google-btn" type="button" onclick="handleGoogleSignIn()"
+          class="w-full flex items-center justify-center space-x-3 border border-outline-variant rounded-lg py-3 hover:bg-white/5 transition-colors group disabled:opacity-60">
+          <img alt="Google" class="w-5 h-5 grayscale group-hover:grayscale-0 transition-all"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeaWZNQ6NlaULOHZwhMqz9_ybBtgfZ8--HDGD5IOJd6lVu1p4ApGEsi_sEmJHU0bCdvsW6HrO4LpkDTuxdfbsIF1Tp6pUTm_1ivkCybOi69OSG8VJ6f-PHqSr-fp0hNpGzdBJvwBpHXd4dxSSjTyuRES1xXpql4ncg11qrUpSVNZB7kRPVgi51tw5eVvrEjyiemBSKT2XwSGBmsPPGVpIdm2lwP3YehCw0RE6EBblro08N6VNw6Inbna4rU1VCL9qbpfpDoXGKZbUH"/>
+          <span class="text-sm font-semibold text-on-surface" id="google-btn-text">Continue with Google</span>
         </button>
 
+        <p class="text-center text-sm text-on-surface-variant mt-6">
+          Already have an account?
+          <a href="index.html" class="text-primary font-semibold hover:underline ml-1">Sign in</a>
+        </p>
       </div>
 
-      <p class="text-center text-sm text-on-surface-variant mt-7">
-        Already have an account?
-        <a href="index.html" class="text-primary font-semibold hover:underline ml-1">Sign in</a>
-      </p>
+      <!-- ── STEP 2: OTP Verification ──────────────────────────────────── -->
+      <div id="step-2" class="step hidden-step">
+        <button type="button" onclick="goBackToStep1()"
+          class="flex items-center space-x-1 text-on-surface-variant hover:text-primary text-sm mb-6 transition-colors group">
+          <span class="material-symbols-outlined text-base group-hover:-translate-x-0.5 transition-transform">arrow_back</span>
+          <span>Back</span>
+        </button>
 
-    </div>
+        <h2 class="brand text-2xl font-semibold text-on-surface mb-1">Verify your email</h2>
+        <p class="text-on-surface-variant text-sm mb-2">
+          We've sent a 6-digit code to
+          <span id="display-email" class="text-primary font-semibold"></span>
+        </p>
+        <p class="text-on-surface-variant/60 text-xs mb-7">The code expires in 10 minutes.</p>
+
+        <!-- Banners -->
+        <div id="s2-error"   class="hidden mb-5 rounded-lg bg-red-900/30 border border-red-800 text-error text-sm px-4 py-3"></div>
+        <div id="s2-success" class="hidden mb-5 rounded-lg bg-green-900/30 border border-green-700 text-green-300 text-sm px-4 py-3"></div>
+
+        <!-- OTP Boxes -->
+        <div class="flex justify-center gap-3 mb-8" id="otp-container">
+          <input class="otp-input" id="o1" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="one-time-code"/>
+          <input class="otp-input" id="o2" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+          <input class="otp-input" id="o3" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+          <input class="otp-input" id="o4" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+          <input class="otp-input" id="o5" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+          <input class="otp-input" id="o6" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+        </div>
+
+        <button id="verify-btn" type="button" onclick="handleVerifyOTP()"
+          class="w-full bg-primary text-on-primary font-bold py-3 rounded-lg text-sm tracking-wide hover:bg-primary-container transition disabled:opacity-50 disabled:cursor-not-allowed">
+          Verify &amp; Create Account
+        </button>
+
+        <div class="text-center mt-5 text-sm text-on-surface-variant">
+          Didn't receive the code?
+          <button id="resend-btn" type="button" onclick="resendOTP()"
+            class="text-primary font-semibold hover:underline ml-1 disabled:opacity-40 disabled:cursor-not-allowed disabled:no-underline">
+            Resend
+          </button>
+          <span id="countdown" class="text-on-surface-variant/60 ml-1"></span>
+        </div>
+      </div>
+
+    </div><!-- /card -->
   </div>
 
-<script>
-const API = 'https://bestbliss-0e4h.onrender.com/api';
+<!-- Hidden GIS button container -->
+<div id="g_id_container" style="position:absolute;opacity:0;pointer-events:none;"></div>
 
-// If already logged in, go straight to dashboard
+<script>
+const API = 'https://bestbliss-0e4h.onrender.com/api/accounts';
+// ─── Replace with your actual Google Client ID ───────────────────────────────
+const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Already logged in → go to dashboard
 if (localStorage.getItem('access')) {
   window.location.href = 'dashboard.html';
 }
 
-function showError(msg) {
-  const el = document.getElementById('register-error');
+// ── Shared state ──────────────────────────────────────────────────────────────
+let pendingEmail = '';
+let resendTimer  = null;
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function showBanner(id, msg, isError = true) {
+  const el = document.getElementById(id);
   el.textContent = msg;
   el.classList.remove('hidden');
-  document.getElementById('register-success').classList.add('hidden');
+  const otherId = isError ? id.replace('error', 'success') : id.replace('success', 'error');
+  document.getElementById(otherId)?.classList.add('hidden');
 }
 
-function showSuccess(msg) {
-  const el = document.getElementById('register-success');
-  el.textContent = msg;
-  el.classList.remove('hidden');
-  document.getElementById('register-error').classList.add('hidden');
+function hideBanners(...ids) { ids.forEach(id => document.getElementById(id)?.classList.add('hidden')); }
+
+function togglePwd(inputId, iconId) {
+  const input = document.getElementById(inputId);
+  const icon  = document.getElementById(iconId);
+  input.type  = input.type === 'password' ? 'text' : 'password';
+  icon.textContent = input.type === 'password' ? 'visibility' : 'visibility_off';
 }
 
-async function handleRegister() {
+function saveTokens(a, r) {
+  localStorage.setItem('access', a);
+  localStorage.setItem('refresh', r);
+}
+
+function showStep(n) {
+  document.getElementById('step-1').classList.toggle('hidden-step', n !== 1);
+  document.getElementById('step-2').classList.toggle('hidden-step', n !== 2);
+}
+
+function goBackToStep1() {
+  showStep(1);
+  clearInterval(resendTimer);
+  hideBanners('s2-error', 's2-success');
+  getOTPBoxes().forEach(i => { i.value = ''; i.classList.remove('filled'); });
+}
+
+// ── STEP 1: Send OTP ──────────────────────────────────────────────────────────
+async function handleSendOTP() {
+  hideBanners('s1-error', 's1-success');
+
   const name     = document.getElementById('name').value.trim();
   const email    = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
   const confirm  = document.getElementById('confirm-password').value;
-  const btn      = document.getElementById('register-btn');
+  const btn      = document.getElementById('send-otp-btn');
 
-  // Client-side validation
   if (!name || !email || !password || !confirm) {
-    showError('Please fill in all fields.');
-    return;
+    showBanner('s1-error', 'Please fill in all fields.'); return;
   }
   if (name.length > 20) {
-    showError('Name must be 20 characters or fewer.');
-    return;
+    showBanner('s1-error', 'Name must be 20 characters or fewer.'); return;
   }
-  if (password.length < 6) {
-    showError('Password must be at least 6 characters.');
-    return;
+  if (password.length < 8) {
+    showBanner('s1-error', 'Password must be at least 8 characters.'); return;
   }
   if (password !== confirm) {
-    showError('Passwords do not match.');
-    return;
+    showBanner('s1-error', 'Passwords do not match.'); return;
   }
 
   btn.disabled = true;
-  btn.textContent = 'Creating account…';
+  btn.innerHTML = '<span class="spinner"></span> Sending…';
 
   try {
-    const res = await fetch(API + '/register/', {
+    // POST /api/accounts/signupotp/ → { email, password, name }
+    const res  = await fetch(API + '/signupotp/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password })
+      body: JSON.stringify({ email, password, name })
     });
-
     const data = await res.json().catch(() => ({}));
 
     if (!res.ok) {
-      // Django validation errors come back as { field: ["msg"] } or { detail: "msg" }
-      if (data.email)    { showError(data.email[0]); }
-      else if (data.name)     { showError(data.name[0]); }
-      else if (data.password) { showError(data.password[0]); }
-      else if (data.detail)   { showError(data.detail); }
-      else { showError('Registration failed. Please try again.'); }
-      btn.disabled = false;
-      btn.textContent = 'Create Account';
+      // DRF serializer errors: { email: [...], non_field_errors: [...], ... }
+      const msg = data.email?.[0]
+               || data.non_field_errors?.[0]
+               || data.detail
+               || 'Failed to send code. Please try again.';
+      showBanner('s1-error', msg);
       return;
     }
 
-    showSuccess('Account created! Redirecting you to login…');
-    setTimeout(() => { window.location.href = 'index.html'; }, 1800);
+    // Success: move to step 2
+    pendingEmail = email;
+    document.getElementById('display-email').textContent = email;
+    showStep(2);
+    startResendCountdown(60);
+    // Focus first OTP box
+    document.getElementById('o1').focus();
 
   } catch (err) {
-    console.error('[BestBliss] Register error:', err);
-    showError('Network error — please check your connection and try again.');
+    showBanner('s1-error', 'Network error. Please check your connection.');
+  } finally {
     btn.disabled = false;
-    btn.textContent = 'Create Account';
+    btn.textContent = 'Send Verification Code';
   }
 }
 
-// Allow Enter key to submit
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') handleRegister();
+// ── STEP 2: Verify OTP ────────────────────────────────────────────────────────
+function getOTPBoxes() {
+  return ['o1','o2','o3','o4','o5','o6'].map(id => document.getElementById(id));
+}
+
+function getOTPValue() {
+  return getOTPBoxes().map(i => i.value).join('');
+}
+
+async function handleVerifyOTP() {
+  hideBanners('s2-error', 's2-success');
+
+  const code = getOTPValue();
+  if (code.length < 6) {
+    showBanner('s2-error', 'Please enter the complete 6-digit code.'); return;
+  }
+
+  const btn = document.getElementById('verify-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Verifying…';
+
+  try {
+    // POST /api/accounts/verifyandregister/ → { email, code }
+    const res  = await fetch(API + '/verifyandregister/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: pendingEmail, code })
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      const msg = data.error || data.detail || 'Invalid or expired code. Please try again.';
+      showBanner('s2-error', msg);
+      // Shake the OTP boxes
+      const container = document.getElementById('otp-container');
+      container.style.animation = 'none';
+      container.offsetHeight; // reflow
+      container.style.animation = 'shake 0.4s ease';
+      return;
+    }
+
+    // Account created → redirect to login
+    showBanner('s2-success', 'Account created successfully! Redirecting to sign in…', false);
+    clearInterval(resendTimer);
+    setTimeout(() => { window.location.href = 'index.html'; }, 1800);
+
+  } catch (err) {
+    showBanner('s2-error', 'Network error. Please check your connection.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Verify & Create Account';
+  }
+}
+
+// ── Resend OTP ────────────────────────────────────────────────────────────────
+function startResendCountdown(seconds) {
+  const btn       = document.getElementById('resend-btn');
+  const countdown = document.getElementById('countdown');
+  btn.disabled = true;
+  let remaining = seconds;
+
+  resendTimer = setInterval(() => {
+    remaining--;
+    countdown.textContent = `(${remaining}s)`;
+    if (remaining <= 0) {
+      clearInterval(resendTimer);
+      btn.disabled = false;
+      countdown.textContent = '';
+    }
+  }, 1000);
+}
+
+async function resendOTP() {
+  hideBanners('s2-error', 's2-success');
+
+  const name     = document.getElementById('name').value.trim();
+  const password = document.getElementById('password').value;
+
+  try {
+    const res = await fetch(API + '/signupotp/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: pendingEmail, password, name })
+    });
+    if (res.ok) {
+      showBanner('s2-success', 'A new code has been sent to your email.', false);
+      startResendCountdown(60);
+      getOTPBoxes().forEach(i => { i.value = ''; i.classList.remove('filled'); });
+      document.getElementById('o1').focus();
+    } else {
+      showBanner('s2-error', 'Could not resend code. Please go back and try again.');
+    }
+  } catch {
+    showBanner('s2-error', 'Network error. Please try again.');
+  }
+}
+
+// ── OTP box keyboard navigation ───────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const boxes = getOTPBoxes();
+
+  boxes.forEach((box, idx) => {
+    box.addEventListener('input', () => {
+      const val = box.value.replace(/\D/g, '');
+      box.value = val.slice(-1);
+      box.classList.toggle('filled', box.value !== '');
+      if (box.value && idx < 5) boxes[idx + 1].focus();
+      // Auto-submit when all filled
+      if (getOTPValue().length === 6) handleVerifyOTP();
+    });
+
+    box.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && !box.value && idx > 0) {
+        boxes[idx - 1].value = '';
+        boxes[idx - 1].classList.remove('filled');
+        boxes[idx - 1].focus();
+      }
+      if (e.key === 'ArrowLeft'  && idx > 0) boxes[idx - 1].focus();
+      if (e.key === 'ArrowRight' && idx < 5) boxes[idx + 1].focus();
+    });
+
+    // Handle paste into the first box
+    box.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
+      pasted.split('').forEach((char, i) => {
+        if (boxes[i]) {
+          boxes[i].value = char;
+          boxes[i].classList.add('filled');
+        }
+      });
+      const nextEmpty = boxes.findIndex(b => !b.value);
+      (nextEmpty === -1 ? boxes[5] : boxes[nextEmpty]).focus();
+      if (pasted.length === 6) handleVerifyOTP();
+    });
+  });
+
+  // Enter key in step 1 sends OTP
+  ['name','email','password','confirm-password'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleSendOTP();
+    });
+  });
 });
+
+// ── Shake animation (CSS injected) ───────────────────────────────────────────
+const style = document.createElement('style');
+style.textContent = `@keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-6px)} 40%,80%{transform:translateX(6px)} }`;
+document.head.appendChild(style);
+
+// ── Google Sign-Up / Sign-In ──────────────────────────────────────────────────
+function handleGoogleSignIn() {
+  const btn  = document.getElementById('google-btn');
+  const text = document.getElementById('google-btn-text');
+  btn.disabled = true;
+  text.innerHTML = '<span class="spinner spinner-gold"></span> Connecting…';
+
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: onGoogleCredential,
+    auto_select: false,
+    cancel_on_tap_outside: true,
+  });
+
+  google.accounts.id.prompt((notification) => {
+    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+      openGooglePopup();
+    }
+  });
+
+  setTimeout(() => {
+    btn.disabled = false;
+    text.textContent = 'Continue with Google';
+  }, 10000);
+}
+
+function openGooglePopup() {
+  const container = document.getElementById('g_id_container');
+  google.accounts.id.renderButton(container, { theme: 'outline', size: 'large', type: 'standard' });
+  const gBtn = container.querySelector('div[role="button"]');
+  if (gBtn) gBtn.click();
+}
+
+async function onGoogleCredential(response) {
+  const btn  = document.getElementById('google-btn');
+  const text = document.getElementById('google-btn-text');
+
+  try {
+    // POST /api/accounts/google/ → { token }
+    const res  = await fetch(API + '/google/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: response.credential })
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      showBanner('s1-error', data.error || 'Google authentication failed. Please try again.');
+      return;
+    }
+
+    // Save tokens and redirect — user is now logged in
+    localStorage.setItem('access',  data.access);
+    localStorage.setItem('refresh', data.refresh);
+    const msg = data.created ? 'Account created! Redirecting to dashboard…' : 'Welcome back! Redirecting…';
+    showBanner('s1-success', msg, false);
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 1000);
+
+  } catch (err) {
+    showBanner('s1-error', 'Network error during Google sign-in. Please try again.');
+  } finally {
+    btn.disabled = false;
+    text.textContent = 'Continue with Google';
+  }
+}
 </script>
+
 </body>
 </html>

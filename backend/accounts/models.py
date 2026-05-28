@@ -81,3 +81,15 @@ class User(AbstractBaseUser):
 
         # Call the real Django save method to write to the database
         super(User, self).save(*args, **kwargs)
+
+class OTP(models.Model):
+    email=models.EmailField(null=False,max_length=50,unique=True)
+    temp_password=models.CharField(null=False,max_length=50)
+    name=models.CharField(null=False,max_length=50)
+    code=models.CharField(null=False,max_length=6)
+    is_used=models.BooleanField(default=False)
+    purpose=models.CharField(null=False,max_length=50)
+    created_at=models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.code
