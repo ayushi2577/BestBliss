@@ -544,7 +544,7 @@ Fork it, white-label it, and deliver it. The foundation is solid.
 
 ---
 
-## Roadmap & Upcoming Features
+## Roadmap & Upcoming Features 
 
 BestBliss is actively evolving. The following features are planned or in progress — some are already visible in the UI as previews of things to come.
 
